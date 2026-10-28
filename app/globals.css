@@ -1,0 +1,273 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #efe6df;
+  --color-cream-deep: #e7dcd3;
+  --color-cream-soft: #f4ede7;
+  --color-logo: #d6c1a3;
+  --color-gold: #d2b799;
+  --color-gold-line: #c9ad8c;
+  --color-brown: #4a3434;
+  --color-brown-soft: #6e5a5a;
+  --color-burgundy: #7c4242;
+
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
+  --font-display: var(--font-bodoni), Georgia, serif;
+  --font-caviar: var(--font-caviar), sans-serif;
+  --font-script: var(--font-greatvibes), cursive;
+  --font-allura: var(--font-allura), cursive;
+  --font-pinyon: var(--font-pinyon), cursive;
+
+  --tracking-wide2: 0.22em;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-brown);
+  font-family: var(--font-sans);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-brown);
+}
+
+/* Editorial type utilities */
+.display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-variation-settings: "opsz" 72;
+  letter-spacing: -0.005em;
+  line-height: 1.08;
+}
+
+.display-sm {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-variation-settings: "opsz" 18;
+  letter-spacing: 0;
+  line-height: 1.2;
+}
+
+.display-caps {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-variation-settings: "opsz" 48;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.label {
+  font-family: var(--font-caviar);
+  font-weight: 400;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-size: 0.68rem;
+}
+
+.script {
+  font-family: var(--font-script);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.measure {
+  max-width: 38rem;
+}
+
+/* Reveal on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.6, 0.2, 1),
+    transform 0.9s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 1rem 1.9rem;
+  line-height: 1.5;
+  text-align: left;
+  border: 1px solid var(--color-brown);
+  color: var(--color-brown);
+  background: transparent;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.btn:hover {
+  background: var(--color-brown);
+  color: var(--color-cream);
+}
+.btn-solid {
+  background: var(--color-brown);
+  color: var(--color-cream);
+}
+.btn-solid:hover {
+  background: var(--color-burgundy);
+  border-color: var(--color-burgundy);
+}
+.btn-on-dark {
+  border-color: var(--color-gold);
+  color: var(--color-cream);
+}
+.btn-on-dark:hover {
+  background: var(--color-gold);
+  color: var(--color-brown);
+}
+
+/* Text links */
+.textlink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brown);
+  border-bottom: 1px solid var(--color-gold-line);
+  padding-bottom: 0.35rem;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+.textlink:hover {
+  color: var(--color-burgundy);
+  border-color: var(--color-burgundy);
+}
+.textlink svg {
+  transition: transform 0.3s ease;
+}
+.textlink:hover svg {
+  transform: translateX(4px);
+}
+
+/* Fine rules */
+.rule {
+  height: 1px;
+  background: var(--color-gold-line);
+  opacity: 0.7;
+}
+
+/* Image frames */
+.frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-cream-deep);
+}
+.frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 1.2s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.frame:hover img {
+  transform: scale(1.02);
+}
+
+/* Newsletter input */
+.field {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--color-gold-line);
+  padding: 0.9rem 0;
+  font-size: 0.95rem;
+  color: var(--color-brown);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+.field::placeholder {
+  color: var(--color-brown-soft);
+  opacity: 0.8;
+}
+.field:focus {
+  border-bottom-color: var(--color-brown);
+}
+
+/* FAQ */
+.faq-item {
+  border-top: 1px solid var(--color-gold-line);
+}
+.faq-item:last-child {
+  border-bottom: 1px solid var(--color-gold-line);
+}
+.faq-btn {
+  width: 100%;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 2rem;
+  padding: 1.6rem 0;
+  cursor: pointer;
+}
+.faq-icon {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  flex: none;
+  margin-top: 2px;
+}
+.faq-icon::before,
+.faq-icon::after {
+  content: "";
+  position: absolute;
+  background: var(--color-brown);
+  transition: transform 0.35s ease, opacity 0.35s ease;
+}
+.faq-icon::before {
+  left: 0;
+  top: 6.5px;
+  width: 14px;
+  height: 1px;
+}
+.faq-icon::after {
+  left: 6.5px;
+  top: 0;
+  width: 1px;
+  height: 14px;
+}
+.faq-item[data-open="true"] .faq-icon::after {
+  transform: rotate(90deg);
+  opacity: 0;
+}
+.faq-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.45s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.faq-item[data-open="true"] .faq-panel {
+  grid-template-rows: 1fr;
+}
+.faq-panel > div {
+  overflow: hidden;
+}
