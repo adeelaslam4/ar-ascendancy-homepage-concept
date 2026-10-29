@@ -1,61 +1,108 @@
 import { LogoLockup } from "@/components/Logo";
 
+const NAV = [
+  { label: "Startseite", href: "/" },
+  { label: "Angebote", href: "#angebote" },
+  { label: "Über mich", href: "#ueber-mich" },
+  { label: "Blog", href: "#blog" },
+];
+
+const LEGAL = [
+  { label: "Impressum", href: "#impressum" },
+  { label: "Datenschutzerklärung", href: "#datenschutz" },
+];
+
+function IconLinkedIn() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.55V9h3.57v11.45Z" />
+    </svg>
+  );
+}
+
+function IconMail() {
+  return (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+      <rect x="3" y="5.5" width="18" height="13" rx="1.5" />
+      <path d="m3.5 7 8.5 6 8.5-6" />
+    </svg>
+  );
+}
+
 export default function Footer() {
   return (
-    <footer className="bg-cream">
-      <div className="mx-auto max-w-[1400px] px-6 pb-10 pt-16 md:px-10 md:pt-24 lg:px-14">
-        <div className="grid gap-12 md:grid-cols-12 md:gap-10">
-          <div className="md:col-span-5">
-            <LogoLockup className="text-[1.1rem] text-brown" />
-          </div>
+    <footer className="bg-cream-soft px-4 pb-5 pt-5 md:px-8 md:pb-8 md:pt-8 lg:px-12">
+      <div className="relative mx-auto max-w-[1400px]">
+        <div className="fcard relative rounded-[28px] bg-cream px-7 pb-12 pt-10 md:rounded-[32px] md:px-12 md:pb-14 md:pt-12 lg:px-16 lg:pb-16 lg:pt-14">
+          {/* architectural notches (desktop) */}
+          <span className="notch notch-tl hidden md:block" aria-hidden="true" />
+          <span className="notch notch-br hidden md:block" aria-hidden="true" />
 
-          <div className="md:col-span-3 md:col-start-7">
-            <span className="label text-gold-line">Kontakt</span>
-            <ul className="mt-5 space-y-3 text-[0.9rem] text-brown">
-              <li>
-                <a href="mailto:office@ar-ascendancy.com" className="transition-colors hover:text-burgundy">
+          <div className="grid gap-12 md:grid-cols-12 md:gap-8">
+            {/* ── Left: logo (her colour, geometry unchanged), tagline separate beneath ── */}
+            <div className="flex flex-col md:col-span-7 md:pl-[112px] lg:pl-[120px]">
+              <LogoLockup className="self-start text-[1.35rem] text-logo md:text-[1.55rem]" />
+
+              <div className="mt-12 flex flex-col gap-3 md:mt-16 md:pl-0">
+                <span className="label text-gold-line">Kontakt</span>
+                <a
+                  href="mailto:office@ar-ascendancy.com"
+                  className="w-fit text-[1rem] text-brown transition-colors duration-300 hover:text-burgundy md:text-[1.05rem]"
+                >
                   office@ar-ascendancy.com
                 </a>
-              </li>
-              <li>
+                <span className="text-[0.9rem] text-brown-soft">Berlin</span>
+              </div>
+
+              <div className="mt-10 flex items-center gap-3 md:mt-auto md:pt-12">
                 <a
                   href="https://www.linkedin.com/in/alina-rogall-502749411/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="transition-colors hover:text-burgundy"
+                  className="social"
+                  aria-label="LinkedIn – Alina Rogall"
                 >
-                  LinkedIn
+                  <IconLinkedIn />
                 </a>
-              </li>
-            </ul>
-          </div>
+                <a href="mailto:office@ar-ascendancy.com" className="social" aria-label="E-Mail an office@ar-ascendancy.com">
+                  <IconMail />
+                </a>
+              </div>
+            </div>
 
-          <div className="md:col-span-3">
-            <span className="label text-gold-line">Rechtliches</span>
-            <ul className="mt-5 space-y-3 text-[0.9rem] text-brown">
-              <li>
-                <a href="#impressum" className="transition-colors hover:text-burgundy" title="Text folgt">
-                  Impressum
-                </a>
-              </li>
-              <li>
-                <a href="#datenschutz" className="transition-colors hover:text-burgundy" title="Text folgt">
-                  Datenschutzerklärung
-                </a>
-              </li>
-            </ul>
+            {/* ── Right: pill CTA, navigation, legal ── */}
+            <div className="flex flex-col md:col-span-5 md:items-end md:text-right lg:col-span-4 lg:col-start-9">
+              <a href="#calendly" className="btn-pill-solid self-start md:self-end" title="Link zu Calendly folgt">
+                Kostenfreies Erstgespräch
+              </a>
+
+              <nav className="mt-12 flex flex-col gap-2.5 md:mt-16" aria-label="Fußzeilen-Navigation">
+                {NAV.map((n) => (
+                  <a key={n.label} href={n.href} className="flink">
+                    {n.label}
+                  </a>
+                ))}
+              </nav>
+
+              <div className="mt-10 flex flex-col gap-2.5">
+                {LEGAL.map((n) => (
+                  <a key={n.label} href={n.href} className="flink text-[0.85rem]" title="Text folgt">
+                    {n.label}
+                  </a>
+                ))}
+              </div>
+
+              <p className="mt-10 text-[0.72rem] tracking-[0.06em] text-brown-soft md:hidden">
+                © 2026 A.R. ASCENDANCY · Alina Rogall
+              </p>
+            </div>
           </div>
         </div>
 
-        <div className="rule mt-16" />
-        <div className="flex flex-col gap-3 pt-6 text-[0.72rem] tracking-[0.06em] text-brown-soft md:flex-row md:items-center md:justify-between">
-          <span>© 2026 A.R. ASCENDANCY · Alina Rogall · Berlin</span>
-          <span className="flex items-center gap-2">
-            <span className="text-brown">DE</span>
-            <span className="h-3 w-px bg-gold-line" />
-            <span>EN</span>
-          </span>
-        </div>
+        {/* sits inside the bottom-right notch on desktop */}
+        <p className="absolute bottom-6 right-4 hidden text-[0.72rem] tracking-[0.06em] text-brown-soft md:block lg:right-6">
+          © 2026 A.R. ASCENDANCY · Alina Rogall
+        </p>
       </div>
     </footer>
   );

@@ -117,7 +117,7 @@ export default function Typografie() {
           <Card>
             <span className="label text-brown-soft">Tagline – unterhalb des Logos</span>
             <div className="mt-6 flex h-48 flex-col items-center justify-center bg-cream">
-              <LogoLockup className="text-[0.9rem] text-brown" />
+              <LogoLockup className="text-[0.9rem] text-logo" />
             </div>
             <p className="mt-6 text-[0.9rem] leading-[1.75] text-brown-soft">
               „CLARITY - DECISION - ASCENT“ ist nicht Teil der Logografik, sondern steht – wie im Miro

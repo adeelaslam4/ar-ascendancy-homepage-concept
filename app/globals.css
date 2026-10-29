@@ -453,3 +453,95 @@ body {
   background: var(--color-brown);
   color: var(--color-cream);
 }
+
+/* ─── Footer: notched card ─── */
+.notch {
+  position: absolute;
+  background: var(--color-cream-soft);
+  --r: 32px;
+}
+.notch::before,
+.notch::after {
+  content: "";
+  position: absolute;
+  width: var(--r);
+  height: var(--r);
+}
+/* top-left notch: card edge begins 150px in and 130px down */
+.notch-tl {
+  top: -1px;
+  left: -1px;
+  width: 150px;
+  height: 130px;
+  border-bottom-right-radius: var(--r);
+}
+.notch-tl::before {
+  top: 0;
+  left: 100%;
+  background: radial-gradient(circle at 100% 100%, transparent calc(var(--r) - 1px), var(--color-cream-soft) var(--r));
+}
+.notch-tl::after {
+  top: 100%;
+  left: 0;
+  background: radial-gradient(circle at 100% 100%, transparent calc(var(--r) - 1px), var(--color-cream-soft) var(--r));
+}
+/* bottom-right notch: holds the copyright line */
+.notch-br {
+  bottom: -1px;
+  right: -1px;
+  width: 320px;
+  height: 84px;
+  border-top-left-radius: var(--r);
+}
+.notch-br::before {
+  bottom: 0;
+  right: 100%;
+  background: radial-gradient(circle at 0 0, transparent calc(var(--r) - 1px), var(--color-cream-soft) var(--r));
+}
+.notch-br::after {
+  bottom: 100%;
+  right: 0;
+  background: radial-gradient(circle at 0 0, transparent calc(var(--r) - 1px), var(--color-cream-soft) var(--r));
+}
+
+.flink {
+  font-size: 0.95rem;
+  color: var(--color-brown);
+  transition: color 0.3s ease, transform 0.4s var(--ease-out);
+}
+.flink:hover {
+  color: var(--color-burgundy);
+}
+.social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  background: var(--color-brown);
+  color: var(--color-cream);
+  transition: background-color 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+}
+.social:hover {
+  background: var(--color-burgundy);
+  transform: translateY(-2px);
+}
+.btn-pill-solid {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border-radius: 999px;
+  padding: 0.85rem 1.5rem;
+  background: var(--color-brown);
+  color: var(--color-cream);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: background-color 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+}
+.btn-pill-solid:hover {
+  background: var(--color-burgundy);
+  transform: translateY(-1px);
+}

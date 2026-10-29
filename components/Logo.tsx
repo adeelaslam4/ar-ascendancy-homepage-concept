@@ -30,7 +30,7 @@ export function LogoLockup({ className = "", tagline = true }: { className?: str
     <span className={`inline-flex flex-col items-center gap-[0.9em] ${className}`}>
       <Monogram className="h-[6.2em] w-auto" />
       <Wordmark className="h-[0.62em] w-auto" title="A.R. ASCENDANCY" />
-      {tagline ? <span className="label mt-[0.2em] text-[0.42em] text-brown-soft">Clarity - Decision - Ascent</span> : null}
+      {tagline ? <span className="label mt-[0.25em] text-[0.44em] text-brown-soft">Clarity - Decision - Ascent</span> : null}
     </span>
   );
 }

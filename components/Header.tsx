@@ -42,7 +42,7 @@ export default function Header() {
         <Link href="/" className="group flex items-center gap-4" aria-label="A.R. ASCENDANCY – Startseite">
           <Monogram className="h-11 w-auto text-logo transition-colors duration-500 group-hover:text-burgundy md:h-12" />
           <span className="flex flex-col gap-[7px]">
-            <Wordmark className="h-[12px] w-auto text-brown md:h-[13px]" title="A.R. ASCENDANCY" />
+            <Wordmark className="h-[13px] w-auto text-logo md:h-[14px]" title="A.R. ASCENDANCY" />
             <span className="label text-[0.56rem] leading-none text-brown-soft md:text-[0.6rem]">
               Clarity - Decision - Ascent
             </span>
