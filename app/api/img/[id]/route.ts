@@ -18,7 +18,7 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
 
   const sp0 = req.nextUrl.searchParams;
   const variant = (sp0.get("v") || "").replace(/[^a-z0-9_-]/gi, "");
-  const path = variant ? `${CDN}/${id}/${variant}` : `${CDN}/${id}`;
+  const path = `${CDN}/${id}/${variant || "full"}`;
   const upstream = await fetch(path, { cache: "force-cache" });
   if (!upstream.ok) return new NextResponse(`Upstream ${upstream.status} for ${path}`, { status: 502 });
   if (sp0.get("probe") === "1") {
