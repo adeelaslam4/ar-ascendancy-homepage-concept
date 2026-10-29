@@ -30,3 +30,14 @@ export const IMAGES = {
   story: EXISTING_SITE_IMAGE_IDS[5],
   speaking: EXISTING_SITE_IMAGE_IDS[0],
 };
+
+/** Photographs used on the homepage (indices into EXISTING_SITE_IMAGE_IDS). */
+export const PICKS = { hero: 16, heroSecondary: 5, story: 6, storySecondary: 0, speaking: 15 };
+
+export const PHOTOS = {
+  hero: img(EXISTING_SITE_IMAGE_IDS[PICKS.hero], 1400, "4:5"),
+  heroSecondary: img(EXISTING_SITE_IMAGE_IDS[PICKS.heroSecondary], 800, "4:5"),
+  story: img(EXISTING_SITE_IMAGE_IDS[PICKS.story], 1200, "4:5"),
+  storySecondary: img(EXISTING_SITE_IMAGE_IDS[PICKS.storySecondary], 700, "1:1"),
+  speaking: img(EXISTING_SITE_IMAGE_IDS[PICKS.speaking], 1200, "4:5"),
+};

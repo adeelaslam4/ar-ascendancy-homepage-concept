@@ -65,6 +65,9 @@ export default function Header() {
             <span className="h-3 w-px bg-gold-line" />
             <span title="Englische Version folgt nach Freigabe">EN</span>
           </span>
+          <a href="#calendly" className="btn-pill ml-4 hidden lg:inline-flex" title="Link zu Calendly folgt">
+            Kostenfreies Erstgespräch
+          </a>
         </nav>
 
         {/* Mobile toggle */}

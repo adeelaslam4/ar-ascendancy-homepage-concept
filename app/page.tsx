@@ -6,7 +6,7 @@ import Arrow from "@/components/Arrow";
 import Faq from "@/components/Faq";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
-import { IMAGES, img } from "@/lib/images";
+import { PHOTOS } from "@/lib/images";
 
 // Calendly link not yet provided by the client — placeholder until configured.
 const CALENDLY = "#calendly";
@@ -43,28 +43,31 @@ export default function Home() {
 
       <main>
         {/* ───────────────────────── HERO ───────────────────────── */}
-        <section className="mx-auto max-w-[1400px] px-6 pb-20 pt-8 md:px-10 md:pb-28 md:pt-14 lg:px-14 lg:pt-20">
-          <div className="grid items-center gap-12 md:grid-cols-12 md:gap-10 lg:gap-16">
-            <Reveal as="figure" variant="image" className="frame drift aspect-[4/5] w-full md:col-span-5 lg:col-span-5">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={img(IMAGES.hero, 1400)}
-                alt="Alina Rogall, Founder & CEO A.R. ASCENDANCY"
-                fetchPriority="high"
-              />
-            </Reveal>
+        <section className="mx-auto max-w-[1400px] px-6 pb-24 pt-6 md:px-10 md:pb-32 md:pt-10 lg:px-14 lg:pt-14">
+          <div className="grid items-center gap-14 md:grid-cols-12 md:gap-10 lg:gap-16">
+            {/* Portrait composition: one tall arched image, one smaller offset image */}
+            <div className="relative md:col-span-5 lg:col-span-5">
+              <Reveal as="figure" variant="image" className="frame drift arch aspect-[4/5] w-[86%]">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={PHOTOS.hero} alt="Alina Rogall, Founder & CEO A.R. ASCENDANCY" fetchPriority="high" />
+              </Reveal>
+              <Reveal as="figure" variant="image" delay={260} className="frame drift absolute -bottom-10 right-0 aspect-[4/5] w-[42%] shadow-[0_30px_60px_-30px_rgba(74,52,52,0.35)] ring-8 ring-cream md:-bottom-14">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={PHOTOS.heroSecondary} alt="" loading="lazy" />
+              </Reveal>
+            </div>
 
             <div className="md:col-span-7 lg:col-span-6 lg:col-start-7">
-              <Reveal as="h1" variant="lines" delay={100} className="display text-[2.1rem] leading-[1.06] text-brown sm:text-[2.6rem] lg:text-[3.1rem] xl:text-[3.4rem]">
+              <Reveal as="h1" variant="lines" delay={100} className="display text-[2.4rem] leading-[1.04] text-brown sm:text-[2.9rem] lg:text-[3.5rem] xl:text-[3.9rem]">
                 <Line>Führungskräfte</Line>
                 <Line>Coaching -</Line>
-                <Line className="display-caps mt-4 text-[1rem] leading-[1.55] sm:text-[1.1rem] lg:text-[1.2rem]">
+                <Line className="display-caps mt-5 text-[0.95rem] leading-[1.6] sm:text-[1.05rem] lg:text-[1.15rem]">
                   CONSULTING, MENTORING &amp; STRATEGIC ADVISORY
                 </Line>
               </Reveal>
 
               <Reveal delay={220}>
-                <div className="rule rule-draw mt-9 w-16" />
+                <div className="rule rule-draw mt-10 w-16" />
                 <p className="measure mt-9 text-[1.02rem] leading-[1.85] text-brown">
                   Als Consultant, Mentor &amp; Strategic Advisor unterstütze ich Menschen mit
                   Veränderungswunsch dabei Klarheit zu finden, selbstsichere Entscheidungen zu
@@ -79,7 +82,7 @@ export default function Home() {
                 <p className="mt-9 text-[1.05rem] font-semibold tracking-[0.01em] text-brown">
                   Think consciously. Change everything.
                 </p>
-                <p className="script mt-5 text-[2.6rem] text-burgundy md:text-[2.9rem]" aria-label="Her Ascendancy">
+                <p className="script mt-5 text-[2.7rem] text-burgundy md:text-[3rem]" aria-label="Her Ascendancy">
                   Her Ascendancy
                 </p>
               </Reveal>
@@ -87,10 +90,14 @@ export default function Home() {
               <Reveal delay={420}>
                 <div className="mt-11 flex flex-col items-start gap-5">
                   <span className="label text-brown-soft">Ready to meet the standard?</span>
-                  <a href={CALENDLY} className="btn" title="Link zu Calendly folgt">
-                    Kostenfreies Erstgespräch vereinbaren
-                    <Arrow />
-                  </a>
+                  <div className="flex items-center gap-3">
+                    <a href={CALENDLY} className="btn" title="Link zu Calendly folgt">
+                      Kostenfreies Erstgespräch vereinbaren
+                    </a>
+                    <a href={CALENDLY} className="btn-circle" aria-label="Kostenfreies Erstgespräch vereinbaren" title="Link zu Calendly folgt">
+                      <Arrow />
+                    </a>
+                  </div>
                 </div>
               </Reveal>
             </div>
@@ -122,62 +129,75 @@ export default function Home() {
                 </Reveal>
               </div>
 
-              <Reveal as="figure" variant="image" delay={160} className="frame drift aspect-[4/5] w-full md:col-span-5 md:ml-auto md:max-w-[460px] lg:col-span-5 lg:col-start-8">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={img(IMAGES.story, 1200)} alt="Alina Rogall" loading="lazy" />
-              </Reveal>
+              <div className="relative md:col-span-5 lg:col-span-5 lg:col-start-8">
+                <Reveal as="figure" variant="image" delay={160} className="frame drift aspect-[4/5] w-[88%] md:ml-auto">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={PHOTOS.story} alt="Alina Rogall" loading="lazy" />
+                </Reveal>
+                <Reveal as="figure" variant="image" delay={360} className="frame drift absolute -bottom-8 left-0 aspect-square w-[38%] ring-8 ring-cream-soft shadow-[0_30px_60px_-30px_rgba(74,52,52,0.35)]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={PHOTOS.storySecondary} alt="" loading="lazy" />
+                </Reveal>
+              </div>
             </div>
           </div>
         </section>
 
         {/* ───────────────────────── ANGEBOTE ───────────────────────── */}
         <section id="angebote" className="mx-auto max-w-[1400px] px-6 py-20 md:px-10 md:py-28 lg:px-14 lg:py-36">
-          <div className="grid gap-14 md:grid-cols-2 md:gap-12 lg:gap-24">
-            <Reveal className="flex flex-col">
-              <span className="label text-gold-line">01</span>
-              <h2 className="display-sm mt-5 text-[1.6rem] text-brown lg:text-[1.9rem]">
+          <div className="offer-row border-t border-gold-line/70">
+            <Reveal className="grid gap-6 py-12 md:grid-cols-12 md:gap-10 md:py-16 lg:py-20">
+              <div className="md:col-span-1">
+                <span className="label text-gold-line">01</span>
+              </div>
+              <h2 className="display text-[1.7rem] leading-[1.15] text-brown md:col-span-5 lg:col-span-5 lg:text-[2.15rem]">
                 Führungskräfte Coaching für Einzelpersonen, Selbstständige &amp; Führungskräfte
               </h2>
-              <div className="rule rule-draw mt-7 w-12" />
-              <p className="measure mt-7 text-[1rem] leading-[1.85] text-brown">
-                1:1 Führungskräfte Coaching - Consulting, Mentoring &amp; Strategic Advisory für
-                Menschen, die trotz äußerem Erfolg spüren, dass ihre bisherige Realität nicht mehr zu
-                ihnen passt.
-              </p>
-              <p className="measure mt-5 text-[1rem] leading-[1.85] text-brown">
-                Auf Basis von Mental Reconditioning und Methoden Entscheidungsfindung begleite ich
-                dich dabei, klarer zu entscheiden, dich bewusster zu führen und tief verankerte Muster
-                nachhaltig zu verändern.
-              </p>
-            </Reveal>
-
-            <Reveal delay={140} className="flex flex-col">
-              <span className="label text-gold-line">02</span>
-              <h2 className="display-sm mt-5 text-[1.6rem] text-brown lg:text-[1.9rem]">
-                Führungskräfte Coaching für Führungskräfte &amp; Teams
-              </h2>
-              <div className="rule rule-draw mt-7 w-12" />
-              <p className="measure mt-7 text-[1rem] leading-[1.85] text-brown">
-                Führungskräfte Coaching - Consulting, Mentoring &amp; Strategic Advisory für
-                Unternehmen, Führungskräfte und Teams, die bewusste Selbstführung, klare
-                Entscheidungsfindung und nachhaltige Veränderung gezielt stärken möchten.
-              </p>
-              <p className="measure mt-5 text-[1rem] leading-[1.85] text-brown">
-                Dabei verbinde ich Mental Reconditioning mit Methoden Entscheidungsfindung und
-                begleite Veränderung individuell und praxisnah.
-              </p>
-              <p className="measure mt-5 text-[1rem] leading-[1.85] text-brown">
-                Individuell als 1:1 Zusammenarbeit oder Teamarbeit.
-              </p>
+              <div className="md:col-span-6 lg:col-span-5 lg:col-start-8">
+                <p className="measure text-[1rem] leading-[1.85] text-brown">
+                  1:1 Führungskräfte Coaching - Consulting, Mentoring &amp; Strategic Advisory für
+                  Menschen, die trotz äußerem Erfolg spüren, dass ihre bisherige Realität nicht mehr zu
+                  ihnen passt.
+                </p>
+                <p className="measure mt-5 text-[1rem] leading-[1.85] text-brown">
+                  Auf Basis von Mental Reconditioning und Methoden Entscheidungsfindung begleite ich
+                  dich dabei, klarer zu entscheiden, dich bewusster zu führen und tief verankerte Muster
+                  nachhaltig zu verändern.
+                </p>
+              </div>
             </Reveal>
           </div>
 
-          <Reveal delay={200} className="mt-14 flex flex-col items-center gap-10 md:mt-20">
+          <div className="offer-row border-t border-gold-line/70">
+            <Reveal className="grid gap-6 py-12 md:grid-cols-12 md:gap-10 md:py-16 lg:py-20">
+              <div className="md:col-span-1">
+                <span className="label text-gold-line">02</span>
+              </div>
+              <h2 className="display text-[1.7rem] leading-[1.15] text-brown md:col-span-5 lg:col-span-5 lg:text-[2.15rem]">
+                Führungskräfte Coaching für Führungskräfte &amp; Teams
+              </h2>
+              <div className="md:col-span-6 lg:col-span-5 lg:col-start-8">
+                <p className="measure text-[1rem] leading-[1.85] text-brown">
+                  Führungskräfte Coaching - Consulting, Mentoring &amp; Strategic Advisory für
+                  Unternehmen, Führungskräfte und Teams, die bewusste Selbstführung, klare
+                  Entscheidungsfindung und nachhaltige Veränderung gezielt stärken möchten.
+                </p>
+                <p className="measure mt-5 text-[1rem] leading-[1.85] text-brown">
+                  Dabei verbinde ich Mental Reconditioning mit Methoden Entscheidungsfindung und
+                  begleite Veränderung individuell und praxisnah.
+                </p>
+                <p className="measure mt-5 text-[1rem] leading-[1.85] text-brown">
+                  Individuell als 1:1 Zusammenarbeit oder Teamarbeit.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal delay={120} className="flex flex-col items-start gap-10 border-t border-gold-line/70 pt-12 md:flex-row md:items-center md:justify-between md:pt-14">
             <a href="#angebote" className="textlink" title="Verlinkung zur Angebotsseite">
               Mehr dazu
               <Arrow />
             </a>
-            <div className="rule w-full max-w-xl" />
             <a href={CALENDLY} className="btn btn-solid" title="Link zu Calendly folgt">
               Kostenfreies Erstgespräch buchen
               <Arrow />
@@ -191,7 +211,7 @@ export default function Home() {
             <div className="grid items-center gap-12 md:grid-cols-12 md:gap-10 lg:gap-16">
               <Reveal as="figure" variant="image" className="frame drift aspect-[4/5] w-full md:col-span-5 md:max-w-[460px] lg:col-span-5">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={img(IMAGES.speaking, 1200)} alt="Alina Rogall – Speaking & Podcasts" loading="lazy" />
+                <img src={PHOTOS.speaking} alt="Alina Rogall – Speaking & Podcasts" loading="lazy" />
               </Reveal>
 
               <div className="md:col-span-7 lg:col-span-6 lg:col-start-7">
