@@ -32,7 +32,7 @@ export const IMAGES = {
 };
 
 /** Photographs used on the homepage (indices into EXISTING_SITE_IMAGE_IDS). */
-export const PICKS = { hero: 16, heroSecondary: 5, story: 6, storySecondary: 0, speaking: 15 };
+export const PICKS = { hero: 16, heroSecondary: 1, story: 7, storySecondary: 9, speaking: 6 };
 
 export const PHOTOS = {
   hero: img(EXISTING_SITE_IMAGE_IDS[PICKS.hero], 1400, "4:5"),
