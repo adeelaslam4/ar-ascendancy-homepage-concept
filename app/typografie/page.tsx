@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { LogoLockup, Monogram } from "@/components/Logo";
 import Link from "next/link";
 import Arrow from "@/components/Arrow";
 
@@ -68,7 +69,7 @@ export default function Typografie() {
             markierten Optionen sind auf der Startseiten-Vorschau bereits umgesetzt.
           </p>
         </div>
-        <Image src="/logo/monogram-flat.png" alt="" width={327} height={340} className="h-20 w-auto" />
+        <Monogram className="h-20 w-auto text-logo" />
       </header>
 
       {/* ───────── LOGO ───────── */}
@@ -99,25 +100,24 @@ export default function Typografie() {
             <span className="label text-brown-soft">Web-Fassung – unsere Empfehlung</span>
             <div className="mt-6 grid grid-cols-2 gap-4">
               <div className="flex h-48 items-center justify-center bg-cream">
-                <Image src="/logo/logo-flat.png" alt="Logo flächig in #D6C1A3 auf Creme" width={500} height={500} className="h-40 w-auto" />
+                <LogoLockup tagline={false} className="text-[1rem] text-logo" />
               </div>
               <div className="flex h-48 items-center justify-center bg-brown">
-                <Image src="/logo/logo-flat.png" alt="Logo flächig in #D6C1A3 auf Braun" width={500} height={500} className="h-40 w-auto" />
+                <LogoLockup tagline={false} className="text-[1rem] text-logo" />
               </div>
             </div>
             <p className="mt-6 text-[0.9rem] leading-[1.75] text-brown-soft">
               Das Zeichen aus Variante 1 (identische Form), flächig in Ihrem verbindlichen Logo-Ton
               #D6C1A3 – ohne Verlauf und Glanz. Vereint die Klarheit des Originals mit der Ruhe von
-              Variante 2, funktioniert auf hellem und dunklem Grund, skaliert sauber bis zum Favicon
-              und entspricht exakt Ihrem Farbcode. Für die Produktion empfehlen wir eine Vektordatei
-              (SVG) des Zeichens.
+              Variante 2, funktioniert auf hellem und dunklem Grund, skaliert als Vektor sauber bis zum Favicon
+              und entspricht exakt Ihrem Farbcode. Die Vektorfassung wurde aus Ihrer Logodatei
+              nachgezeichnet; für die Produktion bitten wir um Ihre originale Vektordatei (SVG/AI).
             </p>
           </Card>
           <Card>
             <span className="label text-brown-soft">Tagline – unterhalb des Logos</span>
-            <div className="mt-6 flex h-48 flex-col items-center justify-center gap-4 bg-cream">
-              <Image src="/logo/logo-dark.png" alt="" width={500} height={500} className="h-28 w-auto" />
-              <span className="label text-brown-soft">Clarity - Decision - Ascent</span>
+            <div className="mt-6 flex h-48 flex-col items-center justify-center bg-cream">
+              <LogoLockup className="text-[0.9rem] text-brown" />
             </div>
             <p className="mt-6 text-[0.9rem] leading-[1.75] text-brown-soft">
               „CLARITY - DECISION - ASCENT“ ist nicht Teil der Logografik, sondern steht – wie im Miro

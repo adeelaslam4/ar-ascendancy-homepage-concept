@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     nocache: true,
     googleBot: { index: false, follow: false },
   },
-  icons: { icon: "/logo/monogram-dark.png" },
+  icons: { icon: "/logo/monogram.svg" },
 };
 
 export const viewport: Viewport = {

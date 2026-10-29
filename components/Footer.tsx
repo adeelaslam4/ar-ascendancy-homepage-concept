@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { LogoLockup } from "@/components/Logo";
 
 export default function Footer() {
   return (
@@ -6,10 +6,7 @@ export default function Footer() {
       <div className="mx-auto max-w-[1400px] px-6 pb-10 pt-16 md:px-10 md:pt-24 lg:px-14">
         <div className="grid gap-12 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-5">
-            <div className="flex flex-col items-start gap-3">
-              <Image src="/logo/logo-dark.png" alt="A.R. ASCENDANCY" width={500} height={500} className="h-28 w-auto" />
-              <span className="label text-brown-soft">Clarity - Decision - Ascent</span>
-            </div>
+            <LogoLockup className="text-[1.1rem] text-brown" />
           </div>
 
           <div className="md:col-span-3 md:col-start-7">

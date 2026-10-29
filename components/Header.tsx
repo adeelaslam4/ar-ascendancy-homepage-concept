@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { Monogram, Wordmark } from "@/components/Logo";
 import { useEffect, useState } from "react";
 
 const NAV = [
@@ -38,25 +38,11 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 md:px-10 lg:px-14">
-        {/* Logo + tagline beneath (tagline is NOT part of the logo artwork) */}
+        {/* Logo (vector) + tagline beneath — the tagline is NOT part of the logo artwork */}
         <Link href="/" className="group flex items-center gap-4" aria-label="A.R. ASCENDANCY – Startseite">
-          <Image
-            src="/logo/monogram-flat.png"
-            alt=""
-            width={327}
-            height={340}
-            priority
-            className="h-11 w-auto md:h-12"
-          />
+          <Monogram className="h-11 w-auto text-logo transition-colors duration-500 group-hover:text-burgundy md:h-12" />
           <span className="flex flex-col gap-[7px]">
-            <Image
-              src="/logo/wordmark-dark.png"
-              alt="A.R. ASCENDANCY"
-              width={463}
-              height={56}
-              priority
-              className="h-[13px] w-auto md:h-[14px]"
-            />
+            <Wordmark className="h-[12px] w-auto text-brown md:h-[13px]" title="A.R. ASCENDANCY" />
             <span className="label text-[0.56rem] leading-none text-brown-soft md:text-[0.6rem]">
               Clarity - Decision - Ascent
             </span>
@@ -69,7 +55,7 @@ export default function Header() {
             <a
               key={n.label}
               href={n.href}
-              className="text-[0.78rem] font-medium tracking-[0.12em] uppercase text-brown transition-colors duration-300 hover:text-burgundy"
+              className="navlink text-[0.78rem] font-medium tracking-[0.12em] uppercase text-brown transition-colors duration-300 hover:text-burgundy"
             >
               {n.label}
             </a>

@@ -16,15 +16,17 @@ export default function Newsletter() {
       <label htmlFor="newsletter-email" className="sr-only">
         E-Mail-Adresse
       </label>
-      <input
-        id="newsletter-email"
-        type="email"
-        className="field"
-        placeholder="E-Mail-Adresse"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        autoComplete="email"
-      />
+      <div className="field-wrap">
+        <input
+          id="newsletter-email"
+          type="email"
+          className="field"
+          placeholder="E-Mail-Adresse"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          autoComplete="email"
+        />
+      </div>
       <button type="submit" className="btn btn-solid mt-7">
         Join A.R. ASCENDANCY
       </button>

@@ -1,12 +1,9 @@
 /**
- * Portraits for the concept are referenced from Alina's current website
- * (her own photography, reused with her consent for this private preview).
- * The commissioned site will use the new photographs produced from the
- * image brief; these are stand-ins so the concept shows real, not stock, imagery.
+ * Portraits for the concept are the client's own photographs from her current
+ * website, served through /api/img so they load reliably inside the preview.
+ * The commissioned site will use the new photographs from the image brief.
  */
-export const CDN = "https://onecdn.io/media";
-
-export const EXISTING_SITE_IMAGES = [
+export const EXISTING_SITE_IMAGE_IDS = [
   "94fca316-55fa-4db9-aa5e-2602d5566090",
   "a7575508-68c1-49b2-b8d6-c8360682f496",
   "e78b2c91-0a33-4395-a042-aa26a90fdc87",
@@ -24,10 +21,12 @@ export const EXISTING_SITE_IMAGES = [
   "b6c5b987-c149-4972-a80d-89ba4bd79c2e",
   "e6af88e6-43a0-46f2-9c44-7c9117e31c03",
   "3195269a-eddf-46c7-b0d6-981cdc609772",
-].map((id) => `${CDN}/${id}/preview`);
+];
+
+export const img = (id: string, w = 1400, ar = "4:5") => `/api/img/${id}?w=${w}&ar=${ar}`;
 
 export const IMAGES = {
-  hero: EXISTING_SITE_IMAGES[16],
-  story: EXISTING_SITE_IMAGES[5],
-  speaking: EXISTING_SITE_IMAGES[0],
+  hero: EXISTING_SITE_IMAGE_IDS[16],
+  story: EXISTING_SITE_IMAGE_IDS[5],
+  speaking: EXISTING_SITE_IMAGE_IDS[0],
 };
