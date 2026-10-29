@@ -23,7 +23,7 @@ export default function Faq({ items }: { items: FaqEntry[] }) {
                 id={`${id}-btn`}
                 onClick={() => setOpen(isOpen ? null : i)}
               >
-                <span className="display-sm text-[1.15rem] md:text-[1.3rem]">
+                <span className="display-sm text-[1.2rem] md:text-[1.4rem]">
                   {item.q}
                 </span>
                 <span className="faq-icon" aria-hidden="true" />
@@ -36,7 +36,7 @@ export default function Faq({ items }: { items: FaqEntry[] }) {
               className="faq-panel"
             >
               <div>
-                <p className="measure pb-7 text-[0.98rem] leading-[1.8] text-brown-soft">
+                <p className="copy copy-soft measure pb-7">
                   {item.a}
                 </p>
               </div>

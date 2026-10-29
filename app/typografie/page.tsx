@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { LogoLockup, Monogram } from "@/components/Logo";
+import { LogoLockup } from "@/components/Logo";
 import Link from "next/link";
 import Arrow from "@/components/Arrow";
 
@@ -69,7 +69,7 @@ export default function Typografie() {
             markierten Optionen sind auf der Startseiten-Vorschau bereits umgesetzt.
           </p>
         </div>
-        <Monogram className="h-20 w-auto text-logo" />
+        <Image src="/logo/monogram-original@2x.png" alt="" width={654} height={660} unoptimized className="h-20 w-auto" />
       </header>
 
       {/* ───────── LOGO ───────── */}
@@ -97,7 +97,7 @@ export default function Typografie() {
             </p>
           </Card>
           <Card recommended>
-            <span className="label text-brown-soft">Web-Fassung – unsere Empfehlung</span>
+            <span className="label text-brown-soft">Flächige Web-Fassung – Alternative zur Freigabe</span>
             <div className="mt-6 grid grid-cols-2 gap-4">
               <div className="flex h-48 items-center justify-center bg-cream">
                 <LogoLockup tagline={false} className="text-[1rem] text-logo" />
@@ -117,7 +117,8 @@ export default function Typografie() {
           <Card>
             <span className="label text-brown-soft">Tagline – unterhalb des Logos</span>
             <div className="mt-6 flex h-48 flex-col items-center justify-center bg-cream">
-              <LogoLockup className="text-[0.9rem] text-logo" />
+              <Image src="/logo/lockup-original@2x.png" alt="" width={1000} height={1000} unoptimized className="h-28 w-auto" />
+              <span className="label mt-3 text-brown-soft">Clarity - Decision - Ascent</span>
             </div>
             <p className="mt-6 text-[0.9rem] leading-[1.75] text-brown-soft">
               „CLARITY - DECISION - ASCENT“ ist nicht Teil der Logografik, sondern steht – wie im Miro

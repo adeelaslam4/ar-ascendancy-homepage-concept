@@ -1,4 +1,4 @@
-import { LogoLockup } from "@/components/Logo";
+import Image from "next/image";
 
 const NAV = [
   { label: "Startseite", href: "/" },
@@ -41,7 +41,17 @@ export default function Footer() {
           <div className="grid gap-12 md:grid-cols-12 md:gap-8">
             {/* ── Left: logo (her colour, geometry unchanged), tagline separate beneath ── */}
             <div className="flex flex-col md:col-span-7 md:pl-[112px] lg:pl-[120px]">
-              <LogoLockup className="self-start text-[1.35rem] text-logo md:text-[1.55rem]" />
+              <div className="flex flex-col items-start gap-4">
+                <Image
+                  src="/logo/lockup-original@2x.png"
+                  alt="A.R. ASCENDANCY"
+                  width={1000}
+                  height={1000}
+                  unoptimized
+                  className="h-44 w-auto md:h-52"
+                />
+                <span className="label text-brown-soft">Clarity - Decision - Ascent</span>
+              </div>
 
               <div className="mt-12 flex flex-col gap-3 md:mt-16 md:pl-0">
                 <span className="label text-gold-line">Kontakt</span>

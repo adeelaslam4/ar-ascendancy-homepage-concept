@@ -1,7 +1,8 @@
+import Image from "next/image";
 import Header from "@/components/Header";
 import Reveal, { Line } from "@/components/Reveal";
+import Stagger from "@/components/Stagger";
 import Drift from "@/components/Drift";
-import { Monogram } from "@/components/Logo";
 import Arrow from "@/components/Arrow";
 import Faq from "@/components/Faq";
 import Newsletter from "@/components/Newsletter";
@@ -35,6 +36,26 @@ const FAQ = [
   },
 ];
 
+const OFFERS = [
+  {
+    n: "01",
+    title: "Führungskräfte Coaching für Einzelpersonen, Selbstständige & Führungskräfte",
+    paras: [
+      "1:1 Führungskräfte Coaching - Consulting, Mentoring & Strategic Advisory für Menschen, die trotz äußerem Erfolg spüren, dass ihre bisherige Realität nicht mehr zu ihnen passt.",
+      "Auf Basis von Mental Reconditioning und Methoden Entscheidungsfindung begleite ich dich dabei, klarer zu entscheiden, dich bewusster zu führen und tief verankerte Muster nachhaltig zu verändern.",
+    ],
+  },
+  {
+    n: "02",
+    title: "Führungskräfte Coaching für Führungskräfte & Teams",
+    paras: [
+      "Führungskräfte Coaching - Consulting, Mentoring & Strategic Advisory für Unternehmen, Führungskräfte und Teams, die bewusste Selbstführung, klare Entscheidungsfindung und nachhaltige Veränderung gezielt stärken möchten.",
+      "Dabei verbinde ich Mental Reconditioning mit Methoden Entscheidungsfindung und begleite Veränderung individuell und praxisnah.",
+      "Individuell als 1:1 Zusammenarbeit oder Teamarbeit.",
+    ],
+  },
+];
+
 export default function Home() {
   return (
     <>
@@ -43,61 +64,53 @@ export default function Home() {
 
       <main>
         {/* ───────────────────────── HERO ───────────────────────── */}
-        <section className="mx-auto max-w-[1400px] px-6 pb-24 pt-6 md:px-10 md:pb-32 md:pt-10 lg:px-14 lg:pt-14">
-          <div className="grid items-center gap-14 md:grid-cols-12 md:gap-10 lg:gap-16">
-            {/* Portrait composition: one tall arched image, one smaller offset image */}
-            <div className="relative md:col-span-5 lg:col-span-5">
-              <Reveal as="figure" variant="image" className="frame drift arch aspect-[4/5] w-[86%]">
+        <section className="mx-auto max-w-[1400px] px-6 pb-24 pt-6 md:px-10 md:pb-32 md:pt-10 lg:px-14 lg:pt-12">
+          <div className="grid items-center gap-14 md:grid-cols-12 md:gap-10 lg:gap-20">
+            {/* One portrait, confidently cropped, with a fine offset mat */}
+            <Reveal variant="image" className="mat md:col-span-6 lg:col-span-5">
+              <figure className="frame drift aspect-[4/5] w-full">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={PHOTOS.hero} alt="Alina Rogall, Founder & CEO A.R. ASCENDANCY" fetchPriority="high" />
-              </Reveal>
-              <Reveal as="figure" variant="image" delay={260} className="frame drift absolute -bottom-10 right-0 aspect-[4/5] w-[42%] shadow-[0_30px_60px_-30px_rgba(74,52,52,0.35)] ring-8 ring-cream md:-bottom-14">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={PHOTOS.heroSecondary} alt="" loading="lazy" />
-              </Reveal>
-            </div>
+              </figure>
+            </Reveal>
 
-            <div className="md:col-span-7 lg:col-span-6 lg:col-start-7">
-              <Reveal as="h1" variant="lines" delay={100} className="display text-[2.4rem] leading-[1.04] text-brown sm:text-[2.9rem] lg:text-[3.5rem] xl:text-[3.9rem]">
+            <div className="md:col-span-6 lg:col-span-6 lg:col-start-7">
+              <Reveal as="h1" variant="lines" delay={80} className="display text-[2.5rem] leading-[1.02] text-brown sm:text-[3rem] lg:text-[3.7rem] xl:text-[4.2rem]">
                 <Line>Führungskräfte</Line>
                 <Line>Coaching -</Line>
-                <Line className="display-caps mt-5 text-[0.95rem] leading-[1.6] sm:text-[1.05rem] lg:text-[1.15rem]">
+                <Line className="display-caps mt-5 text-[0.95rem] leading-[1.6] sm:text-[1.05rem] lg:text-[1.15rem] xl:text-[1.25rem]">
                   CONSULTING, MENTORING &amp; STRATEGIC ADVISORY
                 </Line>
               </Reveal>
 
-              <Reveal delay={220}>
+              <Reveal delay={380}>
                 <div className="rule rule-draw mt-10 w-16" />
-                <p className="measure mt-9 text-[1.02rem] leading-[1.85] text-brown">
+                <p className="copy measure mt-9">
                   Als Consultant, Mentor &amp; Strategic Advisor unterstütze ich Menschen mit
                   Veränderungswunsch dabei Klarheit zu finden, selbstsichere Entscheidungen zu
                   treffen und sich selbst zu führen.
                 </p>
-                <p className="measure mt-5 text-[1.02rem] leading-[1.85] text-brown">
+                <p className="copy measure mt-5">
                   Meine Mission ist es, dich zu begleiten, diesen hohen Standard zu erreichen.
                 </p>
               </Reveal>
 
-              <Reveal delay={320}>
-                <p className="mt-9 text-[1.05rem] font-semibold tracking-[0.01em] text-brown">
+              <Reveal delay={500}>
+                <p className="mt-9 text-[1.1rem] font-semibold tracking-[0.01em] text-brown">
                   Think consciously. Change everything.
                 </p>
-                <p className="script mt-5 text-[2.7rem] text-burgundy md:text-[3rem]" aria-label="Her Ascendancy">
+                <p className="script mt-4 text-[2.8rem] text-burgundy md:text-[3.2rem]" aria-label="Her Ascendancy">
                   Her Ascendancy
                 </p>
               </Reveal>
 
-              <Reveal delay={420}>
+              <Reveal delay={620}>
                 <div className="mt-11 flex flex-col items-start gap-5">
                   <span className="label text-brown-soft">Ready to meet the standard?</span>
-                  <div className="flex items-center gap-3">
-                    <a href={CALENDLY} className="btn" title="Link zu Calendly folgt">
-                      Kostenfreies Erstgespräch vereinbaren
-                    </a>
-                    <a href={CALENDLY} className="btn-circle" aria-label="Kostenfreies Erstgespräch vereinbaren" title="Link zu Calendly folgt">
-                      <Arrow />
-                    </a>
-                  </div>
+                  <a href={CALENDLY} className="btn btn-solid" title="Link zu Calendly folgt">
+                    Kostenfreies Erstgespräch vereinbaren
+                    <Arrow />
+                  </a>
                 </div>
               </Reveal>
             </div>
@@ -106,22 +119,23 @@ export default function Home() {
 
         {/* ───────────────────────── STORY ───────────────────────── */}
         <section id="ueber-mich" className="bg-cream-soft">
-          <div className="mx-auto max-w-[1400px] px-6 py-20 md:px-10 md:py-28 lg:px-14 lg:py-36">
-            <div className="grid items-center gap-12 md:grid-cols-12 md:gap-10 lg:gap-16">
+          <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32 lg:px-14 lg:py-40">
+            <div className="grid items-center gap-14 md:grid-cols-12 md:gap-10 lg:gap-16">
               <div className="md:col-span-7 lg:col-span-6">
-                <Reveal as="p" variant="lines" className="display text-[1.5rem] leading-[1.4] text-brown sm:text-[1.75rem] lg:text-[2.05rem]">
+                <Reveal as="p" variant="lines" className="display text-[1.65rem] leading-[1.35] text-brown sm:text-[1.9rem] lg:text-[2.3rem]">
                   <Line>Ich weiß, wie es ist, eine vertraute</Line>
                   <Line>Realität zu verlassen, bevor die nächste</Line>
                   <Line>vollständig sichtbar ist.</Line>
                 </Reveal>
-                <Reveal delay={120}>
-                  <p className="measure mt-8 text-[1.02rem] leading-[1.85] text-brown">
+                <Reveal delay={200}>
+                  <div className="rule rule-draw mt-9 w-16" />
+                  <p className="copy measure mt-9">
                     Genau daraus ist <strong className="font-semibold">A.R. ASCENDANCY</strong>{" "}
                     entstanden: klar sehen, bewusst entscheiden und die eigene Richtung halten, bis
                     Veränderung zur gelebten Realität wird.
                   </p>
                 </Reveal>
-                <Reveal delay={220}>
+                <Reveal delay={320}>
                   <a href="#ueber-mich" className="textlink mt-10" title="Verlinkung zur About-me-Seite">
                     Read my story
                     <Arrow />
@@ -129,104 +143,82 @@ export default function Home() {
                 </Reveal>
               </div>
 
-              <div className="relative md:col-span-5 lg:col-span-5 lg:col-start-8">
-                <Reveal as="figure" variant="image" delay={160} className="frame drift aspect-[4/5] w-[88%] md:ml-auto">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={PHOTOS.story} alt="Alina Rogall" loading="lazy" />
-                </Reveal>
-                <Reveal as="figure" variant="image" delay={360} className="frame drift absolute -bottom-8 left-0 aspect-square w-[38%] ring-8 ring-cream-soft shadow-[0_30px_60px_-30px_rgba(74,52,52,0.35)]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={PHOTOS.storySecondary} alt="" loading="lazy" />
-                </Reveal>
-              </div>
+              <Reveal as="figure" variant="image" delay={120} className="frame drift aspect-[4/5] w-full md:col-span-5 md:ml-auto md:max-w-[440px] lg:col-span-4 lg:col-start-9">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={PHOTOS.story} alt="Alina Rogall" loading="lazy" />
+              </Reveal>
             </div>
           </div>
         </section>
 
         {/* ───────────────────────── ANGEBOTE ───────────────────────── */}
-        <section id="angebote" className="mx-auto max-w-[1400px] px-6 py-20 md:px-10 md:py-28 lg:px-14 lg:py-36">
-          <div className="offer-row border-t border-gold-line/70">
-            <Reveal className="grid gap-6 py-12 md:grid-cols-12 md:gap-10 md:py-16 lg:py-20">
-              <div className="md:col-span-1">
-                <span className="label text-gold-line">01</span>
-              </div>
-              <h2 className="display text-[1.7rem] leading-[1.15] text-brown md:col-span-5 lg:col-span-5 lg:text-[2.15rem]">
-                Führungskräfte Coaching für Einzelpersonen, Selbstständige &amp; Führungskräfte
-              </h2>
-              <div className="md:col-span-6 lg:col-span-5 lg:col-start-8">
-                <p className="measure text-[1rem] leading-[1.85] text-brown">
-                  1:1 Führungskräfte Coaching - Consulting, Mentoring &amp; Strategic Advisory für
-                  Menschen, die trotz äußerem Erfolg spüren, dass ihre bisherige Realität nicht mehr zu
-                  ihnen passt.
-                </p>
-                <p className="measure mt-5 text-[1rem] leading-[1.85] text-brown">
-                  Auf Basis von Mental Reconditioning und Methoden Entscheidungsfindung begleite ich
-                  dich dabei, klarer zu entscheiden, dich bewusster zu führen und tief verankerte Muster
-                  nachhaltig zu verändern.
-                </p>
-              </div>
-            </Reveal>
-          </div>
+        <section id="angebote" className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32 lg:px-14 lg:py-40">
+          {OFFERS.map((o) => (
+            <Stagger key={o.n} as="article" className="offer-row border-t border-gold-line/70">
+              <div className="grid gap-8 py-14 md:grid-cols-12 md:gap-10 md:py-20 lg:py-24">
+                {/* numeral — large, champagne, the section's visual anchor */}
+                <div className="md:col-span-2">
+                  <span data-s className="numeral block">
+                    {o.n}
+                  </span>
+                </div>
 
-          <div className="offer-row border-t border-gold-line/70">
-            <Reveal className="grid gap-6 py-12 md:grid-cols-12 md:gap-10 md:py-16 lg:py-20">
-              <div className="md:col-span-1">
-                <span className="label text-gold-line">02</span>
-              </div>
-              <h2 className="display text-[1.7rem] leading-[1.15] text-brown md:col-span-5 lg:col-span-5 lg:text-[2.15rem]">
-                Führungskräfte Coaching für Führungskräfte &amp; Teams
-              </h2>
-              <div className="md:col-span-6 lg:col-span-5 lg:col-start-8">
-                <p className="measure text-[1rem] leading-[1.85] text-brown">
-                  Führungskräfte Coaching - Consulting, Mentoring &amp; Strategic Advisory für
-                  Unternehmen, Führungskräfte und Teams, die bewusste Selbstführung, klare
-                  Entscheidungsfindung und nachhaltige Veränderung gezielt stärken möchten.
-                </p>
-                <p className="measure mt-5 text-[1rem] leading-[1.85] text-brown">
-                  Dabei verbinde ich Mental Reconditioning mit Methoden Entscheidungsfindung und
-                  begleite Veränderung individuell und praxisnah.
-                </p>
-                <p className="measure mt-5 text-[1rem] leading-[1.85] text-brown">
-                  Individuell als 1:1 Zusammenarbeit oder Teamarbeit.
-                </p>
-              </div>
-            </Reveal>
-          </div>
+                {/* title + self-drawing rule */}
+                <div className="md:col-span-10 lg:col-span-5">
+                  <h2 data-s className="display text-[1.75rem] leading-[1.15] text-brown lg:text-[2.2rem]">
+                    {o.title}
+                  </h2>
+                  <div data-s="rule" className="rule mt-8 w-14" />
+                </div>
 
-          <Reveal delay={120} className="flex flex-col items-start gap-10 border-t border-gold-line/70 pt-12 md:flex-row md:items-center md:justify-between md:pt-14">
-            <a href="#angebote" className="textlink" title="Verlinkung zur Angebotsseite">
-              Mehr dazu
-              <Arrow />
-            </a>
-            <a href={CALENDLY} className="btn btn-solid" title="Link zu Calendly folgt">
-              Kostenfreies Erstgespräch buchen
-              <Arrow />
-            </a>
-          </Reveal>
+                {/* copy, hairline-separated from the title on large screens */}
+                <div className="md:col-span-10 md:col-start-3 lg:col-span-5 lg:col-start-8 lg:border-l lg:border-gold-line/50 lg:pl-10">
+                  {o.paras.map((p, i) => (
+                    <p key={i} data-s className={`copy measure ${i ? "mt-5" : ""}`}>
+                      {p}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </Stagger>
+          ))}
+
+          <Stagger className="border-t border-gold-line/70">
+            <div className="flex flex-col items-start gap-8 pt-12 md:flex-row md:items-center md:justify-between md:pt-14">
+              <a data-s href="#angebote" className="textlink" title="Verlinkung zur Angebotsseite">
+                Mehr dazu
+                <Arrow />
+              </a>
+              <a data-s href={CALENDLY} className="btn btn-solid" title="Link zu Calendly folgt">
+                Kostenfreies Erstgespräch buchen
+                <Arrow />
+              </a>
+            </div>
+          </Stagger>
         </section>
 
         {/* ───────────────────────── SPEAKING ───────────────────────── */}
         <section id="speaking" className="bg-cream-soft">
-          <div className="mx-auto max-w-[1400px] px-6 py-20 md:px-10 md:py-28 lg:px-14 lg:py-36">
-            <div className="grid items-center gap-12 md:grid-cols-12 md:gap-10 lg:gap-16">
+          <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32 lg:px-14 lg:py-40">
+            <div className="grid items-center gap-14 md:grid-cols-12 md:gap-10 lg:gap-16">
               <Reveal as="figure" variant="image" className="frame drift aspect-[4/5] w-full md:col-span-5 md:max-w-[460px] lg:col-span-5">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={PHOTOS.speaking} alt="Alina Rogall – Speaking & Podcasts" loading="lazy" />
+                <img src={PHOTOS.speaking} alt="" loading="lazy" />
               </Reveal>
 
               <div className="md:col-span-7 lg:col-span-6 lg:col-start-7">
-                <Reveal delay={120}>
-                  <h2 className="display text-[2rem] leading-[1.1] text-brown lg:text-[2.6rem]">
-                    Speaking &amp; Podcasts
-                  </h2>
+                <Reveal as="h2" variant="lines" className="display text-[2.2rem] leading-[1.08] text-brown lg:text-[2.9rem]">
+                  <Line>Speaking &amp; Podcasts</Line>
+                </Reveal>
+                <Reveal delay={160}>
                   <div className="rule rule-draw mt-8 w-16" />
-                  <p className="measure mt-8 text-[1.02rem] leading-[1.85] text-brown">
+                  <p className="copy measure mt-8">
                     Für Bühnen, Interviews und Gespräche rund um meine Arbeit und zu meiner Person,
                     die neue Perspektiven auf Mindset, Entscheidungen, Self-Leadership und Veränderung
                     eröffnen.
                   </p>
                 </Reveal>
-                <Reveal delay={220}>
+                <Reveal delay={280}>
                   <a href={MAILTO} className="btn mt-10">
                     Podcast &amp; Speaking Anfragen
                     <Arrow />
@@ -238,17 +230,17 @@ export default function Home() {
         </section>
 
         {/* ───────────────────────── NEWSLETTER ───────────────────────── */}
-        <section id="newsletter" className="mx-auto max-w-[1400px] px-6 py-20 md:px-10 md:py-28 lg:px-14 lg:py-36">
-          <div className="grid items-start gap-10 md:grid-cols-12 md:gap-10">
+        <section id="newsletter" className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32 lg:px-14 lg:py-40">
+          <div className="grid items-end gap-12 md:grid-cols-12 md:gap-10">
             <Reveal className="md:col-span-6 lg:col-span-5">
               <span className="label text-gold-line">Newsletter</span>
-              <p className="display mt-5 text-[2rem] italic leading-[1.15] text-brown lg:text-[2.7rem]">
+              <p className="display mt-6 text-[2.2rem] italic leading-[1.12] text-brown lg:text-[3rem]">
                 Think consciously.
                 <br />
                 Stay connected.
               </p>
             </Reveal>
-            <Reveal delay={140} className="md:col-span-6 md:col-start-7 lg:col-span-5 lg:col-start-8 md:pt-4">
+            <Reveal delay={140} className="md:col-span-6 md:col-start-7 lg:col-span-5 lg:col-start-8">
               <Newsletter />
             </Reveal>
           </div>
@@ -256,10 +248,10 @@ export default function Home() {
 
         {/* ───────────────────────── FAQ ───────────────────────── */}
         <section id="faq" className="bg-cream-soft">
-          <div className="mx-auto max-w-[1400px] px-6 py-20 md:px-10 md:py-28 lg:px-14 lg:py-36">
+          <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32 lg:px-14 lg:py-40">
             <div className="grid gap-12 md:grid-cols-12 md:gap-10">
               <Reveal className="md:col-span-4 lg:col-span-3">
-                <h2 className="display text-[2rem] leading-[1.1] text-brown lg:text-[2.6rem]">FAQ&apos;s</h2>
+                <h2 className="display text-[2.2rem] leading-[1.08] text-brown lg:text-[2.9rem]">FAQ&apos;s</h2>
                 <div className="rule rule-draw mt-8 w-16" />
               </Reveal>
               <Reveal delay={120} className="md:col-span-8 lg:col-span-8 lg:col-start-5">
@@ -267,23 +259,36 @@ export default function Home() {
               </Reveal>
             </div>
           </div>
-        </section>
 
-        {/* ───────────────────────── FINAL CTA (dark interlude) ───────────────────────── */}
-        <section className="bg-brown text-cream">
-          <div className="mx-auto flex max-w-[1400px] flex-col items-center px-6 py-24 text-center md:px-10 md:py-32 lg:px-14 lg:py-40">
-            <Reveal>
-              <Monogram className="mx-auto h-16 w-auto text-logo" />
-            </Reveal>
-            <Reveal as="p" variant="lines" delay={120} className="display mt-10 text-[2.2rem] leading-[1.1] text-cream sm:text-[2.8rem] lg:text-[3.6rem]">
-              <Line>Ready for your new reality?</Line>
-            </Reveal>
-            <Reveal delay={240}>
-              <a href={CALENDLY} className="btn btn-on-dark mt-12" title="Link zu Calendly folgt">
-                Kostenfreies Erstgespräch vereinbaren
-                <Arrow />
-              </a>
-            </Reveal>
+          {/* ───────────────────────── CLOSING CTA — brown card on the cream field ───────────────────────── */}
+          <div className="px-4 pb-5 md:px-8 md:pb-8 lg:px-12">
+            <Stagger className="cta-card mx-auto max-w-[1400px] bg-brown text-cream">
+              <div className="grid gap-10 px-8 py-16 md:grid-cols-12 md:gap-8 md:px-14 md:py-24 lg:px-20 lg:py-28">
+                <div data-s className="md:col-span-1">
+                  <Image
+                    src="/logo/monogram-original@2x.png"
+                    alt=""
+                    width={654}
+                    height={660}
+                    className="h-12 w-auto md:h-14"
+                    unoptimized
+                  />
+                </div>
+                <div className="md:col-span-7 md:col-start-2">
+                  <p data-s className="display text-[2.4rem] leading-[1.05] text-cream sm:text-[3rem] lg:text-[4rem]">
+                    Ready for your
+                    <br />
+                    new reality?
+                  </p>
+                </div>
+                <div className="flex md:col-span-4 md:col-start-9 md:items-end md:justify-end">
+                  <a data-s href={CALENDLY} className="btn btn-on-dark" title="Link zu Calendly folgt">
+                    Kostenfreies Erstgespräch vereinbaren
+                    <Arrow />
+                  </a>
+                </div>
+              </div>
+            </Stagger>
           </div>
         </section>
       </main>

@@ -23,21 +23,18 @@ export const EXISTING_SITE_IMAGE_IDS = [
   "3195269a-eddf-46c7-b0d6-981cdc609772",
 ];
 
-export const img = (id: string, w = 1400, ar = "4:5") => `/api/img/${id}?w=${w}&ar=${ar}`;
+export const img = (id: string, w = 1400, ar = "4:5", grade: "warm" | "portrait" | "" = "") =>
+  `/api/img/${id}?w=${w}&ar=${ar}${grade ? `&grade=${grade}` : ""}`;
 
-export const IMAGES = {
-  hero: EXISTING_SITE_IMAGE_IDS[16],
-  story: EXISTING_SITE_IMAGE_IDS[5],
-  speaking: EXISTING_SITE_IMAGE_IDS[0],
-};
-
-/** Photographs used on the homepage (indices into EXISTING_SITE_IMAGE_IDS). */
-export const PICKS = { hero: 16, heroSecondary: 1, story: 7, storySecondary: 9, speaking: 6 };
+/**
+ * Photographs used on the homepage (indices into EXISTING_SITE_IMAGE_IDS).
+ * Portraits: 16 (seated, lit steps) and 1 (standing). Supporting imagery is her own
+ * warm hotel/interior photography — architecture and calm interiors in the brand palette.
+ */
+export const PICKS = { hero: 16, story: 1, speaking: 5 };
 
 export const PHOTOS = {
-  hero: img(EXISTING_SITE_IMAGE_IDS[PICKS.hero], 1400, "4:5"),
-  heroSecondary: img(EXISTING_SITE_IMAGE_IDS[PICKS.heroSecondary], 800, "4:5"),
-  story: img(EXISTING_SITE_IMAGE_IDS[PICKS.story], 1200, "4:5"),
-  storySecondary: img(EXISTING_SITE_IMAGE_IDS[PICKS.storySecondary], 700, "1:1"),
-  speaking: img(EXISTING_SITE_IMAGE_IDS[PICKS.speaking], 1200, "4:5"),
+  hero: img(EXISTING_SITE_IMAGE_IDS[PICKS.hero], 1400, "4:5", "portrait"),
+  story: img(EXISTING_SITE_IMAGE_IDS[PICKS.story], 1200, "4:5", "portrait"),
+  speaking: img(EXISTING_SITE_IMAGE_IDS[PICKS.speaking], 1400, "4:5", "warm"),
 };

@@ -4,14 +4,15 @@ import { useState } from "react";
 
 export default function Newsletter() {
   const [value, setValue] = useState("");
+  const [sent, setSent] = useState(false);
 
   return (
     <form
       className="w-full max-w-md"
       onSubmit={(e) => {
         e.preventDefault();
+        setSent(true);
       }}
-      aria-describedby="newsletter-note"
     >
       <label htmlFor="newsletter-email" className="sr-only">
         E-Mail-Adresse
@@ -30,8 +31,12 @@ export default function Newsletter() {
       <button type="submit" className="btn btn-solid mt-7">
         Join A.R. ASCENDANCY
       </button>
-      <p id="newsletter-note" className="mt-5 text-[0.7rem] tracking-[0.04em] text-brown-soft/80">
-        Konzept-Vorschau: Die Anbindung an Mailchimp (Double Opt-in) erfolgt im Gesamtprojekt.
+      <p
+        role="status"
+        aria-live="polite"
+        className={`mt-5 text-[0.85rem] text-brown-soft transition-opacity duration-500 ${sent ? "opacity-100" : "opacity-0"}`}
+      >
+        {sent ? "Die Anmeldung wird mit dem Launch der Website freigeschaltet." : "\u00a0"}
       </p>
     </form>
   );

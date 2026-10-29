@@ -53,6 +53,20 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
       height: ch,
     });
   }
+  // Optional tonal grade for supporting imagery: slightly desaturated, warmed towards the champagne
+  // palette. Portraits are left ungraded (grade=portrait → light sharpen only).
+  const grade = sp.get("grade");
+  if (grade === "warm") {
+    img = img
+      .modulate({ saturation: 0.82, brightness: 1.03 })
+      .recomb([
+        [1.05, 0.0, 0.0],
+        [0.0, 1.0, 0.0],
+        [0.0, 0.0, 0.93],
+      ]);
+  } else if (grade === "portrait") {
+    img = img.modulate({ saturation: 0.95 }).sharpen({ sigma: 0.8 });
+  }
   const out = await img.resize({ width: w, withoutEnlargement: true }).jpeg({ quality: q, mozjpeg: true }).toBuffer();
 
   if (sp.get("b64") === "1") {
