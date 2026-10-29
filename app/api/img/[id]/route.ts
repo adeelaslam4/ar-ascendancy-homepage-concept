@@ -16,8 +16,19 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ id: 
   const { id } = await params;
   if (!ID.test(id)) return new NextResponse("Bad id", { status: 400 });
 
-  const upstream = await fetch(`${CDN}/${id}/preview`, { cache: "force-cache" });
-  if (!upstream.ok) return new NextResponse(`Upstream ${upstream.status}`, { status: 502 });
+  const sp0 = req.nextUrl.searchParams;
+  const variant = (sp0.get("v") || "").replace(/[^a-z0-9_-]/gi, "");
+  const path = variant ? `${CDN}/${id}/${variant}` : `${CDN}/${id}`;
+  const upstream = await fetch(path, { cache: "force-cache" });
+  if (!upstream.ok) return new NextResponse(`Upstream ${upstream.status} for ${path}`, { status: 502 });
+  if (sp0.get("probe") === "1") {
+    return NextResponse.json({
+      path,
+      status: upstream.status,
+      contentType: upstream.headers.get("content-type"),
+      length: upstream.headers.get("content-length"),
+    });
+  }
 
   const buf = Buffer.from(await upstream.arrayBuffer());
   const sp = req.nextUrl.searchParams;
