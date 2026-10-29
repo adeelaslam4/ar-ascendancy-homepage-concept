@@ -13,7 +13,8 @@ repository is the visual prototype of the homepage only.
 | `/` | Homepage — structure, copy, keywords, CTAs and emphasis taken 1:1 from the Miro board |
 | `/typografie` | Logo variants, headline fonts (Caviar Dreams vs. Bodoni Moda), script fonts for "Her Ascendancy", colour codes — each with licence status and our recommendation |
 | `/zugang` | Gate page shown to anyone without the invitation link |
-| `/bilder` | Internal contact sheet of the photographs on the current site (used for selection only; remove before handover) |
+| `/bilder` | Internal, numbered contact sheet of the 17 photographs on the client's current site — change `PICKS` in `lib/images.ts` to swap any image (remove before handover) |
+| `/api/img/[id]` | Serves the client's existing photographs (her current site's CDN, `/full` variant) resized/cropped via sharp; not gated because the photos are already public on her live site |
 
 ## Access control
 
@@ -57,7 +58,15 @@ included for the comparison page only.
 - **Restraint over effect.** One cream ground, one soft second cream, one dark interlude for the final
   CTA. No gradients, no 3D, no parallax. Motion is limited to a soft fade-up on scroll and 300 ms hovers.
 - **Editorial grid.** Portrait/text pairs on a 12-column grid with generous gutters; images sit at 4:5,
-  text at a 38 rem measure. Left/right sequence follows the Miro board exactly.
+  text at a 38 rem measure. Left/right sequence follows the Miro board exactly. The hero pairs one tall
+  arched portrait with a smaller offset portrait; the story section repeats the pairing at a smaller scale.
+- **Offers as editorial rows.** The two coaching offers are set as numbered rows with hairline dividers —
+  serif title left, copy right — rather than side-by-side cards.
+- **Motion.** Masked line-by-line headline reveals, fade-up with a blur settling to sharp, images easing
+  from 104 % to 100 %, self-drawing rules, underline-draw nav links, fill-wipe buttons, ±14 px image drift
+  on scroll. All honour `prefers-reduced-motion`.
+- **Logo.** The header and footer use a vector trace of the client's logo artwork (variant 1), rendered in
+  `currentColor`, so it stays crisp at every size; the original PNGs are kept in `public/logo/` for reference.
 - **Authority through type.** A high-contrast Didone at large sizes carries the positioning line; the
   SEO keyword phrase stays one H1, with the capitalised part set smaller and letter-spaced beneath.
 - **Understated conversion.** Text links and outlined buttons throughout; one filled button style
@@ -68,7 +77,7 @@ included for the comparison page only.
 ## Open items for the client
 
 1. Calendly link (all booking CTAs currently point to `#calendly`)
-2. Final photographs per the image brief (concept uses portraits from the current site as stand-ins)
+2. Final photographs per the image brief (concept uses her current-site photographs via `/api/img` as stand-ins)
 3. Logo as vector (SVG) in the flat `#D6C1A3` web rendering, or confirmation of the preferred variant
 4. Decision on headline font (Bodoni Moda recommended) and script font (Great Vibes recommended, or
    Blacksword licence purchased by A.R. ASCENDANCY)
