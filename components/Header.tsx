@@ -3,12 +3,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { CALENDLY } from "@/lib/links";
 
+// "Angebot" links to the future Angebotsseite (not the two homepage teasers); "Speaking" to the homepage section.
 const NAV = [
   { label: "Startseite", href: "/" },
-  { label: "Angebote", href: "#angebote" },
-  { label: "Über mich", href: "#ueber-mich" },
-  { label: "Blog", href: "#blog" },
+  { label: "Speaking", href: "#speaking" },
+  { label: "Angebot", href: "#angebot", title: "Verlinkung zur Angebotsseite" },
+  { label: "Über mich", href: "#ueber-mich", title: "Verlinkung zur About-me-Seite" },
+  { label: "Blog", href: "#blog", title: "Verlinkung zum Blog" },
 ];
 
 export default function Header() {
@@ -37,9 +40,9 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-5 md:px-10 lg:px-14">
-        {/* Logo: original artwork (cropped, unaltered) + tagline set separately beneath */}
-        <Link href="/" className="group flex items-center gap-4" aria-label="A.R. ASCENDANCY – Startseite">
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-3 md:px-10 md:py-4 lg:px-14">
+        {/* Logo: original artwork, stacked — monogram, wordmark, then the tagline beneath in the logo colour */}
+        <Link href="/" className="group flex flex-col items-center gap-[6px]" aria-label="A.R. ASCENDANCY – Startseite">
           <Image
             src="/logo/monogram-original@2x.png"
             alt=""
@@ -49,19 +52,17 @@ export default function Header() {
             unoptimized
             className="h-10 w-auto transition-opacity duration-500 group-hover:opacity-80 md:h-12"
           />
-          <span className="flex flex-col gap-[7px]">
-            <Image
-              src="/logo/wordmark-original@2x.png"
-              alt="A.R. ASCENDANCY"
-              width={926}
-              height={66}
-              priority
-              unoptimized
-              className="h-[11px] w-auto md:h-[14px]"
-            />
-            <span className="label whitespace-nowrap text-[0.5rem] leading-none tracking-[0.2em] text-brown-soft md:text-[0.62rem] md:tracking-[0.24em]">
-              Clarity - Decision - Ascent
-            </span>
+          <Image
+            src="/logo/wordmark-original@2x.png"
+            alt="A.R. ASCENDANCY"
+            width={926}
+            height={66}
+            priority
+            unoptimized
+            className="h-[9px] w-auto md:h-[11px]"
+          />
+          <span className="label whitespace-nowrap text-[0.44rem] leading-none tracking-[0.22em] text-logo md:text-[0.5rem]">
+            Clarity - Decision - Ascent
           </span>
         </Link>
 
@@ -71,6 +72,7 @@ export default function Header() {
             <a
               key={n.label}
               href={n.href}
+              title={n.title}
               className="navlink text-[0.82rem] font-medium tracking-[0.12em] uppercase text-brown transition-colors duration-300 hover:text-burgundy"
             >
               {n.label}
@@ -81,7 +83,7 @@ export default function Header() {
             <span className="h-3 w-px bg-gold-line" />
             <span title="Englische Version folgt nach Freigabe">EN</span>
           </span>
-          <a href="#calendly" className="btn-pill ml-4 hidden lg:inline-flex" title="Link zu Calendly folgt">
+          <a href={CALENDLY} className="btn-pill ml-4 hidden lg:inline-flex" title="Link zu Calendly">
             Kostenfreies Erstgespräch
           </a>
         </nav>

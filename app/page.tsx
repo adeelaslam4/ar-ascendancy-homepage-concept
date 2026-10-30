@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Header from "@/components/Header";
 import Reveal, { Line } from "@/components/Reveal";
 import Stagger from "@/components/Stagger";
@@ -8,10 +7,7 @@ import Faq from "@/components/Faq";
 import Newsletter from "@/components/Newsletter";
 import Footer from "@/components/Footer";
 import { PHOTOS } from "@/lib/images";
-
-// Calendly link not yet provided by the client — placeholder until configured.
-const CALENDLY = "#calendly";
-const MAILTO = "mailto:office@ar-ascendancy.com?subject=Podcast%20%26%20Speaking%20Anfrage";
+import { CALENDLY, SPEAKING_MAIL } from "@/lib/links";
 
 const FAQ = [
   {
@@ -38,7 +34,6 @@ const FAQ = [
 
 const OFFERS = [
   {
-    n: "01",
     title: "Führungskräfte Coaching für Einzelpersonen, Selbstständige & Führungskräfte",
     paras: [
       "1:1 Führungskräfte Coaching - Consulting, Mentoring & Strategic Advisory für Menschen, die trotz äußerem Erfolg spüren, dass ihre bisherige Realität nicht mehr zu ihnen passt.",
@@ -46,7 +41,6 @@ const OFFERS = [
     ],
   },
   {
-    n: "02",
     title: "Führungskräfte Coaching für Führungskräfte & Teams",
     paras: [
       "Führungskräfte Coaching - Consulting, Mentoring & Strategic Advisory für Unternehmen, Führungskräfte und Teams, die bewusste Selbstführung, klare Entscheidungsfindung und nachhaltige Veränderung gezielt stärken möchten.",
@@ -63,10 +57,9 @@ export default function Home() {
       <Drift />
 
       <main>
-        {/* ───────────────────────── HERO ───────────────────────── */}
-        <section className="mx-auto max-w-[1400px] px-6 pb-24 pt-6 md:px-10 md:pb-32 md:pt-10 lg:px-14 lg:pt-12">
+        {/* ───────────────────────── HERO — kurze Selbstvorstellung mit Foto ───────────────────────── */}
+        <section className="mx-auto max-w-[1400px] px-6 pb-24 pt-8 md:px-10 md:pb-32 md:pt-12 lg:px-14 lg:pt-16">
           <div className="grid items-center gap-14 md:grid-cols-12 md:gap-10 lg:gap-20">
-            {/* One portrait, confidently cropped, with a fine offset mat */}
             <Reveal variant="image" className="mat md:col-span-6 lg:col-span-5">
               <figure className="frame drift aspect-[4/5] w-full">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -75,16 +68,15 @@ export default function Home() {
             </Reveal>
 
             <div className="md:col-span-6 lg:col-span-6 lg:col-start-7">
-              <Reveal as="h1" variant="lines" delay={80} className="display text-[2.5rem] leading-[1.02] text-brown sm:text-[3rem] lg:text-[3.7rem] xl:text-[4.2rem]">
-                <Line>Führungskräfte</Line>
-                <Line>Coaching -</Line>
-                <Line className="display-caps mt-5 text-[0.95rem] leading-[1.6] sm:text-[1.05rem] lg:text-[1.15rem] xl:text-[1.25rem]">
-                  CONSULTING, MENTORING &amp; STRATEGIC ADVISORY
-                </Line>
+              {/* One typography for the whole positioning line, exactly as in the Miro board */}
+              <Reveal as="h1" variant="lines" delay={80} className="display text-[1.9rem] leading-[1.2] text-brown sm:text-[2.2rem] lg:text-[2.6rem] xl:text-[2.85rem]">
+                <Line>Führungskräfte Coaching -</Line>
+                <Line>CONSULTING, MENTORING</Line>
+                <Line>&amp; STRATEGIC ADVISORY</Line>
               </Reveal>
 
-              <Reveal delay={380}>
-                <div className="rule rule-draw mt-10 w-16" />
+              <Reveal delay={360}>
+                <div className="rule rule-draw mt-9 w-16" />
                 <p className="copy measure mt-9">
                   Als Consultant, Mentor &amp; Strategic Advisor unterstütze ich Menschen mit
                   Veränderungswunsch dabei Klarheit zu finden, selbstsichere Entscheidungen zu
@@ -95,19 +87,19 @@ export default function Home() {
                 </p>
               </Reveal>
 
-              <Reveal delay={500}>
+              <Reveal delay={480}>
                 <p className="mt-9 text-[1.1rem] font-semibold tracking-[0.01em] text-brown">
                   Think consciously. Change everything.
                 </p>
-                <p className="script mt-4 text-[2.8rem] text-burgundy md:text-[3.2rem]" aria-label="Her Ascendancy">
+                <p className="script mt-3 text-[2rem] text-burgundy md:text-[2.2rem]" aria-label="Her Ascendancy">
                   Her Ascendancy
                 </p>
               </Reveal>
 
-              <Reveal delay={620}>
+              <Reveal delay={600}>
                 <div className="mt-11 flex flex-col items-start gap-5">
                   <span className="label text-brown-soft">Ready to meet the standard?</span>
-                  <a href={CALENDLY} className="btn btn-solid" title="Link zu Calendly folgt">
+                  <a href={CALENDLY} className="btn btn-solid" title="Kostenfreies Erstgespräch – Calendly">
                     Kostenfreies Erstgespräch vereinbaren
                     <Arrow />
                   </a>
@@ -117,15 +109,63 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ───────────────────────── STORY ───────────────────────── */}
+        {/* ───────────────────────── HALTUNG — kurz, bewusst nicht vertieft ───────────────────────── */}
+        <section id="haltung" className="bg-cream-soft">
+          <div className="mx-auto max-w-[1400px] px-6 py-20 text-center md:px-10 md:py-28 lg:px-14">
+            <Reveal>
+              <span className="label text-brown-soft">Clarity - Decision - Ascent</span>
+            </Reveal>
+            <Reveal as="p" variant="lines" delay={120} className="display mx-auto mt-7 max-w-[900px] text-[1.8rem] leading-[1.3] text-brown sm:text-[2.2rem] lg:text-[2.8rem]">
+              <Line>Klarheit, die Entscheidungen trägt</Line>
+              <Line>und Führung verändert.</Line>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* ───────────────────────── ANGEBOTE — zwei Einleitungen, nebeneinander ───────────────────────── */}
+        <section id="angebote" className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32 lg:px-14 lg:py-36">
+          <Reveal as="h2" variant="lines" className="display text-center text-[1.5rem] leading-[1.15] text-brown sm:text-[2rem] md:text-[2.6rem] lg:text-[3rem]">
+            <Line>Für Menschen in Entscheidungspositionen</Line>
+          </Reveal>
+
+          <div className="mt-14 grid gap-6 md:mt-20 md:grid-cols-2 md:gap-8">
+            {OFFERS.map((o, i) => (
+              <Stagger key={o.title} as="article" className="offer-panel" base={i * 120}>
+                <div data-s="rule" className="rule-accent" />
+                <h3 data-s className="display-sm mt-8 text-[1.5rem] leading-[1.22] text-brown lg:text-[1.75rem]">
+                  {o.title}
+                </h3>
+                {o.paras.map((p, j) => (
+                  <p key={j} data-s className={`copy measure ${j ? "mt-5" : "mt-7"}`}>
+                    {p}
+                  </p>
+                ))}
+              </Stagger>
+            ))}
+          </div>
+
+          {/* Both actions together, beneath the two offers */}
+          <Stagger className="mt-14 flex flex-col items-center gap-6 md:mt-16">
+            <a data-s href="#angebot" className="textlink" title="Verlinkung zur Angebotsseite">
+              Mehr dazu
+              <Arrow />
+            </a>
+            <a data-s href={CALENDLY} className="btn btn-solid" title="Kostenfreies Erstgespräch – Calendly">
+              Kostenfreies Erstgespräch buchen
+              <Arrow />
+            </a>
+          </Stagger>
+        </section>
+
+        {/* ───────────────────────── STORY — mit Foto und Signatur ───────────────────────── */}
         <section id="ueber-mich" className="bg-cream-soft">
           <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32 lg:px-14 lg:py-40">
             <div className="grid items-center gap-14 md:grid-cols-12 md:gap-10 lg:gap-16">
               <div className="md:col-span-7 lg:col-span-6">
                 <Reveal as="p" variant="lines" className="display text-[1.65rem] leading-[1.35] text-brown sm:text-[1.9rem] lg:text-[2.3rem]">
                   <Line>Ich weiß, wie es ist, eine vertraute</Line>
-                  <Line>Realität zu verlassen, bevor die nächste</Line>
-                  <Line>vollständig sichtbar ist.</Line>
+                  <Line>Realität zu verlassen, bevor die</Line>
+                  <Line>nächste vollständig sichtbar ist.</Line>
                 </Reveal>
                 <Reveal delay={200}>
                   <div className="rule rule-draw mt-9 w-16" />
@@ -136,7 +176,11 @@ export default function Home() {
                   </p>
                 </Reveal>
                 <Reveal delay={320}>
-                  <a href="#ueber-mich" className="textlink mt-10" title="Verlinkung zur About-me-Seite">
+                  <div className="mt-9">
+                    <p className="text-[1.05rem] font-semibold text-brown">Alina Rogall</p>
+                    <p className="mt-1 text-[0.95rem] text-brown-soft">Founder &amp; CEO, A.R. ASCENDANCY · Berlin</p>
+                  </div>
+                  <a href="#ueber-mich-seite" className="textlink mt-9" title="Verlinkung zur About-me-Seite">
                     Read my story
                     <Arrow />
                   </a>
@@ -151,54 +195,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ───────────────────────── ANGEBOTE ───────────────────────── */}
-        <section id="angebote" className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32 lg:px-14 lg:py-40">
-          {OFFERS.map((o) => (
-            <Stagger key={o.n} as="article" className="offer-row border-t border-gold-line/70">
-              <div className="grid gap-8 py-14 md:grid-cols-12 md:gap-10 md:py-20 lg:py-24">
-                {/* numeral — large, champagne, the section's visual anchor */}
-                <div className="md:col-span-2">
-                  <span data-s className="numeral block">
-                    {o.n}
-                  </span>
-                </div>
-
-                {/* title + self-drawing rule */}
-                <div className="md:col-span-10 lg:col-span-5">
-                  <h2 data-s className="display text-[1.75rem] leading-[1.15] text-brown lg:text-[2.2rem]">
-                    {o.title}
-                  </h2>
-                  <div data-s="rule" className="rule mt-8 w-14" />
-                </div>
-
-                {/* copy, hairline-separated from the title on large screens */}
-                <div className="md:col-span-10 md:col-start-3 lg:col-span-5 lg:col-start-8 lg:border-l lg:border-gold-line/50 lg:pl-10">
-                  {o.paras.map((p, i) => (
-                    <p key={i} data-s className={`copy measure ${i ? "mt-5" : ""}`}>
-                      {p}
-                    </p>
-                  ))}
-                </div>
-              </div>
-            </Stagger>
-          ))}
-
-          <Stagger className="border-t border-gold-line/70">
-            <div className="flex flex-col items-start gap-8 pt-12 md:flex-row md:items-center md:justify-between md:pt-14">
-              <a data-s href="#angebote" className="textlink" title="Verlinkung zur Angebotsseite">
-                Mehr dazu
-                <Arrow />
-              </a>
-              <a data-s href={CALENDLY} className="btn btn-solid" title="Link zu Calendly folgt">
-                Kostenfreies Erstgespräch buchen
-                <Arrow />
-              </a>
-            </div>
-          </Stagger>
-        </section>
-
-        {/* ───────────────────────── SPEAKING ───────────────────────── */}
-        <section id="speaking" className="bg-cream-soft">
+        {/* ───────────────────────── SPEAKING & PODCASTS ───────────────────────── */}
+        <section id="speaking" className="scroll-mt-24">
           <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32 lg:px-14 lg:py-40">
             <div className="grid items-center gap-14 md:grid-cols-12 md:gap-10 lg:gap-16">
               <Reveal as="figure" variant="image" className="frame drift aspect-[4/5] w-full md:col-span-5 md:max-w-[460px] lg:col-span-5">
@@ -219,7 +217,7 @@ export default function Home() {
                   </p>
                 </Reveal>
                 <Reveal delay={280}>
-                  <a href={MAILTO} className="btn mt-10">
+                  <a href={SPEAKING_MAIL} className="btn btn-champagne mt-10">
                     Podcast &amp; Speaking Anfragen
                     <Arrow />
                   </a>
@@ -229,25 +227,29 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ───────────────────────── NEWSLETTER ───────────────────────── */}
-        <section id="newsletter" className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32 lg:px-14 lg:py-40">
-          <div className="grid items-end gap-12 md:grid-cols-12 md:gap-10">
-            <Reveal className="md:col-span-6 lg:col-span-5">
-              <span className="label text-gold-line">Newsletter</span>
-              <p className="display mt-6 text-[2.2rem] italic leading-[1.12] text-brown lg:text-[3rem]">
-                Think consciously.
-                <br />
-                Stay connected.
-              </p>
-            </Reveal>
-            <Reveal delay={140} className="md:col-span-6 md:col-start-7 lg:col-span-5 lg:col-start-8">
-              <Newsletter />
-            </Reveal>
-          </div>
+        {/* ───────────────────────── NEWSLETTER — hervorgehoben ───────────────────────── */}
+        <section id="newsletter" className="px-4 md:px-8 lg:px-12">
+          <Stagger className="newsletter-band mx-auto max-w-[1400px]">
+            <div className="grid items-center gap-12 px-8 py-16 md:grid-cols-12 md:gap-10 md:px-14 md:py-24 lg:px-20">
+              <div className="md:col-span-6 lg:col-span-5">
+                <span data-s className="label text-brown-soft">
+                  Newsletter
+                </span>
+                <p data-s className="display mt-6 text-[2.2rem] italic leading-[1.12] text-brown lg:text-[3rem]">
+                  Think consciously.
+                  <br />
+                  Stay connected.
+                </p>
+              </div>
+              <div data-s className="md:col-span-6 md:col-start-7 lg:col-span-6 lg:col-start-7">
+                <Newsletter />
+              </div>
+            </div>
+          </Stagger>
         </section>
 
         {/* ───────────────────────── FAQ ───────────────────────── */}
-        <section id="faq" className="bg-cream-soft">
+        <section id="faq">
           <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32 lg:px-14 lg:py-40">
             <div className="grid gap-12 md:grid-cols-12 md:gap-10">
               <Reveal className="md:col-span-4 lg:col-span-3">
@@ -260,29 +262,19 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ───────────────────────── CLOSING CTA — brown card on the cream field ───────────────────────── */}
+          {/* ───────────────────────── FINAL CTA — #D2B799 panel, brown type ───────────────────────── */}
           <div className="px-4 pb-5 md:px-8 md:pb-8 lg:px-12">
-            <Stagger className="cta-card mx-auto max-w-[1400px] bg-brown text-cream">
+            <Stagger className="cta-card mx-auto max-w-[1400px] bg-gold text-brown">
               <div className="grid gap-10 px-8 py-16 md:grid-cols-12 md:gap-8 md:px-14 md:py-24 lg:px-20 lg:py-28">
-                <div data-s className="md:col-span-1">
-                  <Image
-                    src="/logo/monogram-original@2x.png"
-                    alt=""
-                    width={654}
-                    height={660}
-                    className="h-12 w-auto md:h-14"
-                    unoptimized
-                  />
-                </div>
-                <div className="md:col-span-7 md:col-start-2">
-                  <p data-s className="display text-[2.4rem] leading-[1.05] text-cream sm:text-[3rem] lg:text-[4rem]">
+                <div className="md:col-span-7">
+                  <p data-s className="display text-[2.4rem] leading-[1.05] text-brown sm:text-[3rem] lg:text-[4rem]">
                     Ready for your
                     <br />
                     new reality?
                   </p>
                 </div>
                 <div className="flex md:col-span-4 md:col-start-9 md:items-end md:justify-end">
-                  <a data-s href={CALENDLY} className="btn btn-on-dark" title="Link zu Calendly folgt">
+                  <a data-s href={CALENDLY} className="btn btn-solid" title="Kostenfreies Erstgespräch – Calendly">
                     Kostenfreies Erstgespräch vereinbaren
                     <Arrow />
                   </a>

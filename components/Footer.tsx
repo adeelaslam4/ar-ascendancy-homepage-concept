@@ -1,8 +1,10 @@
 import Image from "next/image";
+import { CALENDLY } from "@/lib/links";
 
 const NAV = [
   { label: "Startseite", href: "/" },
-  { label: "Angebote", href: "#angebote" },
+  { label: "Speaking", href: "#speaking" },
+  { label: "Angebot", href: "#angebot" },
   { label: "Über mich", href: "#ueber-mich" },
   { label: "Blog", href: "#blog" },
 ];
@@ -50,7 +52,10 @@ export default function Footer() {
                   unoptimized
                   className="h-44 w-auto md:h-52"
                 />
-                <span className="label text-brown-soft">Clarity - Decision - Ascent</span>
+                <span className="label text-logo">Clarity - Decision - Ascent</span>
+                <p className="copy mt-6 max-w-[380px] text-[0.98rem] text-brown-soft">
+                  Führungskräfte Coaching, Consulting, Mentoring &amp; Strategic Advisory. Berlin.
+                </p>
               </div>
 
               <div className="mt-12 flex flex-col gap-3 md:mt-16 md:pl-0">
@@ -82,11 +87,12 @@ export default function Footer() {
 
             {/* ── Right: pill CTA, navigation, legal ── */}
             <div className="flex flex-col md:col-span-5 md:items-end md:text-right lg:col-span-4 lg:col-start-9">
-              <a href="#calendly" className="btn-pill-solid self-start md:self-end" title="Link zu Calendly folgt">
+              <a href={CALENDLY} className="btn-pill-solid self-start md:self-end" title="Kostenfreies Erstgespräch – Calendly">
                 Kostenfreies Erstgespräch
               </a>
 
-              <nav className="mt-12 flex flex-col gap-2.5 md:mt-16" aria-label="Fußzeilen-Navigation">
+              <span className="label mt-12 text-gold-line md:mt-16">Navigation</span>
+              <nav className="mt-4 flex flex-col gap-2.5" aria-label="Fußzeilen-Navigation">
                 {NAV.map((n) => (
                   <a key={n.label} href={n.href} className="flink">
                     {n.label}
@@ -94,7 +100,8 @@ export default function Footer() {
                 ))}
               </nav>
 
-              <div className="mt-10 flex flex-col gap-2.5">
+              <span className="label mt-10 text-gold-line">Rechtliches</span>
+              <div className="mt-4 flex flex-col gap-2.5">
                 {LEGAL.map((n) => (
                   <a key={n.label} href={n.href} className="flink text-[0.85rem]" title="Text folgt">
                     {n.label}

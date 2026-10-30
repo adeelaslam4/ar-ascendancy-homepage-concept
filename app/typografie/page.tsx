@@ -186,26 +186,26 @@ export default function Typografie() {
               Webfont-Lizenz nötig, auch bei 2–3 Platzierungen · Kauf nur durch Sie, auf A.R. ASCENDANCY
             </Licence>
           </Card>
-          <Card recommended>
+          <Card>
             <span className="label text-brown-soft">Alternative A · Great Vibes</span>
             <div className="mt-6 flex h-32 items-center bg-cream px-6">
               <span className="script text-[3.2rem] text-burgundy md:text-[3.6rem]">Her Ascendancy</span>
             </div>
             <Licence status="frei">SIL Open Font License · TypeSETit</Licence>
             <p className="mt-5 text-[0.9rem] leading-[1.75] text-brown-soft">
-              Dem Blacksword-Duktus am nächsten: schlanke Schwünge, elegante Verbindungen, ruhiger
-              Rhythmus. In #7C4242 auf Creme sehr gut lesbar. Auf der Startseite umgesetzt.
+              Dem Blacksword-Duktus am nächsten: schlanke Schwünge, elegante Verbindungen. Das
+              Versal-„A“ ist jedoch stark verschnörkelt und auf den ersten Blick schwer lesbar.
             </p>
           </Card>
-          <Card>
+          <Card recommended>
             <span className="label text-brown-soft">Alternative B · Allura</span>
             <div className="mt-6 flex h-32 items-center bg-cream px-6">
               <span className="font-allura text-[3.2rem] leading-none text-burgundy md:text-[3.6rem]">Her Ascendancy</span>
             </div>
             <Licence status="frei">SIL Open Font License · TypeSETit</Licence>
             <p className="mt-5 text-[0.9rem] leading-[1.75] text-brown-soft">
-              Weicher und runder, etwas kleinerer Schwung in den Großbuchstaben – wirkt freundlicher,
-              aber weniger signaturhaft.
+              Weicher und runder, klar lesbare Großbuchstaben („H“ und „A“ sofort erkennbar) bei
+              gleichem Signatur-Charakter. Jetzt auf der Startseite umgesetzt – in kleinerem Grad.
             </p>
           </Card>
           <Card>

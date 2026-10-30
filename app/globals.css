@@ -104,7 +104,7 @@ body {
 }
 
 .script {
-  font-family: var(--font-script);
+  font-family: var(--font-allura);
   font-weight: 400;
   line-height: 1;
 }
@@ -617,4 +617,55 @@ body {
 }
 @media (min-width: 768px) {
   .cta-card { border-radius: 32px; }
+}
+
+/* ─── Revision per client feedback (30 Oct) ─── */
+/* Offer intro panels: #D2B799 as accent — fine top rule + very light tint */
+.offer-panel {
+  position: relative;
+  padding: 2.5rem 2rem 2.75rem;
+  background: color-mix(in srgb, var(--color-gold) 16%, var(--color-cream));
+  border: 1px solid color-mix(in srgb, var(--color-gold) 45%, transparent);
+  transition: background-color 0.5s var(--ease-out), border-color 0.5s var(--ease-out);
+}
+@media (min-width: 1024px) {
+  .offer-panel { padding: 3rem 2.75rem 3.25rem; }
+}
+.offer-panel:hover {
+  background: color-mix(in srgb, var(--color-gold) 24%, var(--color-cream));
+  border-color: var(--color-gold);
+}
+.rule-accent {
+  height: 2px;
+  width: 4rem;
+  background: var(--color-gold);
+}
+
+/* Champagne button (#D2B799) — podcast & newsletter */
+.btn-champagne {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  color: var(--color-brown);
+}
+.btn-champagne::before {
+  background: var(--color-brown);
+}
+.btn-champagne:hover {
+  border-color: var(--color-brown);
+  color: var(--color-cream);
+}
+
+/* Newsletter band */
+.newsletter-band {
+  border-radius: 28px;
+  background: color-mix(in srgb, var(--color-gold) 28%, var(--color-cream));
+  border: 1px solid color-mix(in srgb, var(--color-gold) 55%, transparent);
+}
+@media (min-width: 768px) {
+  .newsletter-band { border-radius: 32px; }
+}
+
+/* Buttons may wrap on narrow screens */
+@media (max-width: 420px) {
+  .btn { white-space: normal; }
 }
