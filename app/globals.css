@@ -104,7 +104,7 @@ body {
 }
 
 .script {
-  font-family: var(--font-allura);
+  font-family: var(--font-pinyon);
   font-weight: 400;
   line-height: 1;
 }
@@ -246,6 +246,7 @@ body {
   padding: 1rem 1.9rem;
   line-height: 1.5;
   text-align: left;
+  white-space: nowrap;
   border: 1px solid var(--color-brown);
   color: var(--color-brown);
   background: transparent;
@@ -669,3 +670,93 @@ body {
 @media (max-width: 420px) {
   .btn { white-space: normal; }
 }
+
+/* ─── Revision per client feedback (31 Oct) ─── */
+
+/* Hero headline: type sized to its column so the three Miro lines never re-wrap */
+.hero-copy { container-type: inline-size; }
+.hero-h1 .line { white-space: nowrap; }
+@supports (font-size: 1cqw) {
+  .hero-h1 { font-size: clamp(1.3rem, 7.3cqw, 2.85rem); }
+}
+
+/* Bold CTA lead-in ("Ready to meet the standard?") */
+.label-strong {
+  font-family: var(--font-caviar);
+  font-weight: 700;
+  font-size: 0.86rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+@media (min-width: 768px) { .label-strong { font-size: 0.95rem; } }
+
+/* Story headline: from 640px up, sized to its column so the three lines hold */
+.story-copy { container-type: inline-size; }
+@media (min-width: 640px) {
+  .story-h .line { white-space: nowrap; }
+  @supports (font-size: 1cqw) {
+    .story-h { font-size: clamp(1.4rem, 6.2cqw, 2.3rem); }
+  }
+}
+
+/* Masked-line headlines: on small screens let the lines flow as one paragraph
+   instead of forcing desktop line breaks (which produced 5–6 ragged lines) */
+@media (max-width: 639px) {
+  .lines-flow-sm .line,
+  .lines-flow-sm .line > span { display: inline; padding: 0; margin: 0; }
+  .lines-flow-sm .line > span { transform: none; transition: none; }
+  .lines-flow-sm .line::after { content: " "; }
+  .lines-flow-sm { opacity: 0; transition: opacity 0.8s var(--ease-out); }
+  .lines-flow-sm.is-visible { opacity: 1; }
+}
+
+/* Haltung: faint photograph behind the claim */
+.haltung-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.haltung-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+  opacity: 0.16;
+  filter: saturate(0.85);
+}
+.haltung-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, var(--color-cream-soft) 0%, transparent 30%, transparent 70%, var(--color-cream-soft) 100%),
+    radial-gradient(ellipse at center, transparent 30%, color-mix(in srgb, var(--color-cream-soft) 70%, transparent) 100%);
+}
+
+/* Newsletter consent checkbox */
+.consent-box {
+  appearance: none;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  border: 1px solid var(--color-gold-line);
+  border-radius: 4px;
+  background: var(--color-cream);
+  display: inline-grid;
+  place-content: center;
+  cursor: pointer;
+  transition: background-color 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+}
+.consent-box::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  transform: scale(0);
+  transition: transform 0.2s var(--ease-out);
+  background: var(--color-cream);
+  clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+.consent-box:checked { background: var(--color-brown); border-color: var(--color-brown); }
+.consent-box:checked::before { transform: scale(1); }
+.consent-box:focus-visible { outline: 2px solid var(--color-gold-line); outline-offset: 2px; }

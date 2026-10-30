@@ -67,9 +67,11 @@ export default function Home() {
               </figure>
             </Reveal>
 
-            <div className="md:col-span-6 lg:col-span-6 lg:col-start-7">
-              {/* One typography for the whole positioning line, exactly as in the Miro board */}
-              <Reveal as="h1" variant="lines" delay={80} className="display text-[1.9rem] leading-[1.2] text-brown sm:text-[2.2rem] lg:text-[2.6rem] xl:text-[2.85rem]">
+            <div className="hero-copy md:col-span-6 lg:col-span-6 lg:col-start-7">
+              {/* One typography for the whole positioning line, exactly as in the Miro board.
+                  .hero-h1 sizes the type to the column so the three lines never re-wrap
+                  (desktop, MacBook or phone: always exactly three lines). */}
+              <Reveal as="h1" variant="lines" delay={80} className="display hero-h1 text-[1.9rem] leading-[1.2] text-brown sm:text-[2.2rem] lg:text-[2.6rem] xl:text-[2.85rem]">
                 <Line>Führungskräfte Coaching -</Line>
                 <Line>CONSULTING, MENTORING</Line>
                 <Line>&amp; STRATEGIC ADVISORY</Line>
@@ -96,26 +98,31 @@ export default function Home() {
                 </p>
               </Reveal>
 
-              <Reveal delay={600}>
-                <div className="mt-11 flex flex-col items-start gap-5">
-                  <span className="label text-brown-soft">Ready to meet the standard?</span>
-                  <a href={CALENDLY} className="btn btn-solid" title="Kostenfreies Erstgespräch – Calendly">
-                    Kostenfreies Erstgespräch vereinbaren
-                    <Arrow />
-                  </a>
-                </div>
-              </Reveal>
             </div>
           </div>
+
+          {/* CTA centred beneath the self-presentation (client wish 30 Oct), label bold for emphasis */}
+          <Reveal delay={200} className="mt-16 flex flex-col items-center gap-5 text-center md:mt-20">
+            <span className="label-strong text-brown">Ready to meet the standard?</span>
+            <a href={CALENDLY} className="btn btn-solid" title="Kostenfreies Erstgespräch – Calendly">
+              Kostenfreies Erstgespräch vereinbaren
+              <Arrow />
+            </a>
+          </Reveal>
         </section>
 
         {/* ───────────────────────── HALTUNG — kurz, bewusst nicht vertieft ───────────────────────── */}
-        <section id="haltung" className="bg-cream-soft">
-          <div className="mx-auto max-w-[1400px] px-6 py-20 text-center md:px-10 md:py-28 lg:px-14">
+        <section id="haltung" className="haltung relative overflow-hidden bg-cream-soft">
+          {/* Faint photographic ground behind the claim (as on the reference site) — her own interior photography */}
+          <div className="haltung-bg" aria-hidden="true">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={PHOTOS.haltung} alt="" loading="lazy" />
+          </div>
+          <div className="relative mx-auto max-w-[1400px] px-6 py-24 text-center md:px-10 md:py-36 lg:px-14">
             <Reveal>
               <span className="label text-brown-soft">Clarity - Decision - Ascent</span>
             </Reveal>
-            <Reveal as="p" variant="lines" delay={120} className="display mx-auto mt-7 max-w-[900px] text-[1.8rem] leading-[1.3] text-brown sm:text-[2.2rem] lg:text-[2.8rem]">
+            <Reveal as="p" variant="lines" delay={120} className="display lines-flow-sm mx-auto mt-7 max-w-[900px] text-[1.8rem] leading-[1.3] text-brown sm:text-[2.2rem] lg:text-[2.8rem]">
               <Line>Klarheit, die Entscheidungen trägt</Line>
               <Line>und Führung verändert.</Line>
             </Reveal>
@@ -124,7 +131,7 @@ export default function Home() {
 
         {/* ───────────────────────── ANGEBOTE — zwei Einleitungen, nebeneinander ───────────────────────── */}
         <section id="angebote" className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32 lg:px-14 lg:py-36">
-          <Reveal as="h2" variant="lines" className="display text-center text-[1.5rem] leading-[1.15] text-brown sm:text-[2rem] md:text-[2.6rem] lg:text-[3rem]">
+          <Reveal as="h2" variant="lines" className="display lines-flow-sm text-center text-[1.5rem] leading-[1.15] text-brown sm:text-[2rem] md:text-[2.6rem] lg:text-[3rem]">
             <Line>Für Menschen in Entscheidungspositionen</Line>
           </Reveal>
 
@@ -161,8 +168,8 @@ export default function Home() {
         <section id="ueber-mich" className="bg-cream-soft">
           <div className="mx-auto max-w-[1400px] px-6 py-24 md:px-10 md:py-32 lg:px-14 lg:py-40">
             <div className="grid items-center gap-14 md:grid-cols-12 md:gap-10 lg:gap-16">
-              <div className="md:col-span-7 lg:col-span-6">
-                <Reveal as="p" variant="lines" className="display text-[1.65rem] leading-[1.35] text-brown sm:text-[1.9rem] lg:text-[2.3rem]">
+              <div className="story-copy md:col-span-7 lg:col-span-6">
+                <Reveal as="p" variant="lines" className="display story-h lines-flow-sm text-[1.65rem] leading-[1.35] text-brown sm:text-[1.9rem] lg:text-[2.3rem]">
                   <Line>Ich weiß, wie es ist, eine vertraute</Line>
                   <Line>Realität zu verlassen, bevor die</Line>
                   <Line>nächste vollständig sichtbar ist.</Line>
@@ -262,9 +269,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* ───────────────────────── FINAL CTA — #D2B799 panel, brown type ───────────────────────── */}
+          {/* ───────────────────────── FINAL CTA — soft gold tint (same as newsletter), brown type ───────────────────────── */}
           <div className="px-4 pb-5 md:px-8 md:pb-8 lg:px-12">
-            <Stagger className="cta-card mx-auto max-w-[1400px] bg-gold text-brown">
+            <Stagger className="cta-card newsletter-band mx-auto max-w-[1400px] text-brown">
               <div className="grid gap-10 px-8 py-16 md:grid-cols-12 md:gap-8 md:px-14 md:py-24 lg:px-20 lg:py-28">
                 <div className="md:col-span-7">
                   <p data-s className="display text-[2.4rem] leading-[1.05] text-brown sm:text-[3rem] lg:text-[4rem]">
@@ -273,7 +280,7 @@ export default function Home() {
                     new reality?
                   </p>
                 </div>
-                <div className="flex md:col-span-4 md:col-start-9 md:items-end md:justify-end">
+                <div className="flex md:col-span-5 md:col-start-8 md:items-end md:justify-end">
                   <a data-s href={CALENDLY} className="btn btn-solid" title="Kostenfreies Erstgespräch – Calendly">
                     Kostenfreies Erstgespräch vereinbaren
                     <Arrow />

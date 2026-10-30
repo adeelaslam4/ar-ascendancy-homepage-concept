@@ -61,7 +61,7 @@ export default function Header() {
             unoptimized
             className="h-[9px] w-auto md:h-[11px]"
           />
-          <span className="label whitespace-nowrap text-[0.44rem] leading-none tracking-[0.22em] text-logo md:text-[0.5rem]">
+          <span className="label mt-[5px] whitespace-nowrap text-[0.44rem] leading-none tracking-[0.22em] text-brown md:mt-[7px] md:text-[0.5rem]">
             Clarity - Decision - Ascent
           </span>
         </Link>

@@ -31,10 +31,12 @@ export const img = (id: string, w = 1400, ar = "4:5", grade: "warm" | "portrait"
  * Portraits: 16 (seated, lit steps) and 1 (standing). Supporting imagery is her own
  * warm hotel/interior photography — architecture and calm interiors in the brand palette.
  */
-export const PICKS = { hero: 16, story: 1, speaking: 5 };
+export const PICKS = { hero: 16, story: 1, speaking: 5, haltung: 5 };
 
 export const PHOTOS = {
   hero: img(EXISTING_SITE_IMAGE_IDS[PICKS.hero], 1400, "4:5", "portrait"),
   story: img(EXISTING_SITE_IMAGE_IDS[PICKS.story], 1200, "4:5", "portrait"),
   speaking: img(EXISTING_SITE_IMAGE_IDS[PICKS.speaking], 1400, "4:5", "warm"),
+  /** faint photographic ground behind the Haltung claim */
+  haltung: img(EXISTING_SITE_IMAGE_IDS[PICKS.haltung], 1800, "16:7", "warm"),
 };

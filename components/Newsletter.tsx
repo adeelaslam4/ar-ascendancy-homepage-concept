@@ -6,6 +6,7 @@ import Arrow from "./Arrow";
 export default function Newsletter() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [consent, setConsent] = useState(false);
   const [sent, setSent] = useState(false);
 
   return (
@@ -48,10 +49,31 @@ export default function Newsletter() {
           />
         </div>
       </div>
-      <button type="submit" className="btn btn-champagne mt-9">
+      {/* Datenschutz-Einwilligung (DSGVO) + Hinweis auf Double-Opt-in */}
+      <label htmlFor="newsletter-consent" className="consent mt-7 flex cursor-pointer items-start gap-3">
+        <input
+          id="newsletter-consent"
+          type="checkbox"
+          className="consent-box"
+          checked={consent}
+          onChange={(e) => setConsent(e.target.checked)}
+          required
+        />
+        <span className="text-[0.84rem] leading-[1.65] text-brown-soft">
+          Ich möchte den Newsletter von A.R. ASCENDANCY erhalten und habe die{" "}
+          <a href="#datenschutz" className="underline decoration-gold-line underline-offset-4 transition-colors hover:text-brown" title="Text folgt">
+            Datenschutzerklärung
+          </a>{" "}
+          gelesen. Ich kann die Einwilligung jederzeit widerrufen.
+        </span>
+      </label>
+      <button type="submit" className="btn btn-champagne mt-8">
         Join A.R. ASCENDANCY
         <Arrow />
       </button>
+      <p className="mt-4 text-[0.78rem] leading-[1.6] text-brown-soft">
+        Double-Opt-in: Du bestätigst deine Anmeldung anschließend per E-Mail.
+      </p>
       <p
         role="status"
         aria-live="polite"

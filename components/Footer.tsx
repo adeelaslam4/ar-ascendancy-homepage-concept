@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { CALENDLY } from "@/lib/links";
 
 const NAV = [
   { label: "Startseite", href: "/" },
@@ -43,7 +42,7 @@ export default function Footer() {
           <div className="grid gap-12 md:grid-cols-12 md:gap-8">
             {/* ── Left: logo (her colour, geometry unchanged), tagline separate beneath ── */}
             <div className="flex flex-col md:col-span-7 md:pl-[112px] lg:pl-[120px]">
-              <div className="flex flex-col items-start gap-4">
+              <div className="flex flex-col items-start">
                 <Image
                   src="/logo/lockup-original@2x.png"
                   alt="A.R. ASCENDANCY"
@@ -52,7 +51,8 @@ export default function Footer() {
                   unoptimized
                   className="h-44 w-auto md:h-52"
                 />
-                <span className="label text-logo">Clarity - Decision - Ascent</span>
+                {/* tagline sits close under the wordmark, in brown for contrast against the gold artwork */}
+                <span className="label -mt-3 text-brown md:-mt-4">Clarity - Decision - Ascent</span>
                 <p className="copy mt-6 max-w-[380px] text-[0.98rem] text-brown-soft">
                   Führungskräfte Coaching, Consulting, Mentoring &amp; Strategic Advisory. Berlin.
                 </p>
@@ -87,11 +87,7 @@ export default function Footer() {
 
             {/* ── Right: pill CTA, navigation, legal ── */}
             <div className="flex flex-col md:col-span-5 md:items-end md:text-right lg:col-span-4 lg:col-start-9">
-              <a href={CALENDLY} className="btn-pill-solid self-start md:self-end" title="Kostenfreies Erstgespräch – Calendly">
-                Kostenfreies Erstgespräch
-              </a>
-
-              <span className="label mt-12 text-gold-line md:mt-16">Navigation</span>
+              <span className="label text-gold-line md:mt-2">Navigation</span>
               <nav className="mt-4 flex flex-col gap-2.5" aria-label="Fußzeilen-Navigation">
                 {NAV.map((n) => (
                   <a key={n.label} href={n.href} className="flink">

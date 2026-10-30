@@ -38,14 +38,26 @@ function Licence({ status, children }: { status: "frei" | "kostenpflichtig"; chi
   );
 }
 
-function Card({ children, recommended = false }: { children: React.ReactNode; recommended?: boolean }) {
+function Card({
+  children,
+  recommended = false,
+  chosen = false,
+}: {
+  children: React.ReactNode;
+  recommended?: boolean;
+  chosen?: boolean;
+}) {
   return (
-    <div className={`relative bg-cream-soft p-7 md:p-9 ${recommended ? "outline outline-1 outline-gold-line" : ""}`}>
-      {recommended && (
+    <div className={`relative bg-cream-soft p-7 md:p-9 ${recommended || chosen ? "outline outline-1 outline-gold-line" : ""}`}>
+      {chosen ? (
+        <span className="label absolute right-5 top-5 bg-burgundy px-2 py-1 !text-[0.56rem] text-cream">
+          Deine Wahl · umgesetzt
+        </span>
+      ) : recommended ? (
         <span className="label absolute right-5 top-5 bg-brown px-2 py-1 !text-[0.56rem] text-cream">
           Empfehlung PENAXIS
         </span>
-      )}
+      ) : null}
       {children}
     </div>
   );
@@ -64,9 +76,10 @@ export default function Typografie() {
             Typografie- &amp; Logo-Vergleich
           </h1>
           <p className="measure mt-6 text-[0.98rem] leading-[1.8] text-brown-soft">
-            Alle Varianten sind mit Ihren Originalformulierungen gesetzt. Es wird nichts ersetzt oder
-            gekauft, bevor Sie es schriftlich freigegeben haben. Die mit „Empfehlung PENAXIS“
-            markierten Optionen sind auf der Startseiten-Vorschau bereits umgesetzt.
+            Alle Varianten sind mit deinen Originalformulierungen gesetzt. Es wird nichts ersetzt oder
+            gekauft, bevor du es schriftlich freigegeben hast. Stand 31.10.: Logo wie geliefert, Bodoni
+            Moda für Hauptüberschriften, Caviar Dreams für Tagline und Labels, Pinyon Script für
+            „Her Ascendancy“ – alles auf der Startseiten-Vorschau umgesetzt.
           </p>
         </div>
         <Image src="/logo/monogram-original@2x.png" alt="" width={654} height={660} unoptimized className="h-20 w-auto" />
@@ -107,11 +120,11 @@ export default function Typografie() {
               </div>
             </div>
             <p className="mt-6 text-[0.9rem] leading-[1.75] text-brown-soft">
-              Das Zeichen aus Variante 1 (identische Form), flächig in Ihrem verbindlichen Logo-Ton
+              Das Zeichen aus Variante 1 (identische Form), flächig in deinem verbindlichen Logo-Ton
               #D6C1A3 – ohne Verlauf und Glanz. Vereint die Klarheit des Originals mit der Ruhe von
               Variante 2, funktioniert auf hellem und dunklem Grund, skaliert als Vektor sauber bis zum Favicon
-              und entspricht exakt Ihrem Farbcode. Die Vektorfassung wurde aus Ihrer Logodatei
-              nachgezeichnet; für die Produktion bitten wir um Ihre originale Vektordatei (SVG/AI).
+              und entspricht exakt deinem Farbcode. Die Vektorfassung wurde aus deiner Logodatei
+              nachgezeichnet. Dein Entscheid: Das Logo bleibt wie geliefert; diese Fassung dient nur dem Favicon.
             </p>
           </Card>
           <Card>
@@ -131,7 +144,7 @@ export default function Typografie() {
       {/* ───────── HEADLINES ───────── */}
       <Section kicker="02" title="Hauptüberschriften">
         <div className="grid gap-6">
-          <Card recommended>
+          <Card chosen>
             <span className="label text-brown-soft">Richtung 2 · Bodoni Moda (Nähe zu „Doing Life“)</span>
             <p className="display mt-6 text-[2rem] leading-[1.08] text-brown md:text-[2.8rem]">
               Führungskräfte Coaching -{" "}
@@ -179,7 +192,7 @@ export default function Typografie() {
             <div className="mt-6 flex h-32 items-center bg-cream px-6">
               <span className="text-[0.85rem] leading-[1.7] text-brown-soft">
                 Nicht eingebettet – kommerzielle Schrift, Webfont-Lizenz erforderlich. Zum Vergleich bitte
-                Ihre Miro-Darstellung heranziehen.
+                deine Miro-Darstellung heranziehen.
               </span>
             </div>
             <Licence status="kostenpflichtig">
@@ -189,7 +202,7 @@ export default function Typografie() {
           <Card>
             <span className="label text-brown-soft">Alternative A · Great Vibes</span>
             <div className="mt-6 flex h-32 items-center bg-cream px-6">
-              <span className="script text-[3.2rem] text-burgundy md:text-[3.6rem]">Her Ascendancy</span>
+              <span className="font-script text-[3.2rem] leading-none text-burgundy md:text-[3.6rem]">Her Ascendancy</span>
             </div>
             <Licence status="frei">SIL Open Font License · TypeSETit</Licence>
             <p className="mt-5 text-[0.9rem] leading-[1.75] text-brown-soft">
@@ -197,7 +210,7 @@ export default function Typografie() {
               Versal-„A“ ist jedoch stark verschnörkelt und auf den ersten Blick schwer lesbar.
             </p>
           </Card>
-          <Card recommended>
+          <Card>
             <span className="label text-brown-soft">Alternative B · Allura</span>
             <div className="mt-6 flex h-32 items-center bg-cream px-6">
               <span className="font-allura text-[3.2rem] leading-none text-burgundy md:text-[3.6rem]">Her Ascendancy</span>
@@ -205,18 +218,18 @@ export default function Typografie() {
             <Licence status="frei">SIL Open Font License · TypeSETit</Licence>
             <p className="mt-5 text-[0.9rem] leading-[1.75] text-brown-soft">
               Weicher und runder, klar lesbare Großbuchstaben („H“ und „A“ sofort erkennbar) bei
-              gleichem Signatur-Charakter. Jetzt auf der Startseite umgesetzt – in kleinerem Grad.
+              gleichem Signatur-Charakter.
             </p>
           </Card>
-          <Card>
+          <Card chosen>
             <span className="label text-brown-soft">Alternative C · Pinyon Script</span>
             <div className="mt-6 flex h-32 items-center bg-cream px-6">
               <span className="font-pinyon text-[3.2rem] leading-none text-burgundy md:text-[3.6rem]">Her Ascendancy</span>
             </div>
             <Licence status="frei">SIL Open Font License · Nicole Fally</Licence>
             <p className="mt-5 text-[0.9rem] leading-[1.75] text-brown-soft">
-              Formaler, kalligrafischer, mit ausgeprägten Versalschwüngen – eher Einladungskarte als
-              persönliche Signatur.
+              Formaler, kalligrafischer, mit ausgeprägten Versalschwüngen. Von Alina gewählt und
+              jetzt auf der Startseite umgesetzt – in kleinerem Grad.
             </p>
           </Card>
         </div>
