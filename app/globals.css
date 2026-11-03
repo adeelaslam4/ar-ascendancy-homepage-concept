@@ -276,8 +276,12 @@ body {
   color: var(--color-cream);
 }
 .btn svg {
+  flex: none;
   transition: transform 0.45s var(--ease-out);
 }
+/* overflow:hidden drops the flex item's automatic min-width to 0, so a .btn inside a narrow
+   flex/grid cell could shrink and clip its arrow (seen on the final CTA at desktop widths) */
+.btn { flex: none; min-width: max-content; }
 .btn:hover svg {
   transform: translateX(5px);
 }

@@ -51,8 +51,9 @@ export default function Footer() {
                   unoptimized
                   className="h-44 w-auto md:h-52"
                 />
-                {/* tagline sits close under the wordmark, in brown for contrast against the gold artwork */}
-                <span className="label -mt-3 text-brown md:-mt-4">Clarity - Decision - Ascent</span>
+                {/* tagline gap = the lock-up's own monogram→wordmark gap (as in the header); the PNG carries
+                    ~12% transparent padding below the wordmark, hence the negative margin */}
+                <span className="label -mt-[10px] leading-none text-brown md:-mt-[12px]">Clarity - Decision - Ascent</span>
                 <p className="copy mt-6 max-w-[380px] text-[0.98rem] text-brown-soft">
                   Führungskräfte Coaching, Consulting, Mentoring &amp; Strategic Advisory. Berlin.
                 </p>
