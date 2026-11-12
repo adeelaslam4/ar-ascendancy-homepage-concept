@@ -2,10 +2,10 @@ import Image from "next/image";
 
 const NAV = [
   { label: "Startseite", href: "/" },
-  { label: "Speaking", href: "#speaking" },
   { label: "Angebot", href: "#angebot" },
   { label: "Über mich", href: "#ueber-mich" },
   { label: "Blog", href: "#blog" },
+  { label: "Kontakt", href: "#kontakt" },
 ];
 
 const LEGAL = [
@@ -42,7 +42,10 @@ export default function Footer() {
           <div className="grid gap-12 md:grid-cols-12 md:gap-8">
             {/* ── Left: logo (her colour, geometry unchanged), tagline separate beneath ── */}
             <div className="flex flex-col md:col-span-7 md:pl-[112px] lg:pl-[120px]">
-              <div className="flex flex-col items-start">
+              {/* Lock-up exactly as in the header: tagline centred under the artwork, gap in the header's
+                  proportion (tagline gap ≈ 15% of the monogram height). The PNG carries ~12% transparent
+                  padding below the wordmark, hence the small negative margin. */}
+              <div className="flex w-fit flex-col items-center">
                 <Image
                   src="/logo/lockup-original@2x.png"
                   alt="A.R. ASCENDANCY"
@@ -51,15 +54,15 @@ export default function Footer() {
                   unoptimized
                   className="h-44 w-auto md:h-52"
                 />
-                {/* tagline gap = the lock-up's own monogram→wordmark gap (as in the header); the PNG carries
-                    ~12% transparent padding below the wordmark, hence the negative margin */}
-                <span className="label -mt-[10px] leading-none text-brown md:-mt-[12px]">Clarity - Decision - Ascent</span>
-                <p className="copy mt-6 max-w-[380px] text-[0.98rem] text-brown-soft">
-                  Führungskräfte Coaching, Consulting, Mentoring &amp; Strategic Advisory. Berlin.
-                </p>
+                <span className="label -mt-[3px] whitespace-nowrap text-center leading-none text-brown md:-mt-[4px]">
+                  Clarity - Decision - Ascent
+                </span>
               </div>
+              <p className="copy mt-7 max-w-[380px] text-[0.98rem] text-brown-soft">
+                Führungskräfte Coaching, Consulting, Mentoring &amp; Strategic Advisory. Berlin.
+              </p>
 
-              <div className="mt-12 flex flex-col gap-3 md:mt-16 md:pl-0">
+              <div id="kontakt" className="mt-12 flex scroll-mt-24 flex-col gap-3 md:mt-16 md:pl-0">
                 <span className="label text-gold-line">Kontakt</span>
                 <a
                   href="mailto:office@ar-ascendancy.com"

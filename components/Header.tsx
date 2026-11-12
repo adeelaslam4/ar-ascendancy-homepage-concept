@@ -8,10 +8,10 @@ import { CALENDLY } from "@/lib/links";
 // "Angebot" links to the future Angebotsseite (not the two homepage teasers); "Speaking" to the homepage section.
 const NAV = [
   { label: "Startseite", href: "/" },
-  { label: "Speaking", href: "#speaking" },
   { label: "Angebot", href: "#angebot", title: "Verlinkung zur Angebotsseite" },
   { label: "Über mich", href: "#ueber-mich", title: "Verlinkung zur About-me-Seite" },
   { label: "Blog", href: "#blog", title: "Verlinkung zum Blog" },
+  { label: "Kontakt", href: "#kontakt" },
 ];
 
 export default function Header() {
@@ -67,13 +67,13 @@ export default function Header() {
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-9 md:flex" aria-label="Hauptnavigation">
+        <nav className="hidden items-center gap-8 md:flex lg:gap-9" aria-label="Hauptnavigation">
           {NAV.map((n) => (
             <a
               key={n.label}
               href={n.href}
               title={n.title}
-              className="navlink text-[0.82rem] font-medium tracking-[0.12em] uppercase text-brown transition-colors duration-300 hover:text-burgundy"
+              className="navlink whitespace-nowrap text-[0.82rem] font-medium tracking-[0.12em] uppercase text-brown transition-colors duration-300 hover:text-burgundy"
             >
               {n.label}
             </a>
@@ -83,7 +83,7 @@ export default function Header() {
             <span className="h-3 w-px bg-gold-line" />
             <span title="Englische Version folgt nach Freigabe">EN</span>
           </span>
-          <a href={CALENDLY} className="btn-pill ml-4 hidden lg:inline-flex" title="Link zu Calendly">
+          <a href={CALENDLY} className="btn-pill ml-4 hidden whitespace-nowrap xl:inline-flex" title="Link zu Calendly">
             Kostenfreies Erstgespräch
           </a>
         </nav>
