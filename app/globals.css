@@ -1339,16 +1339,17 @@ body {
   line-height: 1.25;
   color: var(--color-brown);
   margin-top: 3.25rem;
-  text-wrap: balance;
+  text-wrap: pretty;
 }
 .post h2::first-letter,
 .post .h2-specimen::first-letter {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 700;            /* heavy, high-contrast initial as in the client's example */
+  font-variation-settings: "opsz" 96;
   font-size: 1.9em;            /* clearly smaller on the phone */
   line-height: 0.9;
-  margin-right: 0;
-  color: var(--color-burgundy);
+  margin-right: 0.02em;
+  color: var(--color-brown);
 }
 @media (min-width: 768px) {
   .post h2, .post .h2-specimen { font-size: 1.85rem; margin-top: 4.25rem; }
