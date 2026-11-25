@@ -1371,7 +1371,7 @@ body {
   margin-right: 0.06em;
 }
 @media (min-width: 768px) {
-  .post[data-cap="2"] h2, .post[data-cap="2"] .h2-specimen { font-size: 1.3rem; }
+  .post[data-cap="2"] h2, .post[data-cap="2"] .h2-specimen { font-size: 1.2rem; }
   .post[data-cap="2"] h2::first-letter, .post[data-cap="2"] .h2-specimen::first-letter { font-size: 4em; }
 }
 .spec-table { width: 100%; border-collapse: collapse; }

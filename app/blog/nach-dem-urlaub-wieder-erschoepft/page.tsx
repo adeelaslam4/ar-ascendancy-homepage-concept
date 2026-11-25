@@ -2,10 +2,8 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
-import Arrow from "@/components/Arrow";
 import CapSwitch from "@/components/CapSwitch";
 import { OFFER_PHOTOS } from "@/lib/images";
-import { CALENDLY } from "@/lib/links";
 import { SUBPAGE_NAV } from "@/lib/nav";
 
 /* The fields the client asked for in the WordPress editor — here filled with her own values. */
@@ -119,15 +117,6 @@ export default function BlogPost() {
                 ))}
 
                 <p className="!mt-10 text-[0.9rem] !text-brown-soft">[ … Auszug für die Demo – der Artikel geht hier weiter ]</p>
-              </div>
-
-              {/* ───────── CTA am Ende des Beitrags ───────── */}
-              <div className="mt-14 flex flex-col items-center gap-5 border-t border-gold-line/70 pt-12 text-center">
-                <span className="label-strong text-brown">Ready to meet the standard?</span>
-                <a href={CALENDLY} className="btn btn-solid" title="Link zu Calendly">
-                  Kostenfreies Erstgespräch vereinbaren
-                  <Arrow />
-                </a>
               </div>
 
               {/* ───────── Nur für den Kickoff: weitere Beispiele + technische Umsetzung ───────── */}
