@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Reveal, { Line } from "@/components/Reveal";
+import Rich from "@/components/Rich";
+import Drift from "@/components/Drift";
+import ScrollLine from "@/components/ScrollLine";
 import Stagger from "@/components/Stagger";
 import Arrow from "@/components/Arrow";
 import Faq, { type FaqEntry } from "@/components/Faq";
@@ -22,14 +25,14 @@ export const metadata: Metadata = {
 /* All copy below is the client's wording from her Miro board (25 Nov), unchanged. */
 
 const PATTERNS = [
-  "Du erkennst deine eigenen Bedürfnisse nicht oder priorisierst dich selbst nicht?",
-  "Du lenkst dich ab, um dich nicht mit deinen wahren Needs beschäftigen zu müssen",
-  "Führen dich bestimmte Denk- und Reaktionsweisen immer wieder ins Alte zurück?",
-  "Treten die selben Konflikte wiederholt auf?",
-  "Steckst du in einem geschaffenen System fest, das dich unglücklich macht und nicht zu deinem wahren Selbst passt?",
-  "Erleidest du körperliche Beschwerden und innere Anspannung?",
-  "Du bist erfolgreich in deinem Job und trotzdem unzufrieden?",
-  "Du hast schon viel innere Arbeit geleistet und trotzdem hat sich nichts im Außen verändert?",
+  "Du erkennst deine eigenen Bedürfnisse nicht oder **priorisierst dich selbst nicht?**",
+  "Du **lenkst dich ab**, um dich nicht mit deinen wahren Needs beschäftigen zu müssen",
+  "Führen dich **bestimmte Denk- und Reaktionsweisen** immer wieder ins Alte zurück?",
+  "Treten die **selben Konflikte** wiederholt auf?",
+  "**Steckst du in einem geschaffenen System fest**, das dich unglücklich macht und nicht zu deinem wahren Selbst passt?",
+  "Erleidest du **körperliche Beschwerden** und innere Anspannung?",
+  "Du bist **erfolgreich** in deinem Job und **trotzdem unzufrieden**?",
+  "Du hast schon **viel innere Arbeit** geleistet und trotzdem hat sich **nichts im Außen verändert?**",
 ];
 
 const JOURNEY = [
@@ -91,21 +94,21 @@ const RESILIENZ = [
 ];
 
 const OUTCOMES = [
-  "hast du eine bewusste Art der Selbstführung gelernt und wie du dich selbst priorisierst.",
-  "Du ersetzt eingefahrene Routinen in deinem Alltag durch bewusste Routinen, die dir gut tun.",
-  "Du trägst den Change durch die Übergangsphase, statt beim ersten Widerstand zurückzukehren.",
-  "Du lernst Trigger gezielt umzulenken und ermöglichst dir dadurch frei zu entscheiden.",
-  "Du durchbrichst alte Muster und vermeidest damit wiederkehrende Konflikte.",
-  "Durch Selbstreflexion gewinnst du innere Klarheit und eine Richtung, in die du dich entwickeln möchtest.",
-  "Durch einen besseren Zugang zu dir selbst, kannst du neue Handlungsweisen langfristig etablieren.",
-  "Du entwickelst ein besseres Verständnis für die Signale deines Körpers und lernst, belastende innere Anspannung zu reduzieren.",
-  "Mit Hilfe von Mental Reconditioning durchbrechen wir alte Limitierungen und etablieren neue, bewusste Denk- und Verhaltensmuster.",
+  "hast du eine **bewusste Art der Selbstführung gelernt** und wie du **dich selbst priorisierst.**",
+  "Du ersetzt eingefahrene Routinen in deinem Alltag durch **bewusste Routinen**, die dir gut tun.",
+  "Du trägst den **Change durch die Übergangsphase,** statt beim ersten Widerstand zurückzukehren.",
+  "Du lernst Trigger gezielt umzulenken und ermöglichst dir dadurch **frei zu entscheiden**.",
+  "Du **durchbrichst alte Muster** und vermeidest damit wiederkehrende Konflikte.",
+  "Durch Selbstreflexion gewinnst du **innere Klarheit** und eine Richtung, in die du dich entwickeln möchtest.",
+  "Durch einen besseren Zugang zu dir selbst, kannst du **neue Handlungsweisen langfristig etablieren.**",
+  "Du entwickelst ein besseres Verständnis für die Signale deines Körpers und **lernst, belastende innere Anspannung zu reduzieren.**",
+  "Mit Hilfe von Mental Reconditioning durchbrechen wir alte Limitierungen und **etablieren neue, bewusste Denk- und Verhaltensmuster.**",
 ];
 
 const FAQ: FaqEntry[] = [
   {
     q: "Wie läuft das Coaching von Führungskräften bei A.R. ASCENDANCY konkret ab?",
-    a: "Mein Coaching von Führungskräften findet je nach gewähltem Angebot über 6 Wochen, 12 Wochen oder 6 Monate statt. In regelmäßigen 1:1 Sessions arbeiten wir an Klarheit, Entscheidungsfindung, Self-Leadership und nachhaltiger Veränderung. CLARITY INTENSIVE konzentriert sich auf eine konkrete Entscheidung und erste Impulse aus dem Mental Reconditioning. In ASCENT durchlaufen wir den Mental-Reconditioning-Prozess deutlich tiefer und begleiten die Umsetzung über 12 Wochen. ASCENDANCY verbindet die intensive 1:1 Begleitung über sechs Monate zusätzlich mit dem Secret Space und einer langfristigen Verkörperung deiner persönlichen und beruflichen Veränderung. Je nach Angebot begleiten dich außerdem der Clarity Mirror und persönliche Telegram Support-Slots zwischen den Sessions.",
+    a: "Mein Coaching von Führungskräften findet je nach gewähltem Angebot über **6 Wochen, 12 Wochen oder 6 Monate** statt. In regelmäßigen 1:1 Sessions arbeiten wir an Klarheit, Entscheidungsfindung, Self-Leadership und nachhaltiger Veränderung. **CLARITY INTENSIVE** konzentriert sich auf eine konkrete Entscheidung und erste Impulse aus dem Mental Reconditioning. In **ASCENT** durchlaufen wir den Mental-Reconditioning-Prozess deutlich tiefer und begleiten die Umsetzung über 12 Wochen. **ASCENDANCY** verbindet die intensive 1:1 Begleitung über sechs Monate zusätzlich mit dem Secret Space und einer langfristigen Verkörperung deiner persönlichen und beruflichen Veränderung. Je nach Angebot begleiten dich außerdem der Clarity Mirror und persönliche Telegram Support-Slots zwischen den Sessions.",
   },
   {
     q: "Für wen eignet sich Coaching von Führungskräften?",
@@ -131,32 +134,38 @@ const FAQ: FaqEntry[] = [
 
 const WRAP = "mx-auto max-w-[1400px] px-6 md:px-10 lg:px-14";
 
+function Ornament({ className = "" }: { className?: string }) {
+  return (
+    <div className={`ornament ${className}`} aria-hidden="true">
+      <i />
+      <i />
+      <i />
+    </div>
+  );
+}
+
 export default function Angebot() {
   return (
     <>
+      <ScrollLine />
       <Header nav={SUBPAGE_NAV} current="Angebot" />
+      <Drift />
 
       <main className="sub">
-        {/* ───────── 1 · Intro ───────── */}
-        <section className={`${WRAP} pb-20 pt-10 md:pb-28 md:pt-16 lg:pb-32`}>
-          <div className="grid items-center gap-12 md:grid-cols-12 md:gap-10 lg:gap-16">
-            <div className="md:col-span-7">
-              <Reveal>
-                <span className="label text-brown-soft">Consulting, Mentoring &amp; Strategic Advisory</span>
+        {/* ───────── 1 · Intro — Text links, Foto rechts (Miro) ───────── */}
+        <section className={`${WRAP} pb-24 pt-8 md:pb-32 md:pt-14 lg:pt-20`}>
+          <div className="grid items-center gap-14 md:grid-cols-12 md:gap-10 lg:gap-16">
+            <div className="hero-copy md:col-span-7">
+              {/* one typography for the whole line, as on the homepage */}
+              <Reveal as="h1" variant="lines" delay={80} className="display offer-h1 lines-flow-sm text-[1.5rem] leading-[1.2] text-brown">
+                <Line>Coaching von Führungskräften -</Line>
+                <Line>CONSULTING, MENTORING</Line>
+                <Line>&amp; STRATEGIC ADVISORY</Line>
               </Reveal>
-              <Reveal
-                as="h1"
-                variant="lines"
-                delay={80}
-                className="display lines-flow-sm mt-6 text-[2.5rem] leading-[1.06] text-brown sm:text-[3.2rem] lg:text-[4rem] xl:text-[4.6rem]"
-              >
-                <Line>Coaching von</Line>
-                <Line>Führungskräften</Line>
-              </Reveal>
-              <Reveal delay={160}>
+              <Reveal delay={360}>
                 <div className="rule rule-draw mt-9 w-20" />
               </Reveal>
-              <Reveal delay={220} className="measure mt-9 space-y-5">
+              <Reveal delay={420} className="measure mt-9 space-y-5">
                 <p className="copy">
                   Was, wenn deine aktuelle Realität nicht bestimmt, was als Nächstes für dich möglich ist? In meiner
                   Arbeit geht es darum, das Bestehende klar zu sehen, ohne dich davon begrenzen zu lassen.
@@ -167,51 +176,59 @@ export default function Angebot() {
                 </p>
               </Reveal>
             </div>
-            <Reveal variant="image" className="mat md:col-span-5 md:pr-6">
-              <div className="frame aspect-[4/5]">
+            <Reveal variant="image" delay={150} className="mx-auto w-full max-w-[420px] pr-4 pt-4 md:col-span-5 md:max-w-none md:pl-4 lg:pl-10">
+              <div className="arch-wrap">
+              <figure className="frame drift aspect-[4/5]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={OFFER_PHOTOS.intro}
                   alt="Alina Rogall, Founder & CEO von A.R. ASCENDANCY"
+                  fetchPriority="high"
                   className="h-full w-full object-cover"
                 />
+              </figure>
               </div>
             </Reveal>
           </div>
         </section>
 
-        {/* ───────── 2 · Muster ───────── */}
-        <section className="bg-cream-soft">
-          <div className={`${WRAP} py-20 md:py-28 lg:py-32`}>
-            <div className="grid gap-10 md:grid-cols-12 md:gap-8">
-              <Reveal className="md:col-span-5 lg:col-span-4">
-                <h2 className="display text-[1.9rem] leading-[1.14] text-brown sm:text-[2.3rem] lg:text-[2.8rem]">
-                  Spiegeln sich folgende Muster bei dir wieder?
-                </h2>
-                <div className="rule rule-draw mt-8 w-16" />
-              </Reveal>
-              <Reveal delay={120} className="md:col-span-7 lg:col-span-7 lg:col-start-6">
-                <ol className="numlist">
-                  {PATTERNS.map((t) => (
-                    <li key={t}>{t}</li>
-                  ))}
-                </ol>
-              </Reveal>
-            </div>
+        {/* ───────── 2 · Muster — auf leisem Foto-Grund ───────── */}
+        <section className="haltung relative overflow-hidden bg-cream-soft">
+          <div className="haltung-bg" aria-hidden="true">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={OFFER_PHOTOS.ground} alt="" loading="lazy" />
+          </div>
+          <div className={`${WRAP} relative py-24 md:py-32`}>
+            <Reveal className="text-center">
+              <h2 className="display mx-auto max-w-[900px] text-[1.9rem] leading-[1.16] text-brown sm:text-[2.4rem] lg:text-[3rem]">
+                Spiegeln sich folgende Muster bei dir wieder?
+              </h2>
+              <Ornament className="mt-9" />
+            </Reveal>
+            <Reveal delay={120} className="mx-auto mt-12 max-w-[1120px] md:mt-16">
+              <ul className="dlist is-2col">
+                {PATTERNS.map((t) => (
+                  <li key={t}>
+                    <Rich text={t} />
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
           </div>
         </section>
 
         {/* ───────── 3 · So arbeite ich — Grafik 1 ───────── */}
-        <section className={`${WRAP} py-20 md:py-28 lg:py-36`}>
-          <Reveal className="max-w-[820px]">
-            <h2 className="display text-[1.9rem] leading-[1.14] text-brown sm:text-[2.3rem] lg:text-[2.9rem]">
+        <section className={`${WRAP} py-24 md:py-32 lg:py-36`}>
+          <Reveal className="max-w-[860px]">
+            <h2 className="display text-[1.9rem] leading-[1.14] text-brown sm:text-[2.4rem] lg:text-[3rem]">
               So arbeite ich in meinem Coaching von Führungskräften:
             </h2>
+            <div className="rule rule-draw mt-8 w-16" />
           </Reveal>
-          <Reveal delay={120} className="mt-14 md:mt-20">
+          <div className="mt-14 md:mt-20">
             <Steps items={JOURNEY} label="Mindset & Clarity bis Ascent" />
-          </Reveal>
-          <Reveal delay={160} className="mt-14 lg:mt-10">
+          </div>
+          <Reveal delay={160} className="mt-12 lg:mt-12">
             <dl className="explain">
               {JOURNEY_TEXT.map((x) => (
                 <div key={x.t}>
@@ -223,14 +240,16 @@ export default function Angebot() {
           </Reveal>
         </section>
 
-        {/* ───────── 4 · Zitat ───────── */}
+        {/* ───────── 4 · Zitat — Foto links, Zitat, CTA (Miro) ───────── */}
         <section className="bg-cream-soft">
-          <div className={`${WRAP} py-20 md:py-28 lg:py-32`}>
-            <div className="grid items-center gap-12 md:grid-cols-12 md:gap-10 lg:gap-16">
-              <Reveal variant="image" className="mx-auto w-full max-w-[420px] md:col-span-4 md:max-w-none">
-                <div className="frame aspect-square">
+          <div className={`${WRAP} py-24 md:py-32`}>
+            <div className="grid items-center gap-14 md:grid-cols-12 md:gap-10 lg:gap-20">
+              <Reveal variant="image" className="mx-auto w-full max-w-[320px] pr-4 pt-4 md:col-span-4 md:max-w-none">
+                <div className="arch-wrap">
+                <figure className="frame drift aspect-[3/4]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={OFFER_PHOTOS.quote} alt="Alina Rogall im Porträt" loading="lazy" className="h-full w-full object-cover" />
+                </figure>
                 </div>
               </Reveal>
               <Stagger className="md:col-span-8">
@@ -238,11 +257,12 @@ export default function Angebot() {
                   <div data-s className="quote-mark" aria-hidden="true">
                     “
                   </div>
-                  <blockquote data-s className="quote-script mt-2" lang="en">
+                  <blockquote data-s className="quote-script mt-3" lang="en">
                     Ascendancy is what happens when clarity becomes a decision, a decision becomes embodied change, and
                     that change becomes your new reality.
                   </blockquote>
-                  <figcaption data-s className="byline mt-8">
+                  <div data-s className="rule-accent mt-9" />
+                  <figcaption data-s className="byline mt-6">
                     Alina Rogall <span className="mx-1 text-gold-line">•</span> Founder &amp; CEO, A.R. ASCENDANCY{" "}
                     <span className="mx-1 text-gold-line">•</span> Berlin
                   </figcaption>
@@ -259,10 +279,10 @@ export default function Angebot() {
         </section>
 
         {/* ───────── 5 · Mental Reconditioning — Grafik 2 ───────── */}
-        <section className={`${WRAP} py-20 md:py-28 lg:py-36`}>
+        <section className={`${WRAP} py-24 md:py-32 lg:py-36`}>
           <div className="grid gap-10 md:grid-cols-12 md:gap-8">
             <Reveal className="md:col-span-5 lg:col-span-4">
-                <h2 className="display text-[2rem] leading-[1.12] text-brown sm:text-[2.4rem] lg:text-[3rem]">
+              <h2 className="display text-[2rem] leading-[1.12] text-brown sm:text-[2.5rem] lg:text-[3.1rem]">
                 Mental Reconditioning
               </h2>
               <div className="rule rule-draw mt-8 w-16" />
@@ -285,30 +305,37 @@ export default function Angebot() {
             </Reveal>
           </div>
 
-          <Reveal className="mt-16 md:mt-24">
-            <h3 className="display max-w-[820px] text-[1.4rem] leading-[1.25] text-brown md:text-[1.8rem]">
-              Diese Methoden des Mental Reconditioning verwende ich in meinem Coaching von Führungskräften:
-            </h3>
-          </Reveal>
-          <Reveal delay={120} className="mt-12 md:mt-16">
-            <Steps items={METHODS} label="Metacognition, Deconditioning, Mental Rehearsal, Reconditioning" />
-          </Reveal>
+          <div className="newsletter-band mt-16 px-6 py-12 md:mt-24 md:px-12 md:py-16 lg:px-16 lg:py-20">
+            <Reveal>
+              <h3 className="display max-w-[820px] text-[1.4rem] leading-[1.25] text-brown md:text-[1.85rem]">
+                Diese Methoden des Mental Reconditioning verwende ich in meinem Coaching von Führungskräften:
+              </h3>
+            </Reveal>
+            <div className="mt-12 md:mt-16">
+              <Steps
+                variant="rings"
+                items={METHODS}
+                label="Metacognition, Deconditioning, Mental Rehearsal, Reconditioning"
+              />
+            </div>
+          </div>
         </section>
 
-        {/* ───────── 6 · Goldener Rahmen: Resilienz Coaching + Women ───────── */}
+        {/* ───────── 6 · Goldener Rahmen: Resilienz Coaching | Foto | Women ───────── */}
         <section className="bg-cream-soft">
-          <div className={`${WRAP} py-20 md:py-28 lg:py-32`}>
+          <div className={`${WRAP} py-24 md:py-32`}>
             <Reveal className="gold-frame">
-              <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_1px_minmax(0,1fr)] lg:gap-14">
-                <div>
-                  <span className="label text-brown-soft">Beyond the mental work..</span>
-                  <h2 className="display mt-5 text-[1.7rem] leading-[1.16] text-brown md:text-[2.1rem]">
+              <span className="corner tl" aria-hidden="true" />
+              <span className="corner tr" aria-hidden="true" />
+              <span className="corner bl" aria-hidden="true" />
+              <span className="corner br" aria-hidden="true" />
+
+              <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:gap-12 xl:gap-16">
+                <div className="order-2 lg:order-1">
+                  <p className="text-[1rem] tracking-[0.02em] text-brown-soft">Beyond the mental work..</p>
+                  <h2 className="display mt-3 text-[1.75rem] leading-[1.16] text-brown md:text-[2.2rem]">
                     Resilienz Coaching: Finish what you started!
                   </h2>
-                  <div className="frame mt-8 aspect-[3/2]">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={OFFER_PHOTOS.resilienz} alt="Ruhiges Interieur in warmem Licht" loading="lazy" className="h-full w-full object-cover" />
-                  </div>
                   <div className="mt-8 space-y-5">
                     <p className="copy">
                       Wie klar, belastbar und leistungsfähig du im Business bist, hängt davon ab, welche Grundlage du
@@ -319,20 +346,28 @@ export default function Angebot() {
                       Lebensführung in die Zusammenarbeit ein:
                     </p>
                   </div>
-                  <ul className="mt-7 flex flex-wrap gap-2.5">
+                  <ul className="dlist is-plain mt-6">
                     {RESILIENZ.map((t) => (
-                      <li key={t} className="chip">
+                      <li key={t} className="font-semibold">
                         {t}
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="gold-divider" aria-hidden="true" />
+                {/* her picture sits between the two columns */}
+                <div className="order-1 flex flex-col items-center lg:order-2">
+                  <span className="vline hidden lg:block lg:max-h-6" />
+                  <div className="medallion lg:mt-5">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={OFFER_PHOTOS.medallion} alt="Alina Rogall" loading="lazy" />
+                  </div>
+                  <span className="vline mt-5 hidden lg:block" />
+                </div>
 
-                <div>
-                  <span className="label text-brown-soft">&amp; specially for Women:</span>
-                  <h2 className="display mt-5 text-[1.7rem] leading-[1.16] text-brown md:text-[2.1rem]">
+                <div className="order-3">
+                  <p className="text-[1rem] tracking-[0.02em] text-brown-soft">&amp; specially for Women:</p>
+                  <h2 className="display mt-3 text-[1.75rem] leading-[1.16] text-brown md:text-[2.2rem]">
                     Cycle-Informed Self-Leadership for the premenopausal years
                   </h2>
                   <div className="mt-8 space-y-5">
@@ -349,20 +384,21 @@ export default function Angebot() {
                       Muskelaufbau danach wieder anlief.
                     </p>
                     <p className="copy">
-                      Auch meine darauffolgende Menstruation habe ich persönlich als außergewöhnlich leicht und
-                      angenehm erlebt. Diese Erfahrung hat meinen Blick darauf verändert, wie bewusst Ernährung,
-                      Training, Regeneration und Körperwahrnehmung in die eigene Selbstführung einbezogen werden
-                      können.
+                      Auch meine <strong className="font-semibold">darauffolgende Menstruation</strong> habe ich
+                      persönlich als <strong className="font-semibold">außergewöhnlich leicht und angenehm</strong>{" "}
+                      erlebt. Diese Erfahrung hat meinen Blick darauf verändert, wie bewusst Ernährung, Training,
+                      Regeneration und Körperwahrnehmung in die eigene Selbstführung einbezogen werden können.
                     </p>
                   </div>
-                  <p className="script mt-9 text-[1.75rem] !leading-[1.3] text-burgundy md:text-[2.1rem]">
+                  <p className="script mt-9 text-[1.85rem] !leading-[1.3] text-burgundy md:text-[2.2rem]">
                     Genau dieses Wissen und meine persönliche Erfahrung sind mein Geschenk an dich.
                   </p>
                 </div>
               </div>
 
-              <div className="mt-12 border-t border-gold/70 pt-9 text-center md:mt-14 md:pt-11">
-                <p className="display mx-auto max-w-[860px] text-[1.3rem] leading-[1.35] text-brown md:text-[1.7rem]">
+              <div className="mt-12 text-center md:mt-16">
+                <Ornament />
+                <p className="display mx-auto mt-8 max-w-[900px] text-[1.35rem] leading-[1.35] text-brown md:text-[1.8rem]">
                   Wir integrieren genau das dann in deinen eigenen, persönlichen weekly private &amp; business plan.
                 </p>
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-x-9 gap-y-4">
@@ -381,46 +417,48 @@ export default function Angebot() {
         </section>
 
         {/* ───────── 7 · Nach unserer Zusammenarbeit ───────── */}
-        <section className={`${WRAP} py-20 md:py-28 lg:py-36`}>
+        <section className={`${WRAP} py-24 md:py-32 lg:py-36`}>
           <div className="grid gap-10 md:grid-cols-12 md:gap-8">
             <Reveal className="md:col-span-5 lg:col-span-4">
+              <div className="md:sticky md:top-36">
                 <h2 className="display text-[1.9rem] leading-[1.14] text-brown sm:text-[2.3rem] lg:text-[2.8rem]">
-                Nach unserer Zusammenarbeit im Coaching von Führungskräften:
-              </h2>
-              <div className="rule rule-draw mt-8 w-16" />
+                  Nach unserer Zusammenarbeit im Coaching von Führungskräften:
+                </h2>
+                <div className="rule rule-draw mt-8 w-16" />
+              </div>
             </Reveal>
             <Reveal delay={120} className="md:col-span-7 lg:col-span-7 lg:col-start-6">
-              <ol className="numlist">
+              <ul className="dlist">
                 {OUTCOMES.map((t) => (
-                  <li key={t}>{t}</li>
+                  <li key={t}>
+                    <Rich text={t} />
+                  </li>
                 ))}
-              </ol>
+              </ul>
             </Reveal>
           </div>
         </section>
 
-        {/* ───────── 8 · Story + CTA ───────── */}
+        {/* ───────── 8 · Story — Text links, Foto rechts (Miro) + CTA ───────── */}
         <section className="bg-cream-soft">
-          <div className={`${WRAP} py-20 md:py-28 lg:py-32`}>
-            <div className="grid items-center gap-12 md:grid-cols-12 md:gap-10 lg:gap-16">
-              <Reveal variant="image" className="mat md:col-span-5 md:pr-6">
-                <div className="frame aspect-[4/5]">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={OFFER_PHOTOS.story} alt="Alina Rogall" loading="lazy" className="h-full w-full object-cover" />
-                </div>
-              </Reveal>
+          <div className={`${WRAP} py-24 md:py-32`}>
+            <div className="grid items-center gap-14 md:grid-cols-12 md:gap-10 lg:gap-16">
               <Stagger className="md:col-span-7">
                 <div data-s className="rule-accent" />
-                <div className="measure mt-9 space-y-5">
-                  <p data-s className="copy">
+                <div className="mt-9 space-y-6">
+                  <p data-s className="display text-[1.45rem] leading-[1.42] text-brown md:text-[1.85rem]">
                     Ich weiß, wie es ist, eine vertraute Realität zu verlassen, bevor die nächste vollständig sichtbar
-                    ist. Über Jahre habe ich Beziehungen, Gewohnheiten, vermeintliche Sicherheiten und schließlich
-                    meine Beamtenlaufbahn losgelassen, um ein Leben aufzubauen, das meinen eigenen Werten und meiner
-                    Vision entspricht.
+                    ist.
                   </p>
-                  <p data-s className="copy">
-                    Aus dieser Story ist A.R. ASCENDANCY entstanden: klar sehen, bewusst entscheiden und die eigene
-                    Richtung halten, bis Veränderung zur gelebten Realität wird.
+                  <p data-s className="copy measure">
+                    Über Jahre habe ich Beziehungen, Gewohnheiten, vermeintliche Sicherheiten und schließlich meine
+                    Beamtenlaufbahn losgelassen, um ein Leben aufzubauen, das meinen eigenen Werten und meiner Vision
+                    entspricht.
+                  </p>
+                  <p data-s className="copy measure">
+                    Aus dieser Story ist <strong className="font-semibold">A.R. ASCENDANCY</strong> entstanden: klar
+                    sehen, bewusst entscheiden und die eigene Richtung halten, bis Veränderung zur gelebten Realität
+                    wird.
                   </p>
                 </div>
                 <div data-s className="mt-11 flex flex-col items-start gap-5">
@@ -431,25 +469,30 @@ export default function Angebot() {
                   </a>
                 </div>
               </Stagger>
+              <Reveal variant="image" className="mat mx-auto w-full max-w-[420px] md:col-span-5 md:max-w-none md:pr-6">
+                <figure className="frame drift aspect-[4/5]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={OFFER_PHOTOS.story} alt="Alina Rogall" loading="lazy" className="h-full w-full object-cover" />
+                </figure>
+              </Reveal>
             </div>
           </div>
         </section>
 
         {/* ───────── 9–11 · Die drei Angebote ───────── */}
-        <section id="angebote" className={`${WRAP} scroll-mt-24 py-20 md:py-28 lg:py-36`}>
+        <section id="angebote" className={`${WRAP} scroll-mt-24 py-24 md:py-32 lg:py-36`}>
           <Reveal className="text-center">
-            <span className="label text-brown-soft">Clarity Intensive · Ascent · Ascendancy</span>
-            <h2 className="display mt-6 text-[2.1rem] leading-[1.1] text-brown sm:text-[2.7rem] lg:text-[3.4rem]">
+            <h2 className="display text-[2.1rem] leading-[1.1] text-brown sm:text-[2.8rem] lg:text-[3.6rem]">
               Coaching von Führungskräften
             </h2>
-            <div className="gold-diamond mt-9" />
+            <Ornament className="mt-9" />
           </Reveal>
 
           <Reveal delay={120} className="mt-12 md:mt-16">
             <OfferPlans plans={PLANS} />
           </Reveal>
 
-          {/* 10 · für alle Angebote verbindlich */}
+          {/* 10 · für alle Angebote verbindlich — Box zum Aufklappen */}
           <Reveal className="mt-10 md:mt-12">
             <BindingBox title="Die folgenden Punkte sind für alle Angebote verbindlich:">
               <div className="grid gap-x-14 gap-y-9 md:grid-cols-2">
@@ -498,11 +541,11 @@ export default function Angebot() {
           </Reveal>
 
           {/* 11 · Ready to invest in yourself? — einmal für alle drei, danach je Angebot ein CTA */}
-          <Reveal className="mt-20 md:mt-28">
+          <Reveal className="mt-24 md:mt-32">
             <p className="gold-line-title">
               <span>Ready to invest in yourself?</span>
             </p>
-            <div className="gold-diamond mt-7" />
+            <Ornament className="mt-7" />
           </Reveal>
           <Stagger className="mt-10 grid gap-8 md:mt-12 md:grid-cols-3 md:gap-6">
             {PLANS.map((p) => (
@@ -519,7 +562,7 @@ export default function Angebot() {
 
         {/* ───────── 12 · FAQ's + 13 · Final CTA ───────── */}
         <section className="bg-cream-soft">
-          <div className={`${WRAP} py-20 md:py-28 lg:py-32`}>
+          <div className={`${WRAP} py-24 md:py-32`}>
             <div className="grid gap-12 md:grid-cols-12 md:gap-8">
               <Reveal className="md:col-span-4 lg:col-span-3">
                 <h2 className="display text-[2.2rem] leading-[1.08] text-brown lg:text-[2.9rem]">FAQ&apos;s</h2>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Rich from "./Rich";
 
 export type FaqEntry = { q: string; a: string };
 
@@ -37,7 +38,7 @@ export default function Faq({ items }: { items: FaqEntry[] }) {
             >
               <div>
                 <p className="copy copy-soft measure pb-7">
-                  {item.a}
+                  <Rich text={item.a} />
                 </p>
               </div>
             </div>

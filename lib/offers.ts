@@ -18,9 +18,9 @@ export type Plan = {
   after: string[];
 };
 
-const COMPANY =
+export const COMPANY =
   "Du möchtest die Begleitung über dein Unternehmen buchen oder von deinem Arbeitgeber finanzieren lassen? Abhängig vom gewünschten Auftrags- und Abstimmungsrahmen gelten individuelle Konditionen. Bitte kontaktiere mich vor der Buchung per E-Mail.";
-const START = "Die inhaltliche Zusammenarbeit beginnt mit deiner ersten Session.";
+export const START = "Die inhaltliche Zusammenarbeit beginnt mit deiner ersten Session.";
 
 export const PLANS: Plan[] = [
   {
@@ -98,7 +98,7 @@ export const PLANS: Plan[] = [
     price: "8.145,- €",
     intro: [
       "Du suchst nicht nur Klarheit über eine einzelne Entscheidung sondern bist bereit, größere persönliche und berufliche Veränderungen bewusst aufzubauen und langfristig zu verkörpern?",
-      "Wir arbeiten 6 Monate mit deiner gesamten Journey: Mindset & Clarity → Decision Making → Conscious Leadership through change with Mental Reconditioning → Embodiment → Ascent",
+      "Wir arbeiten 6 Monate mit **deiner gesamten Journey:** Mindset & Clarity → Decision Making → Conscious Leadership through change with Mental Reconditioning → Embodiment → Ascent",
       "Dabei verbinde ich Consulting, Mentoring & Strategic Advisory individuell mit dem, was du in deiner aktuellen Situation wirklich brauchst.",
     ],
     duration: "6 Monate intensive 1:1 Begleitung",
@@ -114,7 +114,7 @@ export const PLANS: Plan[] = [
       { text: "Clarity Mirror Access über die gesamten 6 Monate" },
       { text: "tiefgehende Mindset- und Clarity Arbeit" },
       { text: "Decision Making bei persönlichen und beruflichen Entscheidungen" },
-      { text: "vollständiger Mental Reconditioning Prozess aus meinen Grafiken" },
+      { text: "**vollständiger** Mental Reconditioning Prozess aus meinen Grafiken" },
       { text: "strategische Perspektivenwechsel & Challenging bestehender Annahmen" },
       { text: "Begleitung durch den Change und größere Veränderungsphasen" },
       { text: "Embodiment & bewusste Self-Leadership" },

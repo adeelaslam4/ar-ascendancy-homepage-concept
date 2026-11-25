@@ -1,14 +1,15 @@
 "use client";
 
-import { useState } from "react";
-import type { Plan } from "@/lib/offers";
+import { useEffect, useRef, useState } from "react";
+import { COMPANY, START, type Plan } from "@/lib/offers";
+import Rich from "./Rich";
 
-type Layout = "A" | "B" | "C";
+type Layout = "M" | "A" | "B";
 
 const LAYOUTS: { id: Layout; label: string }[] = [
-  { id: "A", label: "A · Karten nebeneinander" },
-  { id: "B", label: "B · Reiter" },
-  { id: "C", label: "C · Untereinander" },
+  { id: "M", label: "1 · Wie im Miro-Board (alles sichtbar)" },
+  { id: "A", label: "2 · Kompakt (Details aufklappbar)" },
+  { id: "B", label: "3 · Reiter" },
 ];
 
 function Head({ p, as: Tag = "h3", stack = false }: { p: Plan; as?: "h3" | "span"; stack?: boolean }) {
@@ -24,8 +25,8 @@ function Included({ p, from = 0, to }: { p: Plan; from?: number; to?: number }) 
   return (
     <ul className="ticks">
       {p.included.slice(from, to).map((it) => (
-        <li key={it.text} className={it.note ? "tick-note" : undefined}>
-          {it.text}
+        <li key={it.text} className={it.note ? "tick-note italic" : undefined}>
+          <Rich text={it.text} />
         </li>
       ))}
     </ul>
@@ -39,7 +40,7 @@ function Secret({ p }: { p: Plan }) {
       <p className="plan-name !text-[1.05rem]">{p.secret.title}</p>
       <p className="plan-tag mt-2">{p.secret.tagline}</p>
       {p.secret.text.map((t) => (
-        <p key={t} className="plan-small mt-3">
+        <p key={t} className={`plan-small mt-3 ${t.startsWith("Wichtig:") ? "italic" : ""}`}>
           {t}
         </p>
       ))}
@@ -58,7 +59,10 @@ function Invest({ p }: { p: Plan }) {
         ))}
       </ul>
       {p.after.map((t) => (
-        <p key={t} className="plan-small mt-4">
+        <p
+          key={t}
+          className={`plan-small mt-4 ${t === START ? "italic" : ""} ${t === COMPANY ? "!font-semibold !text-brown" : ""}`}
+        >
           {t}
         </p>
       ))}
@@ -71,14 +75,72 @@ function Intro({ p }: { p: Plan }) {
     <>
       {p.intro.map((t) => (
         <p key={t} className="mt-4 text-[0.98rem] leading-[1.7] text-brown first:mt-0">
-          {t}
+          <Rich text={t} />
         </p>
       ))}
     </>
   );
 }
 
-/** Layout A — three cards side by side; the long part of each offer opens on demand. */
+function Lead({ p }: { p: Plan }) {
+  return (
+    <>
+      <Head p={p} stack />
+      <div className="rule-accent mt-6" />
+      <div className="mt-6">
+        <Intro p={p} />
+      </div>
+      <p className="mt-7 text-[0.95rem] font-semibold tracking-[0.02em] text-brown">{p.duration}</p>
+      <p className="plan-tag mt-4">{p.tagline}</p>
+      <p className="plan-h mt-9">Included</p>
+    </>
+  );
+}
+
+/** Layout 1 — as on the client's board: three offers side by side, everything visible. */
+function Board({ plans }: { plans: Plan[] }) {
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  // The offers differ a lot in length. Each shorter card scrolls normally until its end is on screen,
+  // then stays put beside the longer ones — so its price and terms remain visible, no empty column.
+  useEffect(() => {
+    const wrap = ref.current;
+    if (!wrap) return;
+    const cards = Array.from(wrap.querySelectorAll<HTMLElement>(".plan"));
+    const wide = window.matchMedia("(min-width: 1024px)");
+    const place = () => {
+      const vh = window.innerHeight;
+      // side by side only from 1024px; on phones the cards simply follow one another
+      for (const c of cards) c.style.top = wide.matches ? `${Math.min(112, vh - c.offsetHeight - 24)}px` : "";
+    };
+    place();
+    const ro = new ResizeObserver(place);
+    cards.forEach((c) => ro.observe(c));
+    window.addEventListener("resize", place);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", place);
+    };
+  }, []);
+
+  return (
+    <div ref={ref} className="grid gap-6 lg:grid-cols-3 lg:items-start xl:gap-8">
+      {plans.map((p) => (
+        <article key={p.id} id={p.id} className="plan is-sticky scroll-mt-28">
+          <Lead p={p} />
+          <div className="mt-4">
+            <Included p={p} />
+          </div>
+          {p.footnote ? <p className="plan-small mt-5">{p.footnote}</p> : null}
+          <Secret p={p} />
+          <Invest p={p} />
+        </article>
+      ))}
+    </div>
+  );
+}
+
+/** Layout 2 — same three cards, the long part of each offer opens on demand. */
 function Cards({ plans }: { plans: Plan[] }) {
   const [open, setOpen] = useState<Record<string, boolean>>({});
   const anyOpen = Object.values(open).some(Boolean);
@@ -86,17 +148,10 @@ function Cards({ plans }: { plans: Plan[] }) {
     <div className={`grid gap-6 lg:grid-cols-3 xl:gap-8 ${anyOpen ? "lg:items-start" : "lg:items-stretch"}`}>
       {plans.map((p) => {
         const isOpen = !!open[p.id];
+        const more = p.included.length > p.preview;
         return (
           <article key={p.id} id={p.id} className="plan scroll-mt-28">
-            <Head p={p} stack />
-            <div className="rule-accent mt-6" />
-            <div className="mt-6">
-              <Intro p={p} />
-            </div>
-            <p className="label mt-7 text-brown-soft">{p.duration}</p>
-            <p className="plan-tag mt-4">{p.tagline}</p>
-
-            <p className="plan-h mt-9">Included</p>
+            <Lead p={p} />
             <div className="mt-4">
               <Included p={p} to={p.preview} />
             </div>
@@ -104,7 +159,7 @@ function Cards({ plans }: { plans: Plan[] }) {
             <div id={`${p.id}-mehr`} className="fold" data-open={isOpen}>
               <div>
                 <div className="pt-[0.7rem]">
-                  {p.included.length > p.preview ? <Included p={p} from={p.preview} /> : null}
+                  {more ? <Included p={p} from={p.preview} /> : null}
                   {p.footnote ? <p className="plan-small mt-5">{p.footnote}</p> : null}
                   <Secret p={p} />
                   <Invest p={p} />
@@ -120,7 +175,7 @@ function Cards({ plans }: { plans: Plan[] }) {
                 aria-controls={`${p.id}-mehr`}
                 onClick={() => setOpen((o) => ({ ...o, [p.id]: !o[p.id] }))}
               >
-                {isOpen ? "Weniger anzeigen" : p.included.length > p.preview ? "Alle Details & Investition" : "Investition & Details"}
+                {isOpen ? "Weniger anzeigen" : more ? "Alle Details & Investition" : "Investition & Details"}
                 <span className="faq-icon" aria-hidden="true" />
               </button>
             </div>
@@ -131,33 +186,11 @@ function Cards({ plans }: { plans: Plan[] }) {
   );
 }
 
-function Full({ p }: { p: Plan }) {
-  const half = Math.ceil(p.included.length / 2);
-  return (
-    <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
-      <div className="lg:col-span-4">
-        <Intro p={p} />
-        <p className="label mt-7 text-brown-soft">{p.duration}</p>
-        <p className="plan-tag mt-4">{p.tagline}</p>
-        <Secret p={p} />
-      </div>
-      <div className="lg:col-span-8">
-        <p className="plan-h">Included</p>
-        <div className="mt-4 grid gap-x-10 gap-y-[0.7rem] md:grid-cols-2">
-          <Included p={p} to={half} />
-          <Included p={p} from={half} />
-        </div>
-        {p.footnote ? <p className="plan-small mt-5">{p.footnote}</p> : null}
-        <Invest p={p} />
-      </div>
-    </div>
-  );
-}
-
-/** Layout B — one offer at a time, chosen by tab. */
+/** Layout 3 — one offer at a time, chosen by tab. */
 function Tabs({ plans }: { plans: Plan[] }) {
   const [active, setActive] = useState(plans[0].id);
   const p = plans.find((x) => x.id === active) ?? plans[0];
+  const half = Math.ceil(p.included.length / 2);
   return (
     <div>
       {plans.map((x) => (
@@ -180,37 +213,32 @@ function Tabs({ plans }: { plans: Plan[] }) {
           </button>
         ))}
       </div>
-      <div
-        role="tabpanel"
-        id={`panel-${p.id}`}
-        aria-labelledby={`tab-${p.id}`}
-        className="plan !border-t-0"
-        key={p.id}
-      >
+      <div role="tabpanel" id={`panel-${p.id}`} aria-labelledby={`tab-${p.id}`} className="plan !border-t-0" key={p.id}>
         <h3 className="sr-only">{p.name}</h3>
-        <Full p={p} />
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+          <div className="lg:col-span-4">
+            <Intro p={p} />
+            <p className="mt-7 text-[0.95rem] font-semibold tracking-[0.02em] text-brown">{p.duration}</p>
+            <p className="plan-tag mt-4">{p.tagline}</p>
+            <Secret p={p} />
+          </div>
+          <div className="lg:col-span-8">
+            <p className="plan-h">Included</p>
+            <div className="mt-4 grid gap-x-10 gap-y-[0.7rem] md:grid-cols-2">
+              <Included p={p} to={half} />
+              <Included p={p} from={half} />
+            </div>
+            {p.footnote ? <p className="plan-small mt-5">{p.footnote}</p> : null}
+            <Invest p={p} />
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
-/** Layout C — all three offers one below the other, everything visible. */
-function Stacked({ plans }: { plans: Plan[] }) {
-  return (
-    <div className="grid gap-8">
-      {plans.map((p) => (
-        <article key={p.id} id={p.id} className="plan scroll-mt-28">
-          <Head p={p} />
-          <div className="rule-accent mb-8 mt-6" />
-          <Full p={p} />
-        </article>
-      ))}
-    </div>
-  );
-}
-
 export default function OfferPlans({ plans }: { plans: Plan[] }) {
-  const [layout, setLayout] = useState<Layout>("A");
+  const [layout, setLayout] = useState<Layout>("M");
   return (
     <div>
       <div className="demo-switch mb-10" role="group" aria-label="Layout-Varianten für den Kickoff">
@@ -223,7 +251,7 @@ export default function OfferPlans({ plans }: { plans: Plan[] }) {
           </button>
         ))}
       </div>
-      {layout === "A" ? <Cards plans={plans} /> : layout === "B" ? <Tabs plans={plans} /> : <Stacked plans={plans} />}
+      {layout === "M" ? <Board plans={plans} /> : layout === "A" ? <Cards plans={plans} /> : <Tabs plans={plans} />}
     </div>
   );
 }

@@ -849,67 +849,75 @@ body {
   .numlist > li { font-size: 1.08rem; }
 }
 
-/* ── Process graphic: steps on a rising gold line ("Ascent") — live text, not an image ── */
-.steps {
-  --n: 6;
-  --rise: 26px;
-  position: relative;
-  display: grid;
-  gap: 0;
-}
-.step {
-  position: relative;
-  padding: 0 0 1.9rem 2.2rem;
-}
-.step::before {              /* the line */
-  content: "";
-  position: absolute;
-  left: 5px;
-  top: 0.55rem;
-  bottom: -0.55rem;
-  width: 1px;
-  background: var(--color-gold-line);
-}
-.step:last-child::before { display: none; }
-.step::after {               /* the node */
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.4rem;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  border: 1px solid var(--color-gold-line);
-  background: var(--color-cream);
-}
-.step:last-child::after { background: var(--color-gold); }
+/* ── Process graphics — live text, drawn in once on scroll (components/Steps.tsx) ── */
 .step-no {
+  display: block;
   font-family: var(--font-display);
-  font-size: 0.82rem;
-  letter-spacing: 0.08em;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
   color: var(--color-gold-line);
 }
 .step-title {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 1.3rem;
+  font-size: 1.32rem;
   line-height: 1.2;
   color: var(--color-brown);
   margin-top: 0.15rem;
 }
 .step-sub {
   font-family: var(--font-pinyon);
-  font-size: 1.55rem;
+  font-size: 1.7rem;
   line-height: 1.1;
   color: var(--color-burgundy);
-  margin-top: 0.35rem;
+  margin-top: 0.4rem;
 }
 .step-text {
-  margin-top: 0.7rem;
-  font-size: 0.96rem;
+  margin-top: 0.75rem;
+  font-size: 0.97rem;
   line-height: 1.65;
   color: var(--color-brown-soft);
 }
+
+/* 1 · Stair: stations on a gold line that rises towards "Ascent" */
+.steps {
+  --n: 6;
+  --rise: 34px;
+  --beat: 240ms;
+  position: relative;
+  display: grid;
+}
+.step {
+  position: relative;
+  padding: 0 0 2.1rem 2.5rem;
+}
+.step-line {
+  position: absolute;
+  left: 6px;
+  top: 0.7rem;
+  bottom: -0.7rem;
+  width: 1px;
+  background: var(--color-gold-line);
+  transform-origin: top center;
+}
+.step:last-child .step-line { display: none; }
+.step-riser { display: none; }
+.step-node {
+  position: absolute;
+  left: 0;
+  top: 0.42rem;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold-line);
+  background: var(--color-cream);
+}
+.step:last-child .step-node {
+  background: var(--color-gold);
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 6px color-mix(in srgb, var(--color-gold) 28%, transparent);
+}
+.step:last-child .step-title { color: var(--color-burgundy); }
 @media (min-width: 1024px) {
   .steps {
     grid-template-columns: repeat(var(--n), minmax(0, 1fr));
@@ -917,43 +925,138 @@ body {
     padding-top: calc((var(--n) - 1) * var(--rise));
   }
   .step {
-    padding: 1.6rem 1.25rem 0 0;
-    /* each step sits one rise higher than the one before */
+    padding: 2rem 1.1rem 0 0;
     transform: translateY(calc(var(--i) * var(--rise) * -1));
   }
-  .step::before {
-    left: 0;
-    right: 0;
-    top: 5px;
+  .step-line {
+    left: 6px;
+    right: -6px;
+    top: 6px;
     bottom: auto;
     width: auto;
     height: 1px;
+    transform-origin: left center;
   }
-  .step:last-child::before { display: block; right: 40%; }
-  .step::after { top: 0; }
-  /* riser joining one step to the next */
+  .step:last-child .step-line { display: block; right: 30%; background: linear-gradient(to right, var(--color-gold-line), transparent); }
   .step + .step > .step-riser {
+    display: block;
     position: absolute;
-    left: 0;
-    top: 5px;
+    left: 6px;
+    top: 6px;
     width: 1px;
     height: var(--rise);
     background: var(--color-gold-line);
+    transform-origin: bottom center;
   }
-  .step-title { font-size: 1.22rem; }
+  .step-node { top: 0; }
+  .step-copy { padding-left: 1.5rem; }
+  .step-title { font-size: 1.24rem; }
 }
 @media (min-width: 1280px) {
-  .step-title { font-size: 1.36rem; }
+  .steps { --rise: 40px; }
+  .step-title { font-size: 1.42rem; }
 }
 
-/* Explanations under the 6-step graphic */
+/* 2 · Rings: numbered rings joined by a line */
+.rings { --beat: 280ms; display: grid; gap: 2.4rem; }
+.ring-step { position: relative; padding-left: 5.6rem; min-height: 4.5rem; }
+.ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 4.25rem;
+  height: 4.25rem;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold-line);
+  background: var(--color-cream);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  color: var(--color-brown);
+  box-shadow: 0 0 0 7px color-mix(in srgb, var(--color-gold) 13%, transparent);
+}
+.ring-step:last-child .ring { background: var(--color-gold); border-color: var(--color-gold); }
+.ring-link {
+  position: absolute;
+  left: 2.125rem;
+  top: 4.25rem;
+  bottom: -2.4rem;
+  width: 1px;
+  background: var(--color-gold-line);
+  transform-origin: top center;
+}
+.ring-step:last-child .ring-link { display: none; }
+.ring-copy .step-title { margin-top: 0.35rem; }
+@media (min-width: 1024px) {
+  .rings { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; }
+  .ring-step { padding: 6rem 1.75rem 0 0; min-height: 0; }
+  .ring-link {
+    left: 4.25rem;
+    right: 0;
+    top: 2.125rem;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+    transform-origin: left center;
+  }
+  /* small arrow head where the line meets the next ring */
+  .ring-link::after {
+    content: "";
+    position: absolute;
+    right: 9px;
+    top: -3.5px;
+    width: 7px;
+    height: 7px;
+    border-top: 1px solid var(--color-gold-line);
+    border-right: 1px solid var(--color-gold-line);
+    transform: rotate(45deg);
+  }
+  .ring-copy .step-title { font-size: 1.4rem; }
+}
+
+/* Draw-in choreography (one orchestrated moment per graphic) */
+@media (prefers-reduced-motion: no-preference) {
+  .draws .step-node,
+  .draws .ring {
+    opacity: 0;
+    transform: scale(0.4);
+    transition: opacity 0.4s var(--ease-out) calc(var(--i) * var(--beat)), transform 0.5s var(--ease-out) calc(var(--i) * var(--beat));
+  }
+  .draws .step-riser {
+    transform: scaleY(0);
+    transition: transform 0.22s linear calc(var(--i) * var(--beat) - 200ms);
+  }
+  .draws .step-line,
+  .draws .ring-link {
+    transform: scaleX(0);
+    transition: transform 0.5s var(--ease-out) calc(var(--i) * var(--beat) + 120ms);
+  }
+  .draws .step-copy,
+  .draws .ring-copy {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.55s var(--ease-out) calc(var(--i) * var(--beat) + 120ms), transform 0.55s var(--ease-out) calc(var(--i) * var(--beat) + 120ms);
+  }
+  @media (max-width: 1023px) {
+    .draws .step-line, .draws .ring-link { transform: scaleY(0); }
+  }
+  .draws.is-drawn .step-node,
+  .draws.is-drawn .ring { opacity: 1; transform: none; }
+  .draws.is-drawn .step-riser,
+  .draws.is-drawn .step-line,
+  .draws.is-drawn .ring-link { transform: none; }
+  .draws.is-drawn .step-copy,
+  .draws.is-drawn .ring-copy { opacity: 1; transform: none; }
+}
+
+/* Explanations: on wide screens each one sits under its station (3 + 4 share one) */
 .explain > div {
   display: grid;
   gap: 0.4rem;
   padding: 1.25rem 0;
   border-top: 1px solid color-mix(in srgb, var(--color-gold-line) 70%, transparent);
 }
-.explain > div:last-child { border-bottom: 1px solid color-mix(in srgb, var(--color-gold-line) 70%, transparent); }
 .explain dt {
   font-family: var(--font-display);
   font-weight: 500;
@@ -961,9 +1064,25 @@ body {
   line-height: 1.3;
   color: var(--color-brown);
 }
-.explain dd { font-size: 1rem; line-height: 1.7; color: var(--color-brown-soft); }
-@media (min-width: 768px) {
+.explain dd { font-size: 0.98rem; line-height: 1.7; color: var(--color-brown-soft); }
+@media (min-width: 768px) and (max-width: 1279px) {
   .explain > div { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2.5rem; align-items: baseline; }
+  .explain > div:last-child { border-bottom: 1px solid color-mix(in srgb, var(--color-gold-line) 70%, transparent); }
+}
+@media (min-width: 1280px) {
+  .explain { display: grid; grid-template-columns: 1fr 1fr 2fr 1fr 1fr; }
+  .explain > div { align-content: start; padding: 1.4rem 1.4rem 0 0; border-top: 0; position: relative; }
+  .explain > div::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 1.4rem;
+    top: 0;
+    height: 1px;
+    background: var(--color-gold-line);
+  }
+  .explain dt { font-size: 1.02rem; }
+  .explain dd { font-size: 0.93rem; line-height: 1.65; }
 }
 
 /* Quote: Pinyon Script with a Bodoni quotation mark (WordPress blockquote look, in the brand fonts) */
@@ -1305,4 +1424,117 @@ body {
   .spec-table th, .spec-table td { display: block; width: 100%; }
   .spec-table th { padding-bottom: 0.2rem; }
   .spec-table td { border-top: 0; padding-top: 0; }
+}
+
+/* ─── Offer page, richer pass (25 Nov) ─── */
+.scroll-line {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  z-index: 60;
+  background: linear-gradient(to right, var(--color-gold-line), var(--color-gold));
+  transform: scaleX(0);
+  transform-origin: left center;
+  pointer-events: none;
+}
+/* Portrait in an arch with a fine gold outline set off behind it */
+.arch-wrap { position: relative; }
+.arch-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--color-gold-line);
+  border-radius: 999px 999px 0 0;
+  transform: translate(16px, -16px);
+  opacity: 0.85;
+  pointer-events: none;
+}
+.arch-wrap .frame { border-radius: 999px 999px 0 0; position: relative; }
+/* Round portrait with gold ring (centre of the golden frame) */
+.medallion {
+  width: 9.5rem;
+  height: 9.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--color-cream-deep);
+  box-shadow: 0 0 0 6px var(--color-cream), 0 0 0 7px var(--color-gold);
+  flex: none;
+}
+@media (min-width: 1024px) { .medallion { width: 11.5rem; height: 11.5rem; } }
+.medallion img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; }
+.vline { width: 1px; flex: 1 1 auto; min-height: 2.5rem; background: color-mix(in srgb, var(--color-gold) 75%, transparent); }
+/* List with fine gold diamonds — the client's own bullet lists */
+.dlist { display: grid; }
+.dlist > li {
+  position: relative;
+  padding: 1.05rem 0 1.05rem 2rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-gold-line) 60%, transparent);
+  font-size: 1.04rem;
+  line-height: 1.65;
+  color: var(--color-brown);
+}
+.dlist > li::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 1.72rem;
+  width: 7px;
+  height: 7px;
+  transform: rotate(45deg);
+  background: var(--color-gold);
+}
+.dlist.is-plain > li { border-top: 0; padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.dlist.is-plain > li::before { top: 1.17rem; }
+@media (min-width: 1024px) { .dlist > li { font-size: 1.08rem; } }
+@media (min-width: 768px) {
+  .dlist.is-2col { grid-template-columns: 1fr 1fr; column-gap: 3.5rem; }
+  .dlist.is-2col > li:nth-last-child(-n + 2) { border-bottom: 1px solid color-mix(in srgb, var(--color-gold-line) 60%, transparent); }
+}
+@media (max-width: 767px) {
+  .dlist.is-2col > li:last-child { border-bottom: 1px solid color-mix(in srgb, var(--color-gold-line) 60%, transparent); }
+}
+/* Golden frame: small gold diamonds on the four corners */
+.gold-frame .corner {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  background: var(--color-gold);
+  transform: rotate(45deg);
+}
+.gold-frame .corner.tl { left: -6px; top: -6px; }
+.gold-frame .corner.tr { right: -6px; top: -6px; }
+.gold-frame .corner.bl { left: -6px; bottom: -6px; }
+.gold-frame .corner.br { right: -6px; bottom: -6px; }
+/* Offer cards: gold top edge, quiet lift */
+.plan { border-top: 2px solid var(--color-gold); transition: border-color 0.5s var(--ease-out), box-shadow 0.6s var(--ease-out), transform 0.6s var(--ease-out); }
+.plan:hover { box-shadow: 0 24px 50px -34px rgba(74, 52, 52, 0.45); }
+/* "Ready to invest in yourself?" — the long gold line draws out from the centre */
+.gold-line-title::before,
+.gold-line-title::after { height: 1px; }
+@media (prefers-reduced-motion: no-preference) {
+  .reveal .gold-line-title::before { transform: scaleX(0); transform-origin: right center; transition: transform 1.1s var(--ease-out) 250ms; }
+  .reveal .gold-line-title::after { transform: scaleX(0); transform-origin: left center; transition: transform 1.1s var(--ease-out) 250ms; }
+  .reveal.is-visible .gold-line-title::before,
+  .reveal.is-visible .gold-line-title::after { transform: none; }
+}
+.ornament { display: flex; align-items: center; justify-content: center; gap: 0.55rem; }
+.ornament i { display: block; width: 5px; height: 5px; transform: rotate(45deg); background: var(--color-gold); }
+.ornament i:nth-child(2) { width: 9px; height: 9px; }
+/* Offer-page headline: one typography, three lines that never re-wrap (same idea as the homepage hero) */
+@media (min-width: 640px) {
+  .offer-h1 .line { white-space: nowrap; }
+  @supports (font-size: 1cqw) {
+    .offer-h1 { font-size: clamp(1.15rem, 5.95cqw, 3.3rem); }
+  }
+}
+@media (max-width: 639px) {
+  .offer-h1 { font-size: 1.72rem; line-height: 1.22; }
+}
+
+/* Offers side by side with everything visible: the shorter cards stay in view while the longest is read
+   (top offset is set per card in components/OfferPlans.tsx) */
+@media (min-width: 1024px) {
+  .plan.is-sticky { position: sticky; }
 }
