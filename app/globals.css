@@ -764,3 +764,545 @@ body {
 .consent-box:checked { background: var(--color-brown); border-color: var(--color-brown); }
 .consent-box:checked::before { transform: scale(1); }
 .consent-box:focus-visible { outline: 2px solid var(--color-gold-line); outline-offset: 2px; }
+
+/* ═══════════════ Subpage demos for the kickoff (25 Nov): Angebotsseite + Blog ═══════════════
+   New classes only — nothing above this line is changed, the homepage is untouched. */
+
+/* Price / small notes in a fine round gold frame (same language as the licence notes on /typografie) */
+.pill-gold {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--color-gold-line);
+  border-radius: 999px;
+  padding: 0.42rem 1.05rem 0.38rem;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.05rem;
+  letter-spacing: 0.03em;
+  line-height: 1.2;
+  color: var(--color-brown);
+  white-space: nowrap;
+  background: color-mix(in srgb, var(--color-cream-soft) 70%, transparent);
+}
+.pill-note {
+  display: inline-flex;
+  border: 1px solid var(--color-gold-line);
+  border-radius: 999px;
+  padding: 0.28rem 0.8rem;
+  font-family: var(--font-caviar);
+  font-weight: 700;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-brown);
+  white-space: nowrap;
+}
+
+/* Fine gold tick list */
+.ticks { display: grid; gap: 0.7rem; }
+.ticks > li {
+  position: relative;
+  padding-left: 1.6rem;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--color-brown);
+}
+.ticks > li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.78em;
+  width: 0.85rem;
+  height: 1px;
+  background: var(--color-gold-line);
+}
+.ticks > li.tick-note {
+  padding-left: 1.6rem;
+  font-size: 0.9rem;
+  color: var(--color-brown-soft);
+}
+.ticks > li.tick-note::before { display: none; }
+
+/* Numbered editorial list (patterns / outcomes) */
+.numlist { counter-reset: n; }
+.numlist > li {
+  counter-increment: n;
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  align-items: baseline;
+  gap: 0.25rem;
+  padding: 1.15rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--color-gold-line) 70%, transparent);
+  font-size: 1.04rem;
+  line-height: 1.65;
+  color: var(--color-brown);
+}
+.numlist > li:last-child { border-bottom: 1px solid color-mix(in srgb, var(--color-gold-line) 70%, transparent); }
+.numlist > li::before {
+  content: counter(n, decimal-leading-zero);
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: var(--color-gold-line);
+}
+@media (min-width: 1024px) {
+  .numlist > li { font-size: 1.08rem; }
+}
+
+/* ── Process graphic: steps on a rising gold line ("Ascent") — live text, not an image ── */
+.steps {
+  --n: 6;
+  --rise: 26px;
+  position: relative;
+  display: grid;
+  gap: 0;
+}
+.step {
+  position: relative;
+  padding: 0 0 1.9rem 2.2rem;
+}
+.step::before {              /* the line */
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 0.55rem;
+  bottom: -0.55rem;
+  width: 1px;
+  background: var(--color-gold-line);
+}
+.step:last-child::before { display: none; }
+.step::after {               /* the node */
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.4rem;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  border: 1px solid var(--color-gold-line);
+  background: var(--color-cream);
+}
+.step:last-child::after { background: var(--color-gold); }
+.step-no {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  color: var(--color-gold-line);
+}
+.step-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.3rem;
+  line-height: 1.2;
+  color: var(--color-brown);
+  margin-top: 0.15rem;
+}
+.step-sub {
+  font-family: var(--font-pinyon);
+  font-size: 1.55rem;
+  line-height: 1.1;
+  color: var(--color-burgundy);
+  margin-top: 0.35rem;
+}
+.step-text {
+  margin-top: 0.7rem;
+  font-size: 0.96rem;
+  line-height: 1.65;
+  color: var(--color-brown-soft);
+}
+@media (min-width: 1024px) {
+  .steps {
+    grid-template-columns: repeat(var(--n), minmax(0, 1fr));
+    align-items: start;
+    padding-top: calc((var(--n) - 1) * var(--rise));
+  }
+  .step {
+    padding: 1.6rem 1.25rem 0 0;
+    /* each step sits one rise higher than the one before */
+    transform: translateY(calc(var(--i) * var(--rise) * -1));
+  }
+  .step::before {
+    left: 0;
+    right: 0;
+    top: 5px;
+    bottom: auto;
+    width: auto;
+    height: 1px;
+  }
+  .step:last-child::before { display: block; right: 40%; }
+  .step::after { top: 0; }
+  /* riser joining one step to the next */
+  .step + .step > .step-riser {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 1px;
+    height: var(--rise);
+    background: var(--color-gold-line);
+  }
+  .step-title { font-size: 1.22rem; }
+}
+@media (min-width: 1280px) {
+  .step-title { font-size: 1.36rem; }
+}
+
+/* Explanations under the 6-step graphic */
+.explain > div {
+  display: grid;
+  gap: 0.4rem;
+  padding: 1.25rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--color-gold-line) 70%, transparent);
+}
+.explain > div:last-child { border-bottom: 1px solid color-mix(in srgb, var(--color-gold-line) 70%, transparent); }
+.explain dt {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.12rem;
+  line-height: 1.3;
+  color: var(--color-brown);
+}
+.explain dd { font-size: 1rem; line-height: 1.7; color: var(--color-brown-soft); }
+@media (min-width: 768px) {
+  .explain > div { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 2.5rem; align-items: baseline; }
+}
+
+/* Quote: Pinyon Script with a Bodoni quotation mark (WordPress blockquote look, in the brand fonts) */
+.quote-mark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-variation-settings: "opsz" 6;
+  font-size: 6.5rem;
+  line-height: 0.62;
+  height: 2.6rem;
+  color: var(--color-gold);
+}
+.quote-script {
+  font-family: var(--font-pinyon);
+  font-size: 1.95rem;
+  line-height: 1.38;
+  color: var(--color-brown);
+}
+@media (min-width: 768px) { .quote-script { font-size: 2.5rem; } }
+@media (min-width: 1280px) { .quote-script { font-size: 2.9rem; } }
+.byline {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.9;
+  color: var(--color-brown-soft);
+}
+
+/* Golden frame (Resilienz Coaching + Women) */
+.gold-frame {
+  position: relative;
+  border: 1px solid var(--color-gold);
+  padding: 2.25rem 1.5rem 2.5rem;
+  background: var(--color-cream);
+}
+.gold-frame::before {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid color-mix(in srgb, var(--color-gold) 55%, transparent);
+  pointer-events: none;
+}
+@media (min-width: 768px) { .gold-frame { padding: 3.5rem 3rem 3.75rem; } }
+@media (min-width: 1280px) { .gold-frame { padding: 4.5rem 4.5rem 4.75rem; } }
+.gold-divider { height: 1px; background: color-mix(in srgb, var(--color-gold) 70%, transparent); }
+@media (min-width: 1024px) {
+  .gold-divider { width: 1px; height: auto; align-self: stretch; }
+}
+.chip {
+  display: inline-flex;
+  border: 1px solid var(--color-gold-line);
+  border-radius: 999px;
+  padding: 0.5rem 1.05rem;
+  font-size: 0.86rem;
+  letter-spacing: 0.04em;
+  color: var(--color-brown);
+  background: color-mix(in srgb, var(--color-gold) 14%, var(--color-cream));
+}
+
+/* ── The three offers ── */
+.plan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 2.25rem 1.6rem 2rem;
+  background: var(--color-cream-soft);
+  border: 1px solid color-mix(in srgb, var(--color-gold) 55%, transparent);
+  transition: border-color 0.5s var(--ease-out), background-color 0.5s var(--ease-out);
+}
+.plan:hover { border-color: var(--color-gold); }
+@media (min-width: 1280px) { .plan { padding: 2.75rem 2.25rem 2.25rem; } }
+.plan-name {
+  font-family: var(--font-display);
+  font-weight: 540;
+  font-variation-settings: "opsz" 12;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 1.32rem;
+  line-height: 1.2;
+  color: var(--color-brown);
+}
+@media (min-width: 1280px) { .plan-name { font-size: 1.5rem; } }
+.plan-tag {
+  font-family: var(--font-pinyon);
+  font-size: 1.75rem;
+  line-height: 1.22;
+  color: var(--color-burgundy);
+}
+@media (min-width: 1280px) { .plan-tag { font-size: 1.95rem; } }
+.plan-h {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.18rem;
+  letter-spacing: 0.02em;
+  color: var(--color-brown);
+}
+.plan-small { font-size: 0.93rem; line-height: 1.7; color: var(--color-brown-soft); }
+.plan-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-weight: 500;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-brown);
+  border-bottom: 1px solid var(--color-gold-line);
+  padding-bottom: 0.35rem;
+  cursor: pointer;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+.plan-toggle:hover { color: var(--color-burgundy); border-color: var(--color-burgundy); }
+.plan-toggle .faq-icon { margin-top: 0; }
+[data-open="true"] > .plan-toggle .faq-icon::after,
+.plan-toggle[aria-expanded="true"] .faq-icon::after { transform: rotate(90deg); opacity: 0; }
+.fold {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.fold[data-open="true"] { grid-template-rows: 1fr; }
+.fold > div { overflow: hidden; min-height: 0; }
+
+.secret {
+  border: 1px solid color-mix(in srgb, var(--color-gold) 60%, transparent);
+  background: color-mix(in srgb, var(--color-gold) 16%, var(--color-cream));
+  padding: 1.5rem 1.35rem 1.6rem;
+}
+
+/* Tabs (layout B) */
+.tabs { display: grid; gap: 0; border-bottom: 1px solid var(--color-gold-line); }
+@media (min-width: 768px) { .tabs { grid-template-columns: repeat(3, 1fr); } }
+.tab {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+  text-align: left;
+  padding: 1.25rem 1.25rem 1.2rem;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  color: var(--color-brown-soft);
+  transition: background-color 0.4s var(--ease-out), color 0.4s var(--ease-out);
+}
+.tab:hover { color: var(--color-brown); }
+.tab[aria-selected="true"] {
+  background: var(--color-cream-soft);
+  border-color: var(--color-gold-line);
+  color: var(--color-brown);
+  box-shadow: inset 0 2px 0 0 var(--color-gold);
+}
+
+/* Layout switch — visible in the kickoff demo only */
+.demo-switch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem 0.9rem;
+  padding: 0.8rem 1rem;
+  border: 1px dashed var(--color-gold-line);
+  background: color-mix(in srgb, var(--color-cream-soft) 80%, transparent);
+  font-size: 0.8rem;
+  color: var(--color-brown-soft);
+}
+.demo-switch button {
+  border: 1px solid var(--color-gold-line);
+  border-radius: 999px;
+  padding: 0.38rem 0.95rem;
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-brown);
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.demo-switch button:hover { border-color: var(--color-brown); }
+.demo-switch button[aria-pressed="true"] {
+  background: var(--color-brown);
+  border-color: var(--color-brown);
+  color: var(--color-cream);
+}
+
+/* "Für alle Angebote verbindlich" — box that opens */
+.bind-box {
+  border: 1px solid var(--color-gold-line);
+  background: var(--color-cream-soft);
+}
+.bind-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem 1.4rem;
+  text-align: left;
+  cursor: pointer;
+}
+@media (min-width: 768px) { .bind-btn { padding: 1.9rem 2.5rem; } }
+.bind-btn .faq-icon { margin-top: 0; }
+.bind-btn[aria-expanded="true"] .faq-icon::after { transform: rotate(90deg); opacity: 0; }
+
+/* "Ready to invest in yourself?" — one line on a long gold line */
+.gold-line-title {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+.gold-line-title::before,
+.gold-line-title::after {
+  content: "";
+  flex: 1 1 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--color-gold) 18%, var(--color-gold));
+}
+.gold-line-title::after {
+  background: linear-gradient(to left, transparent, var(--color-gold) 18%, var(--color-gold));
+}
+.gold-line-title > span {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.05rem, 4.6vw, 2.6rem);
+  line-height: 1.1;
+  white-space: nowrap;
+  color: var(--color-brown);
+}
+@media (min-width: 768px) { .gold-line-title { gap: 2.25rem; } }
+.gold-diamond {
+  width: 7px;
+  height: 7px;
+  transform: rotate(45deg);
+  background: var(--color-gold);
+  margin-inline: auto;
+}
+
+/* ── Blog article ── */
+.post { --cap: 2.9; }
+.post-body p {
+  font-size: 1.06rem;
+  line-height: 1.85;
+  color: var(--color-brown);
+  margin-top: 1.35rem;
+}
+@media (min-width: 1024px) { .post-body p { font-size: 1.12rem; } }
+/* H2 with an enlarged initial: ONE h2 element, the letter is styled by CSS only (no image, no extra element) */
+.post h2,
+.post .h2-specimen {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.42rem;
+  line-height: 1.25;
+  color: var(--color-brown);
+  margin-top: 3.25rem;
+  text-wrap: balance;
+}
+.post h2::first-letter,
+.post .h2-specimen::first-letter {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 1.9em;            /* clearly smaller on the phone */
+  line-height: 0.9;
+  margin-right: 0;
+  color: var(--color-burgundy);
+}
+@media (min-width: 768px) {
+  .post h2, .post .h2-specimen { font-size: 1.85rem; margin-top: 4.25rem; }
+  .post h2::first-letter, .post .h2-specimen::first-letter { font-size: calc(var(--cap) * 1em); }
+}
+/* Variant 2 — as in her reference: large Bodoni initial, the rest of the H2 in Manrope */
+.post[data-cap="2"] h2,
+.post[data-cap="2"] .h2-specimen {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 1.12rem;
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+}
+.post[data-cap="2"] h2::first-letter,
+.post[data-cap="2"] .h2-specimen::first-letter {
+  font-size: 2.5em;
+  color: var(--color-brown);
+  margin-right: 0.06em;
+}
+@media (min-width: 768px) {
+  .post[data-cap="2"] h2, .post[data-cap="2"] .h2-specimen { font-size: 1.3rem; }
+  .post[data-cap="2"] h2::first-letter, .post[data-cap="2"] .h2-specimen::first-letter { font-size: 4em; }
+}
+.spec-table { width: 100%; border-collapse: collapse; }
+.spec-table th,
+.spec-table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.95rem 0;
+  border-top: 1px solid color-mix(in srgb, var(--color-gold-line) 70%, transparent);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.spec-table th {
+  width: 34%;
+  padding-right: 1.25rem;
+  font-family: var(--font-caviar);
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-brown-soft);
+}
+.spec-table td { color: var(--color-brown); overflow-wrap: anywhere; }
+.spec-table code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.86rem; }
+
+/* Subpages only: long CTA labels wrap inside narrow phones instead of pushing the page sideways */
+@media (max-width: 520px) {
+  .sub .btn { min-width: 0; flex: 0 1 auto; white-space: normal; }
+}
+
+/* CTA that fits its column (three side by side under the offers) */
+.sub .btn-fit {
+  width: 100%;
+  max-width: 24rem;
+  min-width: 0;
+  flex: 0 1 auto;
+  justify-content: center;
+  text-align: center;
+  white-space: normal;
+  padding: 1rem 1.1rem;
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  gap: 0.6rem;
+}
+/* Offer cards (layout A): name on one line, price beneath, so the three heads line up */
+.plan-head-stack { display: flex; flex-direction: column; align-items: flex-start; gap: 0.9rem; }
+.plan-head-stack .plan-name { font-size: 1.22rem; white-space: nowrap; }
+@media (min-width: 1024px) and (max-width: 1279px) { .plan-head-stack .plan-name { font-size: 1.05rem; } }
+
+@media (max-width: 640px) {
+  .spec-table th, .spec-table td { display: block; width: 100%; }
+  .spec-table th { padding-bottom: 0.2rem; }
+  .spec-table td { border-top: 0; padding-top: 0; }
+}

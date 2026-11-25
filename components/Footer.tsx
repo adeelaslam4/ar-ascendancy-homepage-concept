@@ -1,6 +1,8 @@
 import Image from "next/image";
 
-const NAV = [
+type NavItem = { label: string; href: string };
+
+const NAV: NavItem[] = [
   { label: "Startseite", href: "/" },
   { label: "Angebot", href: "#angebot" },
   { label: "Über mich", href: "#ueber-mich" },
@@ -30,7 +32,7 @@ function IconMail() {
   );
 }
 
-export default function Footer() {
+export default function Footer({ nav = NAV }: { nav?: NavItem[] } = {}) {
   return (
     <footer className="bg-cream-soft px-4 pb-5 pt-5 md:px-8 md:pb-8 md:pt-8 lg:px-12">
       <div className="relative mx-auto max-w-[1400px]">
@@ -93,7 +95,7 @@ export default function Footer() {
             <div className="flex flex-col md:col-span-5 md:items-end md:text-right lg:col-span-4 lg:col-start-9">
               <span className="label text-gold-line md:mt-2">Navigation</span>
               <nav className="mt-4 flex flex-col gap-2.5" aria-label="Fußzeilen-Navigation">
-                {NAV.map((n) => (
+                {nav.map((n) => (
                   <a key={n.label} href={n.href} className="flink">
                     {n.label}
                   </a>

@@ -6,7 +6,9 @@ import { useEffect, useState } from "react";
 import { CALENDLY } from "@/lib/links";
 
 // "Angebot" links to the future Angebotsseite (not the two homepage teasers); "Speaking" to the homepage section.
-const NAV = [
+type NavItem = { label: string; href: string; title?: string };
+
+const NAV: NavItem[] = [
   { label: "Startseite", href: "/" },
   { label: "Angebot", href: "#angebot", title: "Verlinkung zur Angebotsseite" },
   { label: "Über mich", href: "#ueber-mich", title: "Verlinkung zur About-me-Seite" },
@@ -14,7 +16,8 @@ const NAV = [
   { label: "Kontakt", href: "#kontakt" },
 ];
 
-export default function Header() {
+/** `nav` / `current` are only passed by the subpages; the homepage keeps the default menu above. */
+export default function Header({ nav = NAV, current }: { nav?: NavItem[]; current?: string } = {}) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -68,11 +71,12 @@ export default function Header() {
 
         {/* Desktop nav */}
         <nav className="hidden items-center gap-8 md:flex lg:gap-9" aria-label="Hauptnavigation">
-          {NAV.map((n) => (
+          {nav.map((n) => (
             <a
               key={n.label}
               href={n.href}
               title={n.title}
+              aria-current={current && n.label === current ? "page" : undefined}
               className="navlink whitespace-nowrap text-[0.82rem] font-medium tracking-[0.12em] uppercase text-brown transition-colors duration-300 hover:text-burgundy"
             >
               {n.label}
@@ -125,7 +129,7 @@ export default function Header() {
         }`}
       >
         <nav className="flex flex-col gap-7" aria-label="Mobile Navigation">
-          {NAV.map((n) => (
+          {nav.map((n) => (
             <a
               key={n.label}
               href={n.href}

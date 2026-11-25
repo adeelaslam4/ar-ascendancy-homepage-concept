@@ -40,3 +40,12 @@ export const PHOTOS = {
   /** faint photographic ground behind the Haltung claim */
   haltung: img(EXISTING_SITE_IMAGE_IDS[PICKS.haltung], 1800, "16:7", "warm"),
 };
+
+/** Photographs for the Angebotsseite demo — same existing photographs, other crops (placeholders until the picture briefing). */
+export const OFFER_PHOTOS = {
+  intro: img(EXISTING_SITE_IMAGE_IDS[PICKS.story], 1200, "4:5", "portrait"),
+  quote: img(EXISTING_SITE_IMAGE_IDS[PICKS.hero], 1200, "1:1", "portrait"),
+  resilienz: img(EXISTING_SITE_IMAGE_IDS[PICKS.speaking], 1200, "3:2", "warm"),
+  story: img(EXISTING_SITE_IMAGE_IDS[PICKS.hero], 1200, "4:5", "portrait"),
+  blog: img(EXISTING_SITE_IMAGE_IDS[PICKS.speaking], 1800, "16:9", "warm"),
+};
