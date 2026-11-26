@@ -134,16 +134,6 @@ const FAQ: FaqEntry[] = [
 
 const WRAP = "mx-auto max-w-[1400px] px-6 md:px-10 lg:px-14";
 
-function Ornament({ className = "" }: { className?: string }) {
-  return (
-    <div className={`ornament ${className}`} aria-hidden="true">
-      <i />
-      <i />
-      <i />
-    </div>
-  );
-}
-
 export default function Angebot() {
   return (
     <>
@@ -203,7 +193,6 @@ export default function Angebot() {
               <h2 className="display mx-auto max-w-[900px] text-[1.9rem] leading-[1.16] text-brown sm:text-[2.4rem] lg:text-[3rem]">
                 Spiegeln sich folgende Muster bei dir wieder?
               </h2>
-              <Ornament className="mt-9" />
             </Reveal>
             <Reveal delay={120} className="mx-auto mt-12 max-w-[1120px] md:mt-16">
               <ul className="dlist is-2col">
@@ -254,12 +243,9 @@ export default function Angebot() {
               </Reveal>
               <Stagger className="md:col-span-8">
                 <figure>
-                  <div data-s className="quote-mark" aria-hidden="true">
-                    “
-                  </div>
-                  <blockquote data-s className="quote-script mt-3" lang="en">
-                    Ascendancy is what happens when clarity becomes a decision, a decision becomes embodied change, and
-                    that change becomes your new reality.
+                  <blockquote data-s className="quote-script" lang="en">
+                    „Ascendancy is what happens when clarity becomes a decision, a decision becomes embodied change,
+                    and that change becomes your new reality.“
                   </blockquote>
                   <div data-s className="rule-accent mt-9" />
                   <figcaption data-s className="byline mt-6">
@@ -325,14 +311,14 @@ export default function Angebot() {
         <section className="bg-cream-soft">
           <div className={`${WRAP} py-24 md:py-32`}>
             <Reveal className="gold-frame">
-              <span className="corner tl" aria-hidden="true" />
-              <span className="corner tr" aria-hidden="true" />
-              <span className="corner bl" aria-hidden="true" />
-              <span className="corner br" aria-hidden="true" />
-
-              <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:gap-12 xl:gap-16">
-                <div className="order-2 lg:order-1">
-                  <p className="text-[1rem] tracking-[0.02em] text-brown-soft">Beyond the mental work..</p>
+              <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_1px_minmax(0,1fr)] lg:gap-12 xl:gap-16">
+                {/* left half: picture on top, text below — the picture takes up the difference so both columns end level */}
+                <div className="flex flex-col">
+                  <figure className="frame-photo">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={OFFER_PHOTOS.frame} alt="Alina Rogall" loading="lazy" />
+                  </figure>
+                  <p className="mt-9 text-[1rem] tracking-[0.02em] text-brown-soft">Beyond the mental work..</p>
                   <h2 className="display mt-3 text-[1.75rem] leading-[1.16] text-brown md:text-[2.2rem]">
                     Resilienz Coaching: Finish what you started!
                   </h2>
@@ -355,17 +341,9 @@ export default function Angebot() {
                   </ul>
                 </div>
 
-                {/* her picture sits between the two columns */}
-                <div className="order-1 flex flex-col items-center lg:order-2">
-                  <span className="vline hidden lg:block lg:max-h-6" />
-                  <div className="medallion lg:mt-5">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={OFFER_PHOTOS.medallion} alt="Alina Rogall" loading="lazy" />
-                  </div>
-                  <span className="vline mt-5 hidden lg:block" />
-                </div>
+                <div className="gold-divider" aria-hidden="true" />
 
-                <div className="order-3">
+                <div>
                   <p className="text-[1rem] tracking-[0.02em] text-brown-soft">&amp; specially for Women:</p>
                   <h2 className="display mt-3 text-[1.75rem] leading-[1.16] text-brown md:text-[2.2rem]">
                     Cycle-Informed Self-Leadership for the premenopausal years
@@ -390,15 +368,14 @@ export default function Angebot() {
                       Regeneration und Körperwahrnehmung in die eigene Selbstführung einbezogen werden können.
                     </p>
                   </div>
-                  <p className="script mt-9 text-[1.85rem] !leading-[1.3] text-burgundy md:text-[2.2rem]">
+                  <p className="script mt-9 text-[1.6rem] !leading-[1.3] text-burgundy md:text-[1.9rem]">
                     Genau dieses Wissen und meine persönliche Erfahrung sind mein Geschenk an dich.
                   </p>
                 </div>
               </div>
 
               <div className="mt-12 text-center md:mt-16">
-                <Ornament />
-                <p className="display mx-auto mt-8 max-w-[900px] text-[1.35rem] leading-[1.35] text-brown md:text-[1.8rem]">
+                <p className="display mx-auto max-w-[900px] text-[1.35rem] leading-[1.35] text-brown md:text-[1.8rem]">
                   Wir integrieren genau das dann in deinen eigenen, persönlichen weekly private &amp; business plan.
                 </p>
                 <div className="mt-8 flex flex-wrap items-center justify-center gap-x-9 gap-y-4">
@@ -485,67 +462,65 @@ export default function Angebot() {
             <h2 className="display text-[2.1rem] leading-[1.1] text-brown sm:text-[2.8rem] lg:text-[3.6rem]">
               Coaching von Führungskräften
             </h2>
-            <Ornament className="mt-9" />
           </Reveal>
 
           <Reveal delay={120} className="mt-12 md:mt-16">
-            <OfferPlans plans={PLANS} />
-          </Reveal>
-
-          {/* 10 · für alle Angebote verbindlich — Box zum Aufklappen */}
-          <Reveal className="mt-10 md:mt-12">
-            <BindingBox title="Die folgenden Punkte sind für alle Angebote verbindlich:">
-              <div className="grid gap-x-14 gap-y-9 md:grid-cols-2">
-                <div>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <p className="plan-h">Clarity Mirror</p>
-                    <span className="pill-note">48 Std. Antwortzeit</span>
+            <OfferPlans
+              plans={PLANS}
+              binding={
+                <BindingBox title="Die folgenden Punkte sind für alle Angebote verbindlich:">
+                  <div className="grid gap-y-7">
+                    <div>
+                      <div className="flex flex-wrap items-center gap-3">
+                        <p className="plan-h">Clarity Mirror</p>
+                        <span className="pill-note">48 Std. Antwortzeit</span>
+                      </div>
+                      <p className="plan-small mt-3">
+                        Clarity Mirror bedeutet hier: Auch zwischen unseren Calls musst du mit einer Frage, Unsicherheit
+                        oder konkreten Situation nicht zwei Wochen alleine weiterlaufen. Du kannst sie mit mir teilen und
+                        erhältst meine Perspektive auch außerhalb unserer Sessions. Du wirst hier unterstützt,
+                        wiederkehrende Muster zu erkennen &amp; Klarheit für deine nächsten Schritte zu gewinnen.
+                      </p>
+                    </div>
+                    <div>
+                      <div className="flex flex-wrap items-center gap-3">
+                        <p className="plan-h">Telegram Support-Slot</p>
+                        <span className="pill-note">24 Std. Antwortzeit</span>
+                      </div>
+                      <p className="plan-small mt-3">
+                        konkretes Thema inklusive meiner persönlichen Antwort und eines kurzen Follow-ups.
+                      </p>
+                    </div>
+                    <div>
+                      <p className="plan-h">Investition</p>
+                      <p className="plan-small mt-3">
+                        Nach Vertragsabschluss erhältst du deine Rechnung. Bei Einmalzahlung ist der Gesamtbetrag innerhalb
+                        von sieben Kalendertagen nach Rechnungsstellung fällig.
+                      </p>
+                    </div>
+                    <div>
+                      <p className="plan-small">
+                        Nach Zahlungseingang melde ich mich persönlich über die von dir angegebenen Kontaktdaten.
+                        Anschließend verbinden wir uns über Telegram und stimmen deine erste Session sowie die weiteren
+                        Termine gemeinsam ab.
+                      </p>
+                      <p className="plan-small mt-4">
+                        Über unseren persönlichen 1:1 Chat erhältst du die vereinbarte Begleitung zwischen den Sessions.
+                        Dort führe ich dich auch in die Nutzung des Clarity Mirrors als deinen persönlichen Reflexionsraum
+                        ein.
+                      </p>
+                    </div>
                   </div>
-                  <p className="plan-small mt-3">
-                    Clarity Mirror bedeutet hier: Auch zwischen unseren Calls musst du mit einer Frage, Unsicherheit
-                    oder konkreten Situation nicht zwei Wochen alleine weiterlaufen. Du kannst sie mit mir teilen und
-                    erhältst meine Perspektive auch außerhalb unserer Sessions. Du wirst hier unterstützt,
-                    wiederkehrende Muster zu erkennen &amp; Klarheit für deine nächsten Schritte zu gewinnen.
-                  </p>
-                </div>
-                <div>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <p className="plan-h">Telegram Support-Slot</p>
-                    <span className="pill-note">24 Std. Antwortzeit</span>
-                  </div>
-                  <p className="plan-small mt-3">
-                    konkretes Thema inklusive meiner persönlichen Antwort und eines kurzen Follow-ups.
-                  </p>
-                </div>
-                <div>
-                  <p className="plan-h">Investition</p>
-                  <p className="plan-small mt-3">
-                    Nach Vertragsabschluss erhältst du deine Rechnung. Bei Einmalzahlung ist der Gesamtbetrag innerhalb
-                    von sieben Kalendertagen nach Rechnungsstellung fällig.
-                  </p>
-                </div>
-                <div>
-                  <p className="plan-small">
-                    Nach Zahlungseingang melde ich mich persönlich über die von dir angegebenen Kontaktdaten.
-                    Anschließend verbinden wir uns über Telegram und stimmen deine erste Session sowie die weiteren
-                    Termine gemeinsam ab.
-                  </p>
-                  <p className="plan-small mt-4">
-                    Über unseren persönlichen 1:1 Chat erhältst du die vereinbarte Begleitung zwischen den Sessions.
-                    Dort führe ich dich auch in die Nutzung des Clarity Mirrors als deinen persönlichen Reflexionsraum
-                    ein.
-                  </p>
-                </div>
-              </div>
-            </BindingBox>
+                </BindingBox>
+              }
+            />
           </Reveal>
 
           {/* 11 · Ready to invest in yourself? — einmal für alle drei, danach je Angebot ein CTA */}
-          <Reveal className="mt-24 md:mt-32">
+          <Reveal className="mt-20 md:mt-28">
             <p className="gold-line-title">
               <span>Ready to invest in yourself?</span>
             </p>
-            <Ornament className="mt-7" />
           </Reveal>
           <Stagger className="mt-10 grid gap-8 md:mt-12 md:grid-cols-3 md:gap-6">
             {PLANS.map((p) => (
@@ -580,7 +555,7 @@ export default function Angebot() {
                 <p data-s className="display text-[2.2rem] leading-[1.08] text-brown sm:text-[3rem] lg:text-[3.8rem]">
                   Ready for your new reality?
                 </p>
-                <a data-s href={CALENDLY} className="btn btn-solid" title="Link zu Calendly">
+                <a data-s href={CALENDLY} className="btn btn-solid btn-lg" title="Link zu Calendly">
                   Book your free Client Check-In
                   <Arrow />
                 </a>

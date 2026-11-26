@@ -1,13 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-/** "Für alle Angebote verbindlich" as a box that opens (client wish: otherwise too much text at once). */
+/**
+ * "Die folgenden Punkte sind für alle Angebote verbindlich" — sits inside the first (shortest) offer,
+ * as on the client's board, and can be folded. Open on wide screens, where it evens out the three
+ * columns; folded on phones, where it would otherwise be a long read before the second offer.
+ */
 export default function BindingBox({ title, children }: { title: string; children: React.ReactNode }) {
   const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (window.matchMedia("(min-width: 1024px)").matches) setOpen(true);
+  }, []);
   return (
     <div className="bind-box">
-      <h3>
+      <h4>
         <button
           type="button"
           className="bind-btn"
@@ -15,13 +22,13 @@ export default function BindingBox({ title, children }: { title: string; childre
           aria-controls="verbindlich-panel"
           onClick={() => setOpen((v) => !v)}
         >
-          <span className="display text-[1.3rem] leading-[1.25] text-burgundy md:text-[1.7rem]">{title}</span>
+          <span className="display text-[1.12rem] leading-[1.3] text-burgundy">{title}</span>
           <span className="faq-icon" aria-hidden="true" />
         </button>
-      </h3>
+      </h4>
       <div id="verbindlich-panel" className="fold" data-open={open} role="region" aria-label={title}>
         <div>
-          <div className="px-[1.4rem] pb-8 md:px-10 md:pb-11">{children}</div>
+          <div className="pb-1 pt-5">{children}</div>
         </div>
       </div>
     </div>

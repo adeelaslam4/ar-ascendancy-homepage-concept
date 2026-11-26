@@ -1,16 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { COMPANY, START, type Plan } from "@/lib/offers";
 import Rich from "./Rich";
-
-type Layout = "M" | "A" | "B";
-
-const LAYOUTS: { id: Layout; label: string }[] = [
-  { id: "M", label: "1 · Wie im Miro-Board (alles sichtbar)" },
-  { id: "A", label: "2 · Kompakt (Details aufklappbar)" },
-  { id: "B", label: "3 · Reiter" },
-];
 
 function Head({ p, as: Tag = "h3", stack = false }: { p: Plan; as?: "h3" | "span"; stack?: boolean }) {
   return (
@@ -98,7 +90,7 @@ function Lead({ p }: { p: Plan }) {
 }
 
 /** Layout 1 — as on the client's board: three offers side by side, everything visible. */
-function Board({ plans }: { plans: Plan[] }) {
+function Board({ plans, binding }: { plans: Plan[]; binding?: React.ReactNode }) {
   const ref = useRef<HTMLDivElement | null>(null);
 
   // The offers differ a lot in length. Each shorter card scrolls normally until its end is on screen,
@@ -125,7 +117,7 @@ function Board({ plans }: { plans: Plan[] }) {
 
   return (
     <div ref={ref} className="grid gap-6 lg:grid-cols-3 lg:items-start xl:gap-8">
-      {plans.map((p) => (
+      {plans.map((p, i) => (
         <article key={p.id} id={p.id} className="plan is-sticky scroll-mt-28">
           <Lead p={p} />
           <div className="mt-4">
@@ -134,124 +126,13 @@ function Board({ plans }: { plans: Plan[] }) {
           {p.footnote ? <p className="plan-small mt-5">{p.footnote}</p> : null}
           <Secret p={p} />
           <Invest p={p} />
+          {i === 0 && binding ? <div className="mt-9">{binding}</div> : null}
         </article>
       ))}
     </div>
   );
 }
 
-/** Layout 2 — same three cards, the long part of each offer opens on demand. */
-function Cards({ plans }: { plans: Plan[] }) {
-  const [open, setOpen] = useState<Record<string, boolean>>({});
-  const anyOpen = Object.values(open).some(Boolean);
-  return (
-    <div className={`grid gap-6 lg:grid-cols-3 xl:gap-8 ${anyOpen ? "lg:items-start" : "lg:items-stretch"}`}>
-      {plans.map((p) => {
-        const isOpen = !!open[p.id];
-        const more = p.included.length > p.preview;
-        return (
-          <article key={p.id} id={p.id} className="plan scroll-mt-28">
-            <Lead p={p} />
-            <div className="mt-4">
-              <Included p={p} to={p.preview} />
-            </div>
-
-            <div id={`${p.id}-mehr`} className="fold" data-open={isOpen}>
-              <div>
-                <div className="pt-[0.7rem]">
-                  {more ? <Included p={p} from={p.preview} /> : null}
-                  {p.footnote ? <p className="plan-small mt-5">{p.footnote}</p> : null}
-                  <Secret p={p} />
-                  <Invest p={p} />
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-auto pt-8">
-              <button
-                type="button"
-                className="plan-toggle"
-                aria-expanded={isOpen}
-                aria-controls={`${p.id}-mehr`}
-                onClick={() => setOpen((o) => ({ ...o, [p.id]: !o[p.id] }))}
-              >
-                {isOpen ? "Weniger anzeigen" : more ? "Alle Details & Investition" : "Investition & Details"}
-                <span className="faq-icon" aria-hidden="true" />
-              </button>
-            </div>
-          </article>
-        );
-      })}
-    </div>
-  );
-}
-
-/** Layout 3 — one offer at a time, chosen by tab. */
-function Tabs({ plans }: { plans: Plan[] }) {
-  const [active, setActive] = useState(plans[0].id);
-  const p = plans.find((x) => x.id === active) ?? plans[0];
-  const half = Math.ceil(p.included.length / 2);
-  return (
-    <div>
-      {plans.map((x) => (
-        <span key={x.id} id={x.id} className="block scroll-mt-28" />
-      ))}
-      <div className="tabs" role="tablist" aria-label="Angebote">
-        {plans.map((x) => (
-          <button
-            key={x.id}
-            type="button"
-            role="tab"
-            id={`tab-${x.id}`}
-            aria-selected={x.id === active}
-            aria-controls={`panel-${x.id}`}
-            className="tab"
-            onClick={() => setActive(x.id)}
-          >
-            <Head p={x} as="span" />
-            <span className="text-[0.8rem] tracking-[0.04em]">{x.duration}</span>
-          </button>
-        ))}
-      </div>
-      <div role="tabpanel" id={`panel-${p.id}`} aria-labelledby={`tab-${p.id}`} className="plan !border-t-0" key={p.id}>
-        <h3 className="sr-only">{p.name}</h3>
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-4">
-            <Intro p={p} />
-            <p className="mt-7 text-[0.95rem] font-semibold tracking-[0.02em] text-brown">{p.duration}</p>
-            <p className="plan-tag mt-4">{p.tagline}</p>
-            <Secret p={p} />
-          </div>
-          <div className="lg:col-span-8">
-            <p className="plan-h">Included</p>
-            <div className="mt-4 grid gap-x-10 gap-y-[0.7rem] md:grid-cols-2">
-              <Included p={p} to={half} />
-              <Included p={p} from={half} />
-            </div>
-            {p.footnote ? <p className="plan-small mt-5">{p.footnote}</p> : null}
-            <Invest p={p} />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export default function OfferPlans({ plans }: { plans: Plan[] }) {
-  const [layout, setLayout] = useState<Layout>("M");
-  return (
-    <div>
-      <div className="demo-switch mb-10" role="group" aria-label="Layout-Varianten für den Kickoff">
-        <span>
-          <strong className="font-semibold text-brown">Nur für den Kickoff:</strong> Darstellung der drei Angebote
-        </span>
-        {LAYOUTS.map((l) => (
-          <button key={l.id} type="button" aria-pressed={layout === l.id} onClick={() => setLayout(l.id)}>
-            {l.label}
-          </button>
-        ))}
-      </div>
-      {layout === "M" ? <Board plans={plans} /> : layout === "A" ? <Cards plans={plans} /> : <Tabs plans={plans} />}
-    </div>
-  );
+export default function OfferPlans({ plans, binding }: { plans: Plan[]; binding?: React.ReactNode }) {
+  return <Board plans={plans} binding={binding} />;
 }

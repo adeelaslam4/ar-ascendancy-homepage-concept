@@ -9,7 +9,7 @@ export default function CapSwitch({ children }: { children: React.ReactNode }) {
     <div className="post" data-cap={v}>
       <div className="demo-switch" role="group" aria-label="Varianten für den Anfangsbuchstaben">
         <span>
-          <strong className="font-semibold text-brown">Nur für den Kickoff:</strong> Anfangsbuchstabe der H2
+          <strong className="font-semibold text-brown">Zur Auswahl:</strong> Anfangsbuchstabe der H2
         </span>
         <button type="button" aria-pressed={v === "2"} onClick={() => setV("2")}>
           1 · Wie dein Beispiel

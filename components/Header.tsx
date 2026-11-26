@@ -70,7 +70,7 @@ export default function Header({ nav = NAV, current }: { nav?: NavItem[]; curren
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 md:flex lg:gap-9" aria-label="Hauptnavigation">
+        <nav className="hidden items-center gap-8 lg:flex lg:gap-9" aria-label="Hauptnavigation">
           {nav.map((n) => (
             <a
               key={n.label}
@@ -99,7 +99,7 @@ export default function Header({ nav = NAV, current }: { nav?: NavItem[]; curren
           aria-expanded={open}
           aria-controls="mobile-menu"
           aria-label={open ? "Menü schließen" : "Menü öffnen"}
-          className="relative z-50 flex h-10 w-10 items-center justify-center md:hidden"
+          className="relative z-50 flex h-10 w-10 items-center justify-center lg:hidden"
         >
           <span className="relative block h-3.5 w-6">
             <span
@@ -124,7 +124,7 @@ export default function Header({ nav = NAV, current }: { nav?: NavItem[]; curren
       {/* Mobile menu */}
       <div
         id="mobile-menu"
-        className={`fixed inset-0 z-40 flex flex-col bg-cream px-8 pt-32 pb-12 transition-opacity duration-400 md:hidden ${
+        className={`fixed inset-0 z-40 flex flex-col bg-cream px-8 pt-32 pb-12 transition-opacity duration-400 lg:hidden ${
           open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
       >

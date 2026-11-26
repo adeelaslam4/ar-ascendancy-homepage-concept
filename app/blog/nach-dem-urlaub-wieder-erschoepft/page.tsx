@@ -77,9 +77,6 @@ export default function BlogPost() {
                 {H1}
               </h1>
             </Reveal>
-            <Reveal delay={160}>
-              <div className="gold-diamond mt-10" />
-            </Reveal>
           </header>
 
           {/* ───────── Beitragsbild mit Alt-Text ───────── */}
@@ -121,7 +118,7 @@ export default function BlogPost() {
 
               {/* ───────── Nur für den Kickoff: weitere Beispiele + technische Umsetzung ───────── */}
               <aside className="mt-20 border border-dashed border-gold-line bg-cream-soft px-6 py-9 md:px-10 md:py-12">
-                <span className="label text-brown-soft">Nur für den Kickoff · nicht Teil des Beitrags</span>
+                <span className="label text-brown-soft">Hinweis zur Vorschau · nicht Teil des Beitrags</span>
 
                 <p className="display mt-6 text-[1.25rem] leading-[1.3] text-brown md:text-[1.5rem]">
                   Dieselbe Gestaltung mit den Überschriften deines zweiten Artikels

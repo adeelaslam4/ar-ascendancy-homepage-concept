@@ -45,7 +45,7 @@ export const PHOTOS = {
 export const OFFER_PHOTOS = {
   intro: img(EXISTING_SITE_IMAGE_IDS[PICKS.story], 1200, "4:5", "portrait"),
   quote: img(EXISTING_SITE_IMAGE_IDS[PICKS.hero], 1000, "3:4", "portrait"),
-  medallion: img(EXISTING_SITE_IMAGE_IDS[PICKS.story], 700, "1:1", "portrait"),
+  frame: img(EXISTING_SITE_IMAGE_IDS[PICKS.story], 1200, "4:5", "portrait"),
   ground: img(EXISTING_SITE_IMAGE_IDS[PICKS.haltung], 1800, "16:9", "warm"),
   story: img(EXISTING_SITE_IMAGE_IDS[PICKS.hero], 1200, "4:5", "portrait"),
   blog: img(EXISTING_SITE_IMAGE_IDS[PICKS.speaking], 1800, "16:9", "warm"),
