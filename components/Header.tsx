@@ -16,8 +16,45 @@ const NAV: NavItem[] = [
   { label: "Kontakt", href: "#kontakt" },
 ];
 
-/** `nav` / `current` are only passed by the subpages; the homepage keeps the default menu above. */
-export default function Header({ nav = NAV, current }: { nav?: NavItem[]; current?: string } = {}) {
+/** English menu for the trial translation of the homepage top (/en). */
+const NAV_EN: NavItem[] = [
+  { label: "Home", href: "/en" },
+  { label: "Offer", href: "#offer", title: "Links to the offer page" },
+  { label: "About me", href: "#about", title: "Links to the About me page" },
+  { label: "Blog", href: "#blog", title: "Links to the blog" },
+  { label: "Contact", href: "#kontakt" },
+];
+
+const T = {
+  de: { home: "A.R. ASCENDANCY – Startseite", main: "Hauptnavigation", lang: "Sprache", cta: "Kostenfreies Erstgespräch", ctaTitle: "Link zu Calendly", close: "Menü schließen", open: "Menü öffnen", mobile: "Mobile Navigation", toDe: "Deutsche Version", toEn: "English version (preview of the homepage top)" },
+  en: { home: "A.R. ASCENDANCY – Home", main: "Main navigation", lang: "Language", cta: "Free initial consultation", ctaTitle: "Link to Calendly", close: "Close menu", open: "Open menu", mobile: "Mobile navigation", toDe: "Deutsche Version", toEn: "English version" },
+};
+
+/** DE | EN. The current language is plain text, the other one is a link. */
+function LangSwitch({ lang, className }: { lang: "de" | "en"; className: string }) {
+  const t = T[lang];
+  return (
+    <span className={className} aria-label={t.lang}>
+      {lang === "de" ? (
+        <span className="text-brown" aria-current="true">DE</span>
+      ) : (
+        <Link href="/" hrefLang="de" title={t.toDe} className="transition-colors duration-300 hover:text-burgundy">DE</Link>
+      )}
+      <span className="h-3 w-px bg-gold-line" />
+      {lang === "en" ? (
+        <span className="text-brown" aria-current="true">EN</span>
+      ) : (
+        <Link href="/en" hrefLang="en" title={t.toEn} className="transition-colors duration-300 hover:text-burgundy">EN</Link>
+      )}
+    </span>
+  );
+}
+
+/** `nav` / `current` are only passed by the subpages; the homepage keeps the default menu above.
+    `lang="en"` is only used by the English trial page (/en). */
+export default function Header({ nav, current, lang = "de" }: { nav?: NavItem[]; current?: string; lang?: "de" | "en" } = {}) {
+  const t = T[lang];
+  nav = nav ?? (lang === "en" ? NAV_EN : NAV);
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -45,7 +82,7 @@ export default function Header({ nav = NAV, current }: { nav?: NavItem[]; curren
     >
       <div className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-3 md:px-10 md:py-4 lg:px-14">
         {/* Logo: original artwork, stacked — monogram, wordmark, then the tagline beneath in the logo colour */}
-        <Link href="/" className="group flex flex-col items-center gap-[6px]" aria-label="A.R. ASCENDANCY – Startseite">
+        <Link href={lang === "en" ? "/en" : "/"} className="group flex flex-col items-center gap-[6px]" aria-label={t.home}>
           <Image
             src="/logo/monogram-original@2x.png"
             alt=""
@@ -70,7 +107,7 @@ export default function Header({ nav = NAV, current }: { nav?: NavItem[]; curren
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 lg:flex lg:gap-9" aria-label="Hauptnavigation">
+        <nav className="hidden items-center gap-8 lg:flex lg:gap-9" aria-label={t.main}>
           {nav.map((n) => (
             <a
               key={n.label}
@@ -82,13 +119,9 @@ export default function Header({ nav = NAV, current }: { nav?: NavItem[]; curren
               {n.label}
             </a>
           ))}
-          <span className="ml-2 flex items-center gap-2 text-[0.74rem] tracking-[0.16em] text-brown-soft" aria-label="Sprache">
-            <span className="text-brown">DE</span>
-            <span className="h-3 w-px bg-gold-line" />
-            <span title="Englische Version folgt nach Freigabe">EN</span>
-          </span>
-          <a href={CALENDLY} className="btn-pill ml-4 hidden whitespace-nowrap xl:inline-flex" title="Link zu Calendly">
-            Kostenfreies Erstgespräch
+          <LangSwitch lang={lang} className="ml-2 flex items-center gap-2 text-[0.74rem] tracking-[0.16em] text-brown-soft" />
+          <a href={CALENDLY} className="btn-pill ml-4 hidden whitespace-nowrap xl:inline-flex" title={t.ctaTitle}>
+            {t.cta}
           </a>
         </nav>
 
@@ -98,7 +131,7 @@ export default function Header({ nav = NAV, current }: { nav?: NavItem[]; curren
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="mobile-menu"
-          aria-label={open ? "Menü schließen" : "Menü öffnen"}
+          aria-label={open ? t.close : t.open}
           className="relative z-50 flex h-10 w-10 items-center justify-center lg:hidden"
         >
           <span className="relative block h-3.5 w-6">
@@ -128,7 +161,7 @@ export default function Header({ nav = NAV, current }: { nav?: NavItem[]; curren
           open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
-        <nav className="flex flex-col gap-7" aria-label="Mobile Navigation">
+        <nav className="flex flex-col gap-7" aria-label={t.mobile}>
           {nav.map((n) => (
             <a
               key={n.label}
@@ -140,11 +173,7 @@ export default function Header({ nav = NAV, current }: { nav?: NavItem[]; curren
             </a>
           ))}
         </nav>
-        <div className="mt-auto flex items-center gap-3 text-[0.75rem] tracking-[0.18em] text-brown-soft">
-          <span className="text-brown">DE</span>
-          <span className="h-3 w-px bg-gold-line" />
-          <span>EN</span>
-        </div>
+        <LangSwitch lang={lang} className="mt-auto flex items-center gap-3 text-[0.75rem] tracking-[0.18em] text-brown-soft" />
       </div>
     </header>
   );

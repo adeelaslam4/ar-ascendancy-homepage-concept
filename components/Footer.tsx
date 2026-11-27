@@ -15,6 +15,23 @@ const LEGAL = [
   { label: "Datenschutzerklärung", href: "#datenschutz" },
 ];
 
+/* English labels for the trial translation of the homepage top (/en). */
+const NAV_EN: NavItem[] = [
+  { label: "Home", href: "/en" },
+  { label: "Offer", href: "#offer" },
+  { label: "About me", href: "#about" },
+  { label: "Blog", href: "#blog" },
+  { label: "Contact", href: "#kontakt" },
+];
+const LEGAL_EN = [
+  { label: "Legal notice", href: "#impressum" },
+  { label: "Privacy policy", href: "#datenschutz" },
+];
+const T = {
+  de: { line: "Führungskräfte Coaching, Consulting, Mentoring & Strategic Advisory. Berlin.", contact: "Kontakt", mail: "E-Mail an office@ar-ascendancy.com", yt: "YouTube (Link folgt)", ytTitle: "YouTube – Link folgt", nav: "Fußzeilen-Navigation", legal: "Rechtliches", soon: "Text folgt" },
+  en: { line: "Executive Coaching, Consulting, Mentoring & Strategic Advisory. Berlin.", contact: "Contact", mail: "E-mail to office@ar-ascendancy.com", yt: "YouTube (link to follow)", ytTitle: "YouTube – link to follow", nav: "Footer navigation", legal: "Legal", soon: "Text to follow" },
+};
+
 function IconLinkedIn() {
   return (
     <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -32,7 +49,10 @@ function IconMail() {
   );
 }
 
-export default function Footer({ nav = NAV }: { nav?: NavItem[] } = {}) {
+export default function Footer({ nav, lang = "de" }: { nav?: NavItem[]; lang?: "de" | "en" } = {}) {
+  const t = T[lang];
+  const legal = lang === "en" ? LEGAL_EN : LEGAL;
+  nav = nav ?? (lang === "en" ? NAV_EN : NAV);
   return (
     <footer className="bg-cream-soft px-4 pb-5 pt-5 md:px-8 md:pb-8 md:pt-8 lg:px-12">
       <div className="relative mx-auto max-w-[1400px]">
@@ -61,11 +81,11 @@ export default function Footer({ nav = NAV }: { nav?: NavItem[] } = {}) {
                 </span>
               </div>
               <p className="copy mt-7 max-w-[380px] text-[0.98rem] text-brown-soft">
-                Führungskräfte Coaching, Consulting, Mentoring &amp; Strategic Advisory. Berlin.
+                {t.line}
               </p>
 
               <div id="kontakt" className="mt-12 flex scroll-mt-24 flex-col gap-3 md:mt-16 md:pl-0">
-                <span className="label text-gold-line">Kontakt</span>
+                <span className="label text-gold-line">{t.contact}</span>
                 <a
                   href="mailto:office@ar-ascendancy.com"
                   className="w-fit text-[1rem] text-brown transition-colors duration-300 hover:text-burgundy md:text-[1.05rem]"
@@ -85,11 +105,11 @@ export default function Footer({ nav = NAV }: { nav?: NavItem[] } = {}) {
                 >
                   <IconLinkedIn />
                 </a>
-                <a href="mailto:office@ar-ascendancy.com" className="social" aria-label="E-Mail an office@ar-ascendancy.com">
+                <a href="mailto:office@ar-ascendancy.com" className="social" aria-label={t.mail}>
                   <IconMail />
                 </a>
                 {/* channel link is added by the client once the channel exists */}
-                <a href="#youtube" className="social" aria-label="YouTube (Link folgt)" title="YouTube – Link folgt">
+                <a href="#youtube" className="social" aria-label={t.yt} title={t.ytTitle}>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                     <path d="M21.6 7.2a2.5 2.5 0 0 0-1.76-1.77C18.28 5 12 5 12 5s-6.28 0-7.84.43A2.5 2.5 0 0 0 2.4 7.2 26 26 0 0 0 2 12a26 26 0 0 0 .4 4.8 2.5 2.5 0 0 0 1.76 1.77C5.72 19 12 19 12 19s6.28 0 7.84-.43a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.4-4.8ZM10 15V9l5.2 3L10 15Z" />
                   </svg>
@@ -100,7 +120,7 @@ export default function Footer({ nav = NAV }: { nav?: NavItem[] } = {}) {
             {/* ── Right: pill CTA, navigation, legal ── */}
             <div className="flex flex-col md:col-span-5 md:items-end md:text-right lg:col-span-4 lg:col-start-9">
               <span className="label text-gold-line md:mt-2">Navigation</span>
-              <nav className="mt-4 flex flex-col gap-2.5" aria-label="Fußzeilen-Navigation">
+              <nav className="mt-4 flex flex-col gap-2.5" aria-label={t.nav}>
                 {nav.map((n) => (
                   <a key={n.label} href={n.href} className="flink">
                     {n.label}
@@ -108,10 +128,10 @@ export default function Footer({ nav = NAV }: { nav?: NavItem[] } = {}) {
                 ))}
               </nav>
 
-              <span className="label mt-10 text-gold-line">Rechtliches</span>
+              <span className="label mt-10 text-gold-line">{t.legal}</span>
               <div className="mt-4 flex flex-col gap-2.5">
-                {LEGAL.map((n) => (
-                  <a key={n.label} href={n.href} className="flink text-[0.85rem]" title="Text folgt">
+                {legal.map((n) => (
+                  <a key={n.label} href={n.href} className="flink text-[0.85rem]" title={t.soon}>
                     {n.label}
                   </a>
                 ))}
